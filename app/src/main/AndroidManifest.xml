@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.favio.unioncanina">
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,7 +20,10 @@
         </activity>
         <activity android:name=".InicioSesionActivity" />
         <activity android:name=".RegistroActivity" />
-        <activity android:name=".InicioActivity"></activity>
+        <activity android:name=".InicioActivity" />
+        <activity android:name=".ReporteExtravioActivity" />
+        <activity android:name=".InformacionConversacionActivity" />
+        <activity android:name=".DetallesMiMascotaActivity"></activity>
     </application>
 
 </manifest>

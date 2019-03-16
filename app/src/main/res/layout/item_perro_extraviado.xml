@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:id="@+id/iv_fotoDueno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_account_circle_gray_36dp"
+                android:layout_marginLeft="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/ll_datosDueno"
+                android:layout_toRightOf="@+id/iv_fotoDueno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    android:id="@+id/tv_nombreDueno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorTexto"
+                    android:textSize="14sp"
+                    android:text="Nombre del propietario"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_estadoDueno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorTexto"
+                        android:textSize="12sp"
+                        android:text="Estado,"/>
+
+                    <TextView
+                        android:id="@+id/tv_coloniaDueno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorTexto"
+                        android:textSize="12sp"
+                        android:text="Ciudad"
+                        android:layout_marginLeft="5dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_fotoPerro"
+                android:layout_below="@+id/ll_datosDueno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/foto"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_below="@+id/iv_fotoPerro"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1.6"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_nombrePerro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorTexto"
+                        android:textSize="14sp"
+                        android:text="Nombre del perro"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_location_on_gray_18dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_lugarExtravioPerro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:text="Lugar de extravío"
+                            android:layout_marginLeft="4dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".4"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_fechaExtravioPerro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Extraviado hace 1 día"/>
+
+                    <TextView
+                        android:id="@+id/tv_masInfoPerro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Más información"
+                        android:textColor="@color/colorUnionCanina"
+                        android:textStyle="bold"
+                        android:padding="3dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

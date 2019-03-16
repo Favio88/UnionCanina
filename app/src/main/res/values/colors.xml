@@ -6,5 +6,6 @@
     <color name="colorUnionCanina">#B4DEFF</color>
     <color name="colorFondo">#F2F2F2</color>
     <color name="colorTextoControles">#CFCFCF</color>
+    <color name="colorTexto">#484848</color>
 
 </resources>
