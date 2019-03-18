@@ -27,39 +27,29 @@
             android:layout_toRightOf="@+id/ic_fotoPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Inicio"
+            android:text="Mis mascotas"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:layout_marginLeft="10dp"
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/ic_buscar"
-            android:layout_toLeftOf="@+id/ic_filtrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_search_white_36dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"/>
-
-        <ImageView
             android:id="@+id/ic_filtrar"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_tune_white_26dp"
+            android:background="@drawable/ic_add_white_36dp"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"/>
 
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_perrosExtraviados"
+        android:id="@+id/rv_misMascotas"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".9">
 
     </android.support.v7.widget.RecyclerView>
-
 
 </LinearLayout>

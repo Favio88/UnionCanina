@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/iv_fotoPersonaMensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_account_circle_gray_70dp"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="80dp">
+
+        <TextView
+            android:id="@+id/tv_nombrePersonaMensaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:textColor="@color/colorTexto"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="13dp"/>
+
+        <TextView
+            android:id="@+id/tv_ultimoMensaje"
+            android:layout_below="@+id/tv_nombrePersonaMensaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Último mensaje"
+            android:textColor="@color/colorTexto"
+            android:textSize="12sp"
+            android:layout_marginTop="2dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_horaMensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12:00"
+        android:layout_gravity="right|center"
+        android:layout_marginRight="20dp"/>
+
+
+</FrameLayout>

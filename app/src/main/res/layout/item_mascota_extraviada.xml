@@ -62,7 +62,7 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/iv_fotoPerro"
+                android:id="@+id/iv_fotoMascota"
                 android:layout_below="@+id/ll_datosDueno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_below="@+id/iv_fotoPerro"
+                android:layout_below="@+id/iv_fotoMascota"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="2"
@@ -85,12 +85,12 @@
                     android:paddingLeft="10dp">
 
                     <TextView
-                        android:id="@+id/tv_nombrePerro"
+                        android:id="@+id/tv_nombreMascota"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorTexto"
                         android:textSize="14sp"
-                        android:text="Nombre del perro"/>
+                        android:text="Nombre de la mascota"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                             android:background="@drawable/ic_location_on_gray_18dp"/>
 
                         <TextView
-                            android:id="@+id/tv_lugarExtravioPerro"
+                            android:id="@+id/tv_lugarExtravioMascota"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorTexto"
@@ -123,13 +123,13 @@
                     android:gravity="center">
 
                     <TextView
-                        android:id="@+id/tv_fechaExtravioPerro"
+                        android:id="@+id/tv_fechaExtravioMascota"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Extraviado hace 1 día"/>
 
                     <TextView
-                        android:id="@+id/tv_masInfoPerro"
+                        android:id="@+id/tv_masInfoMascota"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Más información"

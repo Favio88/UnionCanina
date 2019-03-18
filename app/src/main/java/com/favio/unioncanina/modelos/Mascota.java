@@ -2,14 +2,14 @@ package com.favio.unioncanina.modelos;
 
 import android.media.Image;
 
-public class Perro {
+public class Mascota {
 
     private Integer Id;
     //private Image Foto;
     private String Nombre;
     private String Dueno;
     private String Raza;
-    private String Genero;
+    private String Sexo;
     private Integer Edad;
     private String Estado;
     private String Colonia;
@@ -20,12 +20,12 @@ public class Perro {
     private String ColoniaExtravio;
     private String FechaExtravio;
 
-    public Perro(Integer id, Image foto, String nombre, String raza, String genero, Integer edad, String estado, String colonia, String infoExtra, String rasgos, String status, String estadoExtravio, String coloniaExtravio, String fechaExtravio) {
+    public Mascota(Integer id, Image foto, String nombre, String raza, String genero, Integer edad, String estado, String colonia, String infoExtra, String rasgos, String status, String estadoExtravio, String coloniaExtravio, String fechaExtravio) {
         Id = id;
         //Foto = foto;
         Nombre = nombre;
         Raza = raza;
-        Genero = genero;
+        Sexo = genero;
         Edad = edad;
         Estado = estado;
         Colonia = colonia;
@@ -37,7 +37,7 @@ public class Perro {
         FechaExtravio = fechaExtravio;
     }
 
-    public Perro(){
+    public Mascota(){
 
 
     }
@@ -107,11 +107,11 @@ public class Perro {
     }
 
     public String getGenero() {
-        return Genero;
+        return Sexo;
     }
 
     public void setGenero(String genero) {
-        Genero = genero;
+        Sexo = genero;
     }
 
     public Integer getEdad() {

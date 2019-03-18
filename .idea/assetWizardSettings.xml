@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio1/plugins/android/lib/android.jar!/images/material_design_icons/communication/ic_location_on_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio1/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_info_outline_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,12 +28,12 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="c2c2c2" />
-                            <entry key="height" value="18" />
-                            <entry key="outputName" value="ic_location_on_gray_18dp" />
+                            <entry key="color" value="ffffff" />
+                            <entry key="height" value="36" />
+                            <entry key="outputName" value="ic_info_outline_white_36dp" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\Favio Orlando" />
-                            <entry key="width" value="18" />
+                            <entry key="width" value="36" />
                           </map>
                         </option>
                       </PersistentState>

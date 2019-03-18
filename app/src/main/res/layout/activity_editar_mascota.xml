@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReporteExtravioActivity"
-    android:weightSum="1"
+    tools:context=".EditarMascotaActivity"
     android:orientation="vertical"
-    android:background="@color/colorFondo">
+    android:weightSum="1">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,14 +21,14 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ic_keyboard_arrow_left_white_48dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"/>
 
         <TextView
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/ic_retroceso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reporte de extravío"
+            android:text="Editar Mascota"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
@@ -46,89 +45,110 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:weightSum="1">
 
             <TextView
-                android:id="@+id/nombreMascotaExtravio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre de la mascota"
+                android:text="información de la mascota"
                 android:textColor="@color/colorTexto"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Información de extravío"
-                android:textColor="@color/colorTexto"
-                android:textSize="16sp"
-                android:layout_marginTop="30dp"/>
-
-            <Spinner
-                android:id="@+id/sp_estadoExtravio"
+            <EditText
+                android:id="@+id/et_nombreRegistrarMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
-
-            <Spinner
-                android:id="@+id/sp_ciudadExtravio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp" />
-
-            <Spinner
-                android:id="@+id/sp_coloniaExtravio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:text="Nombre"
+                android:background="#FFFFFF"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="14sp"
+                android:padding="8dp"
+                android:textAlignment="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"/>
 
             <EditText
-                android:id="@+id/et_infoExtra"
+                android:id="@+id/et_razaRegistrarMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Información extra"
-                android:textAlignment="center"
-                android:textSize="14sp"
+                android:text="Raza"
                 android:background="#FFFFFF"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="14sp"
+                android:padding="8dp"
+                android:textAlignment="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:padding="5dp"/>
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/et_colorRegistrarMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Color"
+                android:background="#FFFFFF"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="14sp"
+                android:padding="8dp"
+                android:textAlignment="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/et_sexoRegistrarMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sexo"
+                android:background="#FFFFFF"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="14sp"
+                android:padding="8dp"
+                android:textAlignment="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/et_rasgosRegistrarMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rasgos físicos"
+                android:background="#FFFFFF"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="14sp"
+                android:padding="8dp"
+                android:textAlignment="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_reportarExtravio"
+        <Button
+            android:id="@+id/btn_contactarDueno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_blue"
             android:layout_gravity="bottom"
-            android:background="@drawable/rounded_yellow"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_marginBottom="20dp"
+            android:text="Guardar mascota"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_report_white_24dp"
-                android:layout_marginRight="5dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reportar extravío"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="16sp"/>
 
     </FrameLayout>
 

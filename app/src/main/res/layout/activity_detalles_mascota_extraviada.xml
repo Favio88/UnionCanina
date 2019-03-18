@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetallesMiMascotaActivity"
-    android:weightSum="1"
+    tools:context=".DetallesMascotaExtraviadaActivity"
     android:orientation="vertical"
+    android:weightSum="1"
     android:background="@color/colorFondo">
 
     <RelativeLayout
@@ -55,7 +55,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/foto"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="5dp"/>
 
             <TextView
                 android:id="@+id/tv_raza"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:text="Raza"
                 android:textColor="@color/colorTexto"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/tv_edad"
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:text="Edad"
                 android:textColor="@color/colorTexto"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/tv_rasgos"
@@ -79,71 +79,39 @@
                 android:layout_height="wrap_content"
                 android:text="Rasgos físicos"
                 android:textColor="@color/colorTexto"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lugar de extravío"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorTexto"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monterreal, Torreón, Coahuila"
+                android:textColor="@color/colorTexto"
+                android:textSize="14sp"/>
 
         </LinearLayout>
 
-        <LinearLayout
+        <Button
+            android:id="@+id/btn_contactarDueno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_blue"
             android:layout_gravity="bottom"
-            android:orientation="horizontal"
-            android:weightSum="3"
-            android:layout_marginBottom="20dp"
+            android:text="Contactar al dueño"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-
-            <FrameLayout
-                android:id="@+id/fl_editar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_blue"
-                android:padding="10dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/ic_edit_white_24dp"/>
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/fl_reportar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_yellow"
-                android:padding="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/ic_report_white_24dp"/>
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/fl_eliminar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_red"
-                android:padding="10dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/ic_delete_white_24dp"/>
-
-            </FrameLayout>
-
-        </LinearLayout>
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="16sp"/>
 
     </FrameLayout>
 
