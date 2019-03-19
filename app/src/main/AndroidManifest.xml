@@ -11,6 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".PruebaActivity"
+            android:label="@string/title_activity_prueba"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +35,7 @@
         <activity android:name=".ResultadoBusquedaActivity" />
         <activity android:name=".RegistrarMascotaActivity" />
         <activity android:name=".EditarMascotaActivity" />
-        <activity android:name=".ConversacionActivity"></activity>
+        <activity android:name=".ConversacionActivity" />
     </application>
 
 </manifest>
