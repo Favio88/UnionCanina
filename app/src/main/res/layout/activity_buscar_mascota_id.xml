@@ -49,7 +49,7 @@
             android:weightSum="1">
 
             <EditText
-                android:id="@+id/et_idMascota"
+                android:id="@+id/et_codigoMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ingresar código de la mascota"
@@ -74,7 +74,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_contactarDueno"
+            android:id="@+id/btn_buscarMascota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_blue"
