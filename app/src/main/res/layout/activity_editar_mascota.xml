@@ -58,76 +58,77 @@
                 android:layout_marginTop="20dp"/>
 
             <EditText
-                android:id="@+id/et_nombreRegistrarMascota"
+                android:id="@+id/et_nombreEditarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#FFFFFF"
+                android:padding="8dp"
                 android:text="Nombre"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
                 android:textAlignment="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:textColor="@color/colorTextoControles"
+                android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/et_razaRegistrarMascota"
+                android:id="@+id/et_razaEditarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#FFFFFF"
+                android:padding="8dp"
                 android:text="Raza"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
                 android:textAlignment="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:textColor="@color/colorTextoControles"
+                android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/et_colorRegistrarMascota"
+                android:id="@+id/et_colorEditarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#FFFFFF"
+                android:padding="8dp"
                 android:text="Color"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
                 android:textAlignment="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:textColor="@color/colorTextoControles"
+                android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/et_sexoRegistrarMascota"
+                android:id="@+id/et_sexoEditarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#FFFFFF"
+                android:padding="8dp"
                 android:text="Sexo"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
                 android:textAlignment="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:textColor="@color/colorTextoControles"
+                android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/et_rasgosRegistrarMascota"
+                android:id="@+id/et_rasgosEditarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rasgos físicos"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textAlignment="center"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:background="#FFFFFF"
+                android:padding="8dp"
+                android:text="Rasgos físicos"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="14sp" />
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_fotosMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
@@ -137,18 +138,18 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_contactarDueno"
+            android:id="@+id/btn_guardarMiMascota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_blue"
             android:layout_gravity="bottom"
-            android:text="Guardar mascota"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:textSize="16sp"/>
+            android:background="@drawable/rounded_blue"
+            android:text="Guardar mascota"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
 
     </FrameLayout>
 

@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 
 /**
@@ -28,6 +30,10 @@ public class InicioFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+
+    ImageView ic_fotoPerfil, ic_buscarMascotaId, ic_filtrarMascota;
+    RecyclerView rv_mascotasExtraviadas;
 
     public InicioFragment() {
         // Required empty public constructor

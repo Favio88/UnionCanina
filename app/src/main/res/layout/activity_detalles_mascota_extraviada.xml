@@ -25,14 +25,15 @@
             android:layout_marginLeft="10dp"/>
 
         <TextView
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/ic_retroceso"
+            android:id="@+id/tv_nombreMascota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reporte de extravío"
-            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/ic_retroceso"
+            android:text="Nombre de la mascota"
             android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -58,28 +59,28 @@
                 android:layout_marginBottom="5dp"/>
 
             <TextView
-                android:id="@+id/tv_raza"
+                android:id="@+id/tv_razaMascota"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Raza"
                 android:textColor="@color/colorTexto"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_edad"
+                android:id="@+id/tv_edadMascota"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edad"
                 android:textColor="@color/colorTexto"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_rasgos"
+                android:id="@+id/tv_rasgosMascota"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rasgos físicos"
                 android:textColor="@color/colorTexto"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -91,11 +92,12 @@
                 android:textSize="16sp"/>
 
             <TextView
+                android:id="@+id/tv_lugarExtravioMascota"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Monterreal, Torreón, Coahuila"
                 android:textColor="@color/colorTexto"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
         </LinearLayout>
 

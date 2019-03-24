@@ -49,14 +49,14 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/nombreMascotaExtravio"
+                android:id="@+id/tv_nombreMascotaExtravio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Nombre de la mascota"
                 android:textColor="@color/colorTexto"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"

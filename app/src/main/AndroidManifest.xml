@@ -34,7 +34,9 @@
         <activity
             android:name=".InicioActivity"
             android:label="@string/title_activity_inicio"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".SeleccionarImagenActivity" />
+        <activity android:name=".PerfilActivity"></activity>
     </application>
 
 </manifest>

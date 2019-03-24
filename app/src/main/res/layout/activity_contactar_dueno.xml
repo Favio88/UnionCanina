@@ -64,17 +64,26 @@
         android:layout_height="0dp"
         android:layout_weight=".1"
         android:padding="10dp"
-        android:background="#FFFFFF">
-        
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
         <EditText
             android:id="@+id/et_escribirMensaje"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Escribir mensaje"
             android:textAlignment="center"
             android:textSize="12sp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_weight=".98"/>
+
+        <ImageView
+            android:id="@+id/ic_enviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_send_blue_36dp" />
 
     </LinearLayout>
 

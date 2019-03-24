@@ -48,67 +48,67 @@
             android:gravity="center">
 
             <Spinner
-                android:id="@+id/sp_razaMascota"
+                android:id="@+id/sp_razaMascotaFiltro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="40dp" />
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="10dp" />
 
             <Spinner
-                android:id="@+id/sp_sexoMascota"
+                android:id="@+id/sp_sexoMascotaFiltro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp" />
 
             <Spinner
-                android:id="@+id/sp_ciudadMascota"
+                android:id="@+id/sp_ciudadMascotaFiltro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp" />
 
             <Spinner
-                android:id="@+id/sp_coloniaMascota"
+                android:id="@+id/sp_coloniaMascotaFiltro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp" />
 
             <EditText
-                android:id="@+id/et_idMascota"
+                android:id="@+id/et_rasgosMascotaFiltro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ingresar rasgo físico"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textAlignment="center"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:background="#FFFFFF"
+                android:padding="8dp"
+                android:text="Ingresar rasgo físico"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="14sp" />
 
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_contactarDueno"
+            android:id="@+id/btn_aplicarFiltros"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_blue"
             android:layout_gravity="bottom"
-            android:text="Aplicar filtros"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:textSize="16sp"/>
+            android:background="@drawable/rounded_blue"
+            android:text="Aplicar filtros"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
 
     </FrameLayout>
 

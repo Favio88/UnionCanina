@@ -4,11 +4,11 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/colorFondo"
-    android:padding="40dp">
+    android:padding="10dp">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_add_a_photo_gray_48dp"/>
+        android:background="@drawable/ic_photo_gray_96dp"/>
 
 </LinearLayout>

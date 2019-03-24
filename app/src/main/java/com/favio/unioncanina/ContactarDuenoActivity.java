@@ -8,9 +8,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class ContactarDuenoActivity extends AppCompatActivity {
+public class ContactarDuenoActivity extends AppCompatActivity implements View.OnClickListener{
 
-    ImageView ic_retroceso;
+    ImageView ic_retroceso, ic_enviar;
     EditText et_escribirMensaje;
 
     @Override
@@ -20,15 +20,30 @@ public class ContactarDuenoActivity extends AppCompatActivity {
 
         ic_retroceso=findViewById(R.id.ic_retroceso);
         et_escribirMensaje=findViewById(R.id.et_escribirMensaje);
+        ic_enviar=findViewById(R.id.ic_enviar);
 
-        ic_retroceso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        ic_retroceso.setOnClickListener(this);
+        et_escribirMensaje.setOnClickListener(this);
+        ic_enviar.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+
+            case R.id.ic_retroceso:
                 Intent itt_detallesMascotaExtraviadaActivity=new Intent(ContactarDuenoActivity.this, DetallesMascotaExtraviadaActivity.class);
                 startActivity(itt_detallesMascotaExtraviadaActivity);
                 finish();
-            }
-        });
-    }
+                break;
+            case R.id.et_escribirMensaje:
 
+                break;
+            case R.id.ic_enviar:
+
+                break;
+        }
+    }
 }

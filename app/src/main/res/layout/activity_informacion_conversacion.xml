@@ -50,13 +50,14 @@
             android:background="@drawable/ic_account_circle_gray_128dp"/>
 
         <TextView
-            android:id="@+id/nombrePersonaConversacion"
+            android:id="@+id/tv_nombreInfoConversacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
             android:text="Nombre"
             android:textColor="@color/colorTexto"
             android:textSize="24dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,36 +68,36 @@
 
 
             <Switch
-                android:id="@+id/sw_silenciarConversacion"
+                android:id="@+id/sw_silenciarInfoConversacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Silenciar "
                 android:checked="true"
-                android:textColor="@color/colorTexto"/>
+                android:text="Silenciar "
+                android:textColor="@color/colorTexto" />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_eliminarConversacion"
+            android:id="@+id/tv_eliminarInfoConversacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Eliminar conversación"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_red_light"
             android:layout_marginTop="20dp"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:text="Eliminar conversación"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tv_bloquearConversacion"
+            android:id="@+id/tv_bloquearInfoConversacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:padding="10dp"
             android:text="Bloquear"
             android:textColor="@color/colorTexto"
-            android:textStyle="bold"
             android:textSize="20sp"
-            android:padding="10dp"
-            android:layout_marginTop="50dp"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 

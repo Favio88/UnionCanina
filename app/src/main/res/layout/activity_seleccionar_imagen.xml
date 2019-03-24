@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InicioFragment"
+    tools:context=".SeleccionarImagenActivity"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -15,46 +16,27 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/ic_fotoPerfil"
+            android:id="@+id/ic_retroceso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_account_circle_white_48dp"
+            android:background="@drawable/ic_keyboard_arrow_left_white_48dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="10dp"/>
 
         <TextView
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/ic_fotoPerfil"
+            android:layout_toRightOf="@+id/ic_retroceso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Inicio"
+            android:text="Seleccionar"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:layout_marginLeft="10dp"
             android:textSize="18sp" />
-
-        <ImageView
-            android:id="@+id/ic_buscar"
-            android:layout_toLeftOf="@+id/ic_filtrarMascota"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_search_white_36dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"/>
-
-        <ImageView
-            android:id="@+id/ic_filtrarMascota"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_tune_white_36dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"/>
 
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_mascotasExtraviadas"
+        android:id="@+id/rv_seleccionarImagen"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".9">
