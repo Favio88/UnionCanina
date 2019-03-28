@@ -53,7 +53,9 @@
             android:textColor="@color/colorTextoControles"
             android:padding="10dp"
             android:layout_marginBottom="10dp"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:inputType="textPassword"
+            />
 
         <Button
             android:id="@+id/btn_iniciarSesion"
@@ -65,7 +67,9 @@
             android:background="@drawable/rounded_blue"
             android:padding="5dp"
             android:textColorHint="#FFFFFF"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:onClick="entrar"
+            />
 
 
     </LinearLayout>
