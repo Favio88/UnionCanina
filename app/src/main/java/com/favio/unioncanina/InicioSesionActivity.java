@@ -132,6 +132,11 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         editor.apply();
     }
 
+    public void registro(View view) {
+
+
+    }
+
         /*
         StringRequest st=new StringRequest(Request.Method.POST,
                 "http://unioncanina.mipantano.com/loginandroid",
