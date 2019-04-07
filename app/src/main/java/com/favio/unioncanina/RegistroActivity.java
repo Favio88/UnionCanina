@@ -26,7 +26,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         et_estadoRegistro=findViewById(R.id.et_estadoRegistro);
         et_ciudadRegistro=findViewById(R.id.et_ciudadRegistro);
         btn_registrarme=findViewById(R.id.btn_registrarme);
-        tv_iniciarSesion=findViewById(R.id.btn_iniciarSesion);
+        tv_iniciarSesion=findViewById(R.id.tv_iniciarSesion);
 
         btn_registrarme.setOnClickListener(this);
         tv_iniciarSesion.setOnClickListener(this);

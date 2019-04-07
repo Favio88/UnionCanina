@@ -37,10 +37,10 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
                 Intent itt_inicioActivity=new Intent(InicioSesionActivity.this, InicioActivity.class);
                 startActivity(itt_inicioActivity);
                 finish();
-            case R.id.tv_registrame:
+            /*case R.id.tv_registrame:
                 Intent itt_registroActivity=new Intent(InicioSesionActivity.this, RegistroActivity.class);
                 startActivity(itt_registroActivity);
-                finish();
+                finish();*/
         }
 
     }

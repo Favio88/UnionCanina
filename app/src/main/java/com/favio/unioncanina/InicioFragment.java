@@ -4,11 +4,31 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.favio.unioncanina.adaptadores.AdaptadorMascota;
+import com.favio.unioncanina.modelos.Mascota;
+import com.favio.unioncanina.singleton.VolleyS;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 
 /**
@@ -31,8 +51,7 @@ public class InicioFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-
-    ImageView ic_fotoPerfil, ic_buscarMascotaId, ic_filtrarMascota;
+    AdaptadorMascota adaptadorMascotasExtraviadas;
     RecyclerView rv_mascotasExtraviadas;
 
     public InicioFragment() {
@@ -60,9 +79,43 @@ public class InicioFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+            JsonArrayRequest peticion01=new JsonArrayRequest(
+                    Request.Method.GET,
+                    "http://unioncanina.mipantano.com/api/extravios",
+                    null,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+
+                            Gson gson=new Gson();
+
+                            Type listType=new TypeToken<List<Mascota>>(){}.getType();
+
+                            Log.d("valor",response.toString());
+                            List<Mascota> listaMascotasExtraviadas=gson.fromJson(response.toString(), listType);
+
+                            adaptadorMascotasExtraviadas=new AdaptadorMascota(listaMascotasExtraviadas, getActivity().getApplicationContext(), R.layout.item_mascota_extraviada);
+
+                            rv_mascotasExtraviadas.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+                            rv_mascotasExtraviadas.setAdapter(adaptadorMascotasExtraviadas);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Error en la petición", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            );
+
+            VolleyS.getInstance(getActivity().getApplicationContext()).getRequestQueue().add(peticion01);
+
         }
     }
 
@@ -70,7 +123,9 @@ public class InicioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inicio, container, false);
+        View view=inflater.inflate(R.layout.fragment_inicio, container, false);
+        rv_mascotasExtraviadas=view.findViewById(R.id.rv_mascotasExtraviadas);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
