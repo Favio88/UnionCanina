@@ -51,7 +51,7 @@ public class InicioFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    AdaptadorMascota adaptadorMascotasExtraviadas;
+    AdaptadorMascota adaptadorMascota;
     RecyclerView rv_mascotasExtraviadas;
 
     public InicioFragment() {
@@ -99,10 +99,10 @@ public class InicioFragment extends Fragment {
                             Log.d("valor",response.toString());
                             List<Mascota> listaMascotasExtraviadas=gson.fromJson(response.toString(), listType);
 
-                            adaptadorMascotasExtraviadas=new AdaptadorMascota(listaMascotasExtraviadas, getActivity().getApplicationContext(), R.layout.item_mascota_extraviada);
+                            adaptadorMascota=new AdaptadorMascota(listaMascotasExtraviadas, getActivity().getApplicationContext(), R.layout.item_mascota_extraviada);
 
                             rv_mascotasExtraviadas.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-                            rv_mascotasExtraviadas.setAdapter(adaptadorMascotasExtraviadas);
+                            rv_mascotasExtraviadas.setAdapter(adaptadorMascota);
                         }
                     },
                     new Response.ErrorListener() {

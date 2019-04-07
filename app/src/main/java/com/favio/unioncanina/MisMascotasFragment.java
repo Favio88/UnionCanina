@@ -1,6 +1,7 @@
 package com.favio.unioncanina;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -48,7 +49,7 @@ public class MisMascotasFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    AdaptadorMascota adaptadorMisMascotas;
+    AdaptadorMascota adaptadorMascota;
     RecyclerView rv_misMascotas;
 
     public MisMascotasFragment() {
@@ -93,12 +94,22 @@ public class MisMascotasFragment extends Fragment {
                             Type listType=new TypeToken<List<Mascota>>(){}.getType();
 
                             Log.d("valor",response.toString());
-                            List<Mascota> listaMisMascotas=gson.fromJson(response.toString(),listType);
+                            final List<Mascota> listaMisMascotas=gson.fromJson(response.toString(),listType);
 
-                            adaptadorMisMascotas=new AdaptadorMascota(listaMisMascotas,getActivity().getApplicationContext(),R.layout.item_mi_mascota);
+                            adaptadorMascota=new AdaptadorMascota(listaMisMascotas,getActivity().getApplicationContext(),R.layout.item_mi_mascota);
+                            adaptadorMascota.setOnclickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent itt_detallesMisMascotaActivity=new Intent(getActivity().getApplicationContext(),DetallesMiMascotaActivity.class);
+                                    startActivity(itt_detallesMisMascotaActivity);
+                                    /*Toast.makeText(getActivity().getApplicationContext(), "Item: "
+                                            + listaMisMascotas.get(rv_misMascotas.getChildAdapterPosition(view)),
+                                            Toast.LENGTH_SHORT).show();*/
+                                }
+                            });
 
                             rv_misMascotas.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-                            rv_misMascotas.setAdapter(adaptadorMisMascotas);
+                            rv_misMascotas.setAdapter(adaptadorMascota);
                         }
                     },
                     new Response.ErrorListener() {

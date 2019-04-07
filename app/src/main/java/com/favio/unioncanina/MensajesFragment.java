@@ -4,9 +4,30 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.favio.unioncanina.adaptadores.AdaptadorMascota;
+import com.favio.unioncanina.adaptadores.AdaptadorUsuario;
+import com.favio.unioncanina.modelos.Mascota;
+import com.favio.unioncanina.modelos.Usuario;
+import com.favio.unioncanina.singleton.VolleyS;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 
 /**
@@ -28,6 +49,9 @@ public class MensajesFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    AdaptadorUsuario adaptadorUsuario;
+    RecyclerView rv_mensajes;
 
     public MensajesFragment() {
         // Required empty public constructor
@@ -57,6 +81,39 @@ public class MensajesFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+            JsonArrayRequest peticion01=new JsonArrayRequest(
+                    Request.Method.GET,
+                    "",
+                    null,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+
+                            Gson gson=new Gson();
+
+                            Type listType=new TypeToken<List<Usuario>>(){}.getType();
+
+                            Log.d("valor",response.toString());
+                            List<Usuario> listaUsuarios=gson.fromJson(response.toString(), listType);
+
+                            adaptadorUsuario=new AdaptadorUsuario(listaUsuarios, getActivity().getApplicationContext(), R.layout.item_mensaje);
+
+                            rv_mensajes.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+                            rv_mensajes.setAdapter(adaptadorUsuario);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Error en la petición", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            );
+
+            VolleyS.getInstance(getActivity().getApplicationContext()).getRequestQueue().add(peticion01);
+
         }
     }
 

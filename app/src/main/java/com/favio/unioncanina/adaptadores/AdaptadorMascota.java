@@ -1,6 +1,7 @@
 package com.favio.unioncanina.adaptadores;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.favio.unioncanina.DetallesMascotaExtraviadaActivity;
 import com.favio.unioncanina.R;
 import com.favio.unioncanina.extras.CircleTransform;
 import com.favio.unioncanina.modelos.Mascota;
@@ -16,11 +19,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.ViewHolder> {
+public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.ViewHolder>
+        implements View.OnClickListener{
 
     List<Mascota> listaMascotas;
     Context context;
     Integer itemLayout;
+
+    private View.OnClickListener listener;
 
     public AdaptadorMascota(List<Mascota> listaMascotas, Context context, int itemLayout) {
         this.listaMascotas = listaMascotas;
@@ -36,11 +42,13 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
 
         ViewHolder vh = new ViewHolder(v);
 
+        v.setOnClickListener(this);
+
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         switch(itemLayout){
 
@@ -56,6 +64,15 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
                 holder.tv_nombreMascota.setText(listaMascotas.get(position).getNombre());
                 //holder.tv_lugarExtravioMascota.setText(listaMascotas.get(position).getExtravio().getColonia());
                 //holder.tv_fechaExtravioMascota.setText(listaMascotas.get(position).getExtravio().getF_extrav());
+                holder.tv_masInfoMascota.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent itt_DetallesMascotaExtraviadaActivity=new Intent(context, DetallesMascotaExtraviadaActivity.class);
+                        itt_DetallesMascotaExtraviadaActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(itt_DetallesMascotaExtraviadaActivity);
+                        //Toast.makeText(context, "Item: " + position, Toast.LENGTH_SHORT).show();
+                    }
+                });
                 break;
             case R.layout.item_mi_mascota:
                 Picasso.with(context).load("http://unioncanina.mipantano.com/api/misMascotas/1" +
@@ -71,12 +88,23 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
         return listaMascotas.size();
     }
 
+    public void setOnclickListener(View.OnClickListener listener){
+        this.listener=listener;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(listener!=null){
+            listener.onClick(view);
+        }
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView iv_fotoDueno, iv_fotoMascota,
                 iv_fotoMiMascota;
         TextView tv_nombreDueno, tv_estadoDueno, tv_coloniaDueno, tv_nombreMascota, tv_lugarExtravioMascota, tv_fechaExtravioMascota,
-                tv_nombreMiMascota, tv_razaMiMascota;
+                tv_nombreMiMascota, tv_razaMiMascota, tv_masInfoMascota;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -89,6 +117,7 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
             tv_nombreMascota=itemView.findViewById(R.id.tv_nombreMascota);
             tv_lugarExtravioMascota=itemView.findViewById(R.id.tv_lugarExtravioMascota);
             tv_fechaExtravioMascota=itemView.findViewById(R.id.tv_fechaExtravioMascota);
+            tv_masInfoMascota=itemView.findViewById(R.id.tv_masInfoMascota);
 
             iv_fotoMiMascota=itemView.findViewById(R.id.iv_fotoMiMascota);
             tv_nombreMiMascota=itemView.findViewById(R.id.tv_nombreMiMascota);
