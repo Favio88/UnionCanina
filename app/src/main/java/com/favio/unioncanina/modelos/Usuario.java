@@ -1,8 +1,10 @@
 package com.favio.unioncanina.modelos;
 
+import java.util.ArrayList;
+
 public class Usuario {
 
-    private Integer id;
+    private int id;
     private String nombre;
     private String apat;
     private String amat;
@@ -12,17 +14,33 @@ public class Usuario {
     private String admin;
     private String foto;
     private String fecha_registro;
-    private Mensaje mensaje;
+    private ArrayList<Mascota> mascotas;
+    private ArrayList<Conversacion> conversaciones;
 
-    public Usuario(){
 
+    public Usuario(int id, String nombre, String apellido_Paterno, String apellido_Materno,
+                   String correo, String password, String habilitado, String admin, String foto,
+                   String fecha_Registro, ArrayList<Mascota> mascotas, ArrayList<Conversacion> conversaciones) {
+
+        this.id = id;
+        this.nombre = nombre;
+        this.apat = apellido_Paterno;
+        this.amat = apellido_Materno;
+        this.correo = correo;
+        this.pwd = password;
+        this.habilitado = habilitado;
+        this.admin = admin;
+        this.foto = foto;
+        this.fecha_registro = fecha_Registro;
+        this.mascotas = mascotas;
+        this.conversaciones = conversaciones;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -98,11 +116,20 @@ public class Usuario {
         this.fecha_registro = fecha_registro;
     }
 
-    public Mensaje getMensaje() {
-        return mensaje;
+
+    public ArrayList<Mascota> getMascotas() {
+        return mascotas;
     }
 
-    public void setMensaje(Mensaje mensaje) {
-        this.mensaje = mensaje;
+    public void setMascotas(ArrayList<Mascota> mascotas) {
+        this.mascotas = mascotas;
+    }
+
+    public ArrayList<Conversacion> getConversaciones() {
+        return conversaciones;
+    }
+
+    public void setConversaciones(ArrayList<Conversacion> conversaciones) {
+        this.conversaciones = conversaciones;
     }
 }
