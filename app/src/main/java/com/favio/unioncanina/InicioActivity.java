@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -19,6 +20,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+
+import com.favio.unioncanina.adaptadores.AdaptadorMascota;
 
 public class InicioActivity extends AppCompatActivity implements MensajesFragment.OnFragmentInteractionListener, InicioFragment.OnFragmentInteractionListener, MisMascotasFragment.OnFragmentInteractionListener{
 
