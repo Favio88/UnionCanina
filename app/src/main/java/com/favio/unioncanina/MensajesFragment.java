@@ -50,9 +50,6 @@ public class MensajesFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    AdaptadorUsuario adaptadorUsuario;
-    RecyclerView rv_mensajes;
-
     public MensajesFragment() {
         // Required empty public constructor
     }
@@ -81,39 +78,6 @@ public class MensajesFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
-            JsonArrayRequest peticion01=new JsonArrayRequest(
-                    Request.Method.GET,
-                    "",
-                    null,
-                    new Response.Listener<JSONArray>() {
-                        @Override
-                        public void onResponse(JSONArray response) {
-
-                            Gson gson=new Gson();
-
-                            Type listType=new TypeToken<List<Usuario>>(){}.getType();
-
-                            Log.d("valor",response.toString());
-                            List<Usuario> listaUsuarios=gson.fromJson(response.toString(), listType);
-
-                            adaptadorUsuario=new AdaptadorUsuario(listaUsuarios, getActivity().getApplicationContext(), R.layout.item_mensaje);
-
-                            rv_mensajes.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-                            rv_mensajes.setAdapter(adaptadorUsuario);
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Error en la petición", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-            );
-
-            VolleyS.getInstance(getActivity().getApplicationContext()).getRequestQueue().add(peticion01);
-
         }
     }
 
