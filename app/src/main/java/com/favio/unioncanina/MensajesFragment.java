@@ -1,12 +1,20 @@
 package com.favio.unioncanina;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.favio.unioncanina.modelos.Usuario;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 
 /**
@@ -28,6 +36,8 @@ public class MensajesFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private Usuario usuario;
 
     public MensajesFragment() {
         // Required empty public constructor
@@ -58,6 +68,13 @@ public class MensajesFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+        SharedPreferences preferences =  getActivity().getSharedPreferences("Usuario", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        usuario = gson.fromJson(preferences.getString("Usuario", "nani"), Usuario.class);
+
+        Log.e("mensajesitos", preferences.getString("Usuario", "nani"));
     }
 
     @Override

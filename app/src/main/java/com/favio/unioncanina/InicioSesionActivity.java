@@ -106,7 +106,8 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         Volley.newRequestQueue(this).add(jsonObjectRequest);
     }
     private void guardarCredenciales(JSONObject response) {
-        int id=response.optInt("id");
+
+     /*   int id=response.optInt("id");
         String nombre= response.optString("nombre");
         String apat=response.optString("apat");
         String amat=response.optString("amat");
@@ -114,12 +115,12 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         String pwd=response.optString("pwd");
         String habilitado=response.optString("habilitado");
         String admin=response.optString("admin");
-        String foto=response.optString("foto");
+        String foto=response.optString("foto");*/
 
 
         SharedPreferences preferences = getSharedPreferences("Usuario", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=preferences.edit();
-        editor.putInt("id",id);
+        /*editor.putInt("id",id);
         editor.putString("nombre",nombre);
         editor.putString("apat",apat);
         editor.putString("amat",amat);
@@ -127,8 +128,9 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         editor.putString("pwd",pwd);
         editor.putString("habilitado",habilitado);
         editor.putString("admin",admin);
-        editor.putString("foto",foto);
+        editor.putString("foto",foto);*/
 
+        editor.putString("Usuario", response.toString());
         editor.apply();
     }
 
