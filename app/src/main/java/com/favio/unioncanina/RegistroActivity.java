@@ -26,7 +26,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         et_estadoRegistro=findViewById(R.id.et_estadoRegistro);
         et_ciudadRegistro=findViewById(R.id.et_ciudadRegistro);
         btn_registrarme=findViewById(R.id.btn_registrarme);
-        tv_iniciarSesion=findViewById(R.id.btn_iniciarSesion);
+        tv_iniciarSesion=findViewById(R.id.tv_iniciarSesion);
 
         btn_registrarme.setOnClickListener(this);
         tv_iniciarSesion.setOnClickListener(this);
@@ -36,7 +36,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
 
         switch (view.getId()){
-/*
+
             case R.id.btn_registrarme:
                 Intent itt_inicioActivity=new Intent(RegistroActivity.this, InicioActivity.class);
                 startActivity(itt_inicioActivity);
@@ -46,7 +46,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                 Intent itt_inicioSesionActivity=new Intent(RegistroActivity.this, InicioSesionActivity.class);
                 startActivity(itt_inicioSesionActivity);
                 finish();
-                break;*/
+                break;
         }
     }
 }
