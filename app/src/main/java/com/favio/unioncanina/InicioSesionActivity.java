@@ -43,7 +43,7 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         btn_iniciarSesion=findViewById(R.id.btn_iniciarSesion);
         tv_registrame=findViewById(R.id.tv_registrame);
 
-      //btn_iniciarSesion.setOnClickListener(this);
+        btn_iniciarSesion.setOnClickListener(this);
         tv_registrame.setOnClickListener(this);
     }
     @Override
@@ -53,7 +53,12 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
 
             case R.id.btn_iniciarSesion:
 
+                Intent itt_inicioActivity=new Intent(InicioSesionActivity.this, InicioActivity.class);
+                startActivity(itt_inicioActivity);
+                finish();
+
             case R.id.tv_registrame:
+
                 Intent itt_registroActivity=new Intent(InicioSesionActivity.this, RegistroActivity.class);
                 startActivity(itt_registroActivity);
                 finish();
@@ -106,7 +111,8 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         Volley.newRequestQueue(this).add(jsonObjectRequest);
     }
     private void guardarCredenciales(JSONObject response) {
-        int id=response.optInt("id");
+
+     /*   int id=response.optInt("id");
         String nombre= response.optString("nombre");
         String apat=response.optString("apat");
         String amat=response.optString("amat");
@@ -114,12 +120,12 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         String pwd=response.optString("pwd");
         String habilitado=response.optString("habilitado");
         String admin=response.optString("admin");
-        String foto=response.optString("foto");
+        String foto=response.optString("foto");*/
 
 
         SharedPreferences preferences = getSharedPreferences("Usuario", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=preferences.edit();
-        editor.putInt("id",id);
+        /*editor.putInt("id",id);
         editor.putString("nombre",nombre);
         editor.putString("apat",apat);
         editor.putString("amat",amat);
@@ -127,8 +133,9 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         editor.putString("pwd",pwd);
         editor.putString("habilitado",habilitado);
         editor.putString("admin",admin);
-        editor.putString("foto",foto);
+        editor.putString("foto",foto);*/
 
+        editor.putString("Usuario", response.toString());
         editor.apply();
     }
 
