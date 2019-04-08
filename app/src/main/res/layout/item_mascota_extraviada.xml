@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
@@ -13,12 +14,13 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp">
 
-            <ImageView
-                android:id="@+id/iv_fotoDueno"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_account_circle_gray_36dp"
-                android:layout_marginLeft="10dp"/>
+        <ImageView
+            android:id="@+id/iv_fotoDueno"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/ic_account_circle_gray_36dp"
+            android:layout_marginLeft="5dp"/>
+
 
             <LinearLayout
                 android:id="@+id/ll_datosDueno"
@@ -65,32 +67,35 @@
                 android:id="@+id/iv_fotoMascota"
                 android:layout_below="@+id/ll_datosDueno"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:background="@drawable/foto"
                 android:layout_marginTop="10dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_below="@+id/iv_fotoMascota"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_fotoMascota"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-                android:weightSum="2"
-                android:layout_marginTop="10dp">
+                android:paddingBottom="10dp"
+                android:weightSum="2">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1.6"
+                    android:orientation="vertical"
                     android:paddingLeft="10dp">
 
                     <TextView
                         android:id="@+id/tv_nombreMascota"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Nombre de la mascota"
                         android:textColor="@color/colorTexto"
-                        android:textSize="14sp"
-                        android:text="Nombre de la mascota"/>
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -100,16 +105,16 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ic_location_on_gray_18dp"/>
+                            android:background="@drawable/ic_location_on_gray_18dp" />
 
                         <TextView
                             android:id="@+id/tv_lugarExtravioMascota"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/colorTexto"
-                            android:textSize="12sp"
+                            android:layout_marginLeft="4dp"
                             android:text="Lugar de extravío"
-                            android:layout_marginLeft="4dp"/>
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -118,24 +123,24 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight=".4"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv_fechaExtravioMascota"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Extraviado hace 1 día"/>
+                        android:text="Extraviado hace 1 día" />
 
                     <TextView
                         android:id="@+id/tv_masInfoMascota"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="3dp"
                         android:text="Más información"
                         android:textColor="@color/colorUnionCanina"
-                        android:textStyle="bold"
-                        android:padding="3dp"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 

@@ -1,157 +1,170 @@
 package com.favio.unioncanina.modelos;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class Mascota {
 
-    private Integer Id;
-    //private Image Foto;
-    private String Nombre;
-    private String Dueno;
-    private String Raza;
-    private String Sexo;
-    private Integer Edad;
-    private String Estado;
-    private String Colonia;
-    private String InfoExtra;
-    private String Rasgos;
-    private String Status;
-    private String EstadoExtravio;
-    private String ColoniaExtravio;
-    private String FechaExtravio;
+    private Integer id;
+    private String nombre;
+    private String sexo;
+    private String color;
+    private String f_nac;
+    private String estatus;
+    private String esterilizado;
+    private String enfermedad;
+    private String foto;
+    private String rasgos;
+    private Extravio extravio;
+    private Usuario usuario;
+    //private List<Fotografia> fotografias;
+    private Ciudad ciudad;
+    private Raza raza;
+    private Codigo codigo;
 
-    public Mascota(Integer id, Image foto, String nombre, String raza, String genero, Integer edad, String estado, String colonia, String infoExtra, String rasgos, String status, String estadoExtravio, String coloniaExtravio, String fechaExtravio) {
-        Id = id;
-        //Foto = foto;
-        Nombre = nombre;
-        Raza = raza;
-        Sexo = genero;
-        Edad = edad;
-        Estado = estado;
-        Colonia = colonia;
-        InfoExtra = infoExtra;
-        Rasgos = rasgos;
-        Status = status;
-        EstadoExtravio = estadoExtravio;
-        ColoniaExtravio = coloniaExtravio;
-        FechaExtravio = fechaExtravio;
-    }
 
     public Mascota(){
 
-
-    }
-
-    public String getDueno() {
-        return Dueno;
-    }
-
-    public void setDueno(String dueno) {
-        Dueno = dueno;
-    }
-
-    public String getStatus() {
-        return Status;
-    }
-
-    public void setStatus(String status) {
-        Status = status;
-    }
-
-    public String getEstadoExtravio() {
-        return EstadoExtravio;
-    }
-
-    public void setEstadoExtravio(String estadoExtravio) {
-        EstadoExtravio = estadoExtravio;
-    }
-
-    public String getColoniaExtravio() {
-        return ColoniaExtravio;
-    }
-
-    public void setColoniaExtravio(String coloniaExtravio) {
-        ColoniaExtravio = coloniaExtravio;
-    }
-
-    public String getFechaExtravio() {
-        return FechaExtravio;
-    }
-
-    public void setFechaExtravio(String fechaExtravio) {
-        FechaExtravio = fechaExtravio;
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
-    public String getRaza() {
-        return Raza;
+    public String getSexo() {
+        return sexo;
     }
 
-    public void setRaza(String raza) {
-        Raza = raza;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
-    public String getGenero() {
-        return Sexo;
+    public String getColor() {
+        return color;
     }
 
-    public void setGenero(String genero) {
-        Sexo = genero;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public Integer getEdad() {
-        return Edad;
+    public String getF_nac() {
+        return f_nac;
     }
 
-    public void setEdad(Integer edad) {
-        Edad = edad;
+    public void setF_nac(String f_nac) {
+        this.f_nac = f_nac;
     }
 
-    public String getEstado() {
-        return Estado;
+    public String getEstatus() {
+        return estatus;
     }
 
-    public void setEstado(String estado) {
-        Estado = estado;
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
     }
 
-    public String getColonia() {
-        return Colonia;
+    public String getEsterilizado() {
+        return esterilizado;
     }
 
-    public void setColonia(String colonia) {
-        Colonia = colonia;
+    public void setEsterilizado(String esterilizado) {
+        this.esterilizado = esterilizado;
     }
 
-    public String getInfoExtra() {
-        return InfoExtra;
+    public String getEnfermedad() {
+        return enfermedad;
     }
 
-    public void setInfoExtra(String infoExtra) {
-        InfoExtra = infoExtra;
+    public void setEnfermedad(String enfermedad) {
+        this.enfermedad = enfermedad;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public String getRasgos() {
-        return Rasgos;
+        return rasgos;
     }
 
     public void setRasgos(String rasgos) {
-        Rasgos = rasgos;
+        this.rasgos = rasgos;
     }
 
+    public Extravio getExtravio() {
+        return extravio;
+    }
+
+    public void setExtravio(Extravio extravio) {
+        this.extravio = extravio;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public Raza getRaza() {
+        return raza;
+    }
+
+    public void setRaza(Raza raza) {
+        this.raza = raza;
+    }
+
+    public Codigo getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Codigo codigo) {
+        this.codigo = codigo;
+    }
+
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            // Log exception
+            return null;
+        }
+    }
 }

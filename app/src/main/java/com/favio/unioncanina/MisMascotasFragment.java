@@ -1,12 +1,32 @@
 package com.favio.unioncanina;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.favio.unioncanina.adaptadores.AdaptadorMascota;
+import com.favio.unioncanina.modelos.Mascota;
+import com.favio.unioncanina.singleton.VolleyS;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 
 /**
@@ -28,6 +48,9 @@ public class MisMascotasFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    AdaptadorMascota adaptadorMascota;
+    RecyclerView rv_misMascotas;
 
     public MisMascotasFragment() {
         // Required empty public constructor
@@ -57,14 +80,60 @@ public class MisMascotasFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+            JsonArrayRequest peticion01=new JsonArrayRequest(
+                    Request.Method.GET,
+                    "http://unioncanina.mipantano.com/api/misMascotas/1",
+                    null,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+
+                            Gson gson=new Gson();
+
+                            Type listType=new TypeToken<List<Mascota>>(){}.getType();
+
+                            Log.d("valor",response.toString());
+                            final List<Mascota> listaMisMascotas=gson.fromJson(response.toString(),listType);
+
+                            adaptadorMascota=new AdaptadorMascota(listaMisMascotas,getActivity().getApplicationContext(),R.layout.item_mi_mascota);
+                            adaptadorMascota.setOnclickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent itt_detallesMisMascotaActivity=new Intent(getActivity().getApplicationContext(),DetallesMiMascotaActivity.class);
+                                    startActivity(itt_detallesMisMascotaActivity);
+                                    /*Toast.makeText(getActivity().getApplicationContext(), "Item: "
+                                            + listaMisMascotas.get(rv_misMascotas.getChildAdapterPosition(view)),
+                                            Toast.LENGTH_SHORT).show();*/
+                                }
+                            });
+
+                            rv_misMascotas.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+                            rv_misMascotas.setAdapter(adaptadorMascota);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Error en la petición", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            );
+
+            VolleyS.getInstance(getActivity().getApplicationContext()).getRequestQueue().add(peticion01);
+
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mis_mascotas, container, false);
+        View view=inflater.inflate(R.layout.fragment_mis_mascotas, container, false);
+        rv_misMascotas=view.findViewById(R.id.rv_misMascotas);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
