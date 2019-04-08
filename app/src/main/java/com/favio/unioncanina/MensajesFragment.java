@@ -5,10 +5,30 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.favio.unioncanina.adaptadores.AdaptadorMascota;
+import com.favio.unioncanina.adaptadores.AdaptadorUsuario;
+import com.favio.unioncanina.modelos.Mascota;
+import com.favio.unioncanina.modelos.Usuario;
+import com.favio.unioncanina.singleton.VolleyS;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 import com.favio.unioncanina.modelos.Usuario;
 import com.google.gson.Gson;

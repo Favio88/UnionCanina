@@ -116,6 +116,7 @@ public class Usuario {
         this.fecha_registro = fecha_registro;
     }
 
+
     public ArrayList<Mascota> getMascotas() {
         return mascotas;
     }

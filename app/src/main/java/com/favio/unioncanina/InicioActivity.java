@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -22,6 +23,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+
+import com.favio.unioncanina.adaptadores.AdaptadorMascota;
 
 public class InicioActivity extends AppCompatActivity implements MensajesFragment.OnFragmentInteractionListener, InicioFragment.OnFragmentInteractionListener, MisMascotasFragment.OnFragmentInteractionListener{
 
@@ -58,11 +61,13 @@ public class InicioActivity extends AppCompatActivity implements MensajesFragmen
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setCurrentItem(1);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +77,7 @@ public class InicioActivity extends AppCompatActivity implements MensajesFragmen
                         .setAction("Action", null).show();
             }
         });*/
+
 
     }
 
@@ -156,13 +162,13 @@ public class InicioActivity extends AppCompatActivity implements MensajesFragmen
             switch(position){
 
                 case 0:
-                    MensajesFragment mensajesFragment=new MensajesFragment();
+                    MensajesFragment mensajesFragment=MensajesFragment.newInstance("","");
                     return mensajesFragment;
                 case 1:
-                    InicioFragment inicioFragment=new InicioFragment();
+                    InicioFragment inicioFragment=InicioFragment.newInstance("","");
                     return inicioFragment;
                 case 2:
-                    MisMascotasFragment misMascotasFragment=new MisMascotasFragment();
+                    MisMascotasFragment misMascotasFragment=MisMascotasFragment.newInstance("","");
                     return misMascotasFragment;
             }
             return null;

@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/iv_fotoPersonaMensaje"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:background="@drawable/ic_account_circle_gray_70dp"/>
 
     <RelativeLayout
@@ -29,7 +29,7 @@
         <TextView
             android:id="@+id/tv_ultimoMensaje"
             android:layout_below="@+id/tv_nombrePersonaMensaje"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Último mensaje"
             android:textColor="@color/colorTexto"
