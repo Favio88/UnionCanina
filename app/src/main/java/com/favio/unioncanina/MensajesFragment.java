@@ -1,6 +1,7 @@
 package com.favio.unioncanina;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,34 +11,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.favio.unioncanina.adaptadores.AdaptadorMascota;
-import com.favio.unioncanina.adaptadores.AdaptadorUsuario;
-import com.favio.unioncanina.modelos.Mascota;
+import com.favio.unioncanina.R;
+import com.favio.unioncanina.adaptadores.AdaptadorConversacion;
+import com.favio.unioncanina.modelos.Conversacion;
 import com.favio.unioncanina.modelos.Usuario;
-import com.favio.unioncanina.singleton.VolleyS;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
-
-import java.lang.reflect.Type;
-import java.util.List;
+import java.util.ArrayList;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MensajesFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MensajesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MensajesFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,18 +33,15 @@ public class MensajesFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    private Usuario usuario;
+    private ArrayList<Conversacion> conversaciones;
+    AdaptadorConversacion adaptadorConversacion;
+    RecyclerView rvMensajes;
+
     public MensajesFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MensajesFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static MensajesFragment newInstance(String param1, String param2) {
         MensajesFragment fragment = new MensajesFragment();
@@ -75,9 +55,23 @@ public class MensajesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+            SharedPreferences preferences =  getActivity().getSharedPreferences("Usuario", Context.MODE_PRIVATE);
+            Gson gson = new Gson();
+            usuario = gson.fromJson(preferences.getString("Usuario", "nani"), Usuario.class);
+            Log.e("mensajesitos", usuario.getConversaciones().get(0).getFecha_actividad());
+
+            conversaciones = usuario.getConversaciones();
+
+            adaptadorConversacion =new AdaptadorConversacion(conversaciones, getActivity().getApplicationContext(),
+                    R.layout.item_mensaje);
+
+           rvMensajes.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+            rvMensajes.setAdapter(adaptadorConversacion);
         }
     }
 
@@ -85,7 +79,9 @@ public class MensajesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mensajes, container, false);
+        View view=inflater.inflate(R.layout.fragment_mensajes, container, false);
+        rvMensajes = view.findViewById(R.id.rv_mensajes);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
