@@ -53,20 +53,19 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
 
             case R.id.btn_iniciarSesion:
 
-                Intent itt_inicioActivity=new Intent(InicioSesionActivity.this, InicioActivity.class);
-                startActivity(itt_inicioActivity);
-                finish();
-
+                entrar();
+                break;
             case R.id.tv_registrame:
 
-                Intent itt_registroActivity=new Intent(InicioSesionActivity.this, RegistroActivity.class);
+                Intent itt_registroActivity=new Intent(getApplicationContext(), RegistroActivity.class);
                 startActivity(itt_registroActivity);
                 finish();
+                break;
         }
 
     }
 
-    public void entrar(View view) {
+    public void entrar() {
 
         //Con JSONOBJECT
         JSONObject obj= new JSONObject();
@@ -94,7 +93,6 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
                         }else{
                             guardarCredenciales(response);
                             startActivity(new Intent(getApplicationContext(),InicioActivity.class));
-
                         }
 
                         try {
