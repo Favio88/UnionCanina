@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Mascota {
 
@@ -23,15 +24,43 @@ public class Mascota {
     private String rasgos;
     private Extravio extravio;
     private Usuario usuario;
-    //private List<Fotografia> fotografias;
+    private ArrayList<Fotografia> fotografias;
     private Ciudad ciudad;
     private Raza raza;
     private Codigo codigo;
 
+    public Mascota(Integer id, String nombre, String sexo, String color, String f_nac,
+                   String estatus, String esterilizado, String enfermedad, String foto,
+                   String rasgos, Extravio extravio, Usuario usuario, ArrayList<Fotografia> fotografias,
+                   Ciudad ciudad, Raza raza, Codigo codigo) {
 
-    public Mascota(){
+        this.id = id;
+        this.nombre = nombre;
+        this.sexo = sexo;
+        this.color = color;
+        this.f_nac = f_nac;
+        this.estatus = estatus;
+        this.esterilizado = esterilizado;
+        this.enfermedad = enfermedad;
+        this.foto = foto;
+        this.rasgos = rasgos;
+        this.extravio = extravio;
+        this.usuario = usuario;
+        this.fotografias = fotografias;
+        this.ciudad = ciudad;
+        this.raza = raza;
+        this.codigo = codigo;
 
     }
+
+    public ArrayList<Fotografia> getFotografias() {
+        return fotografias;
+    }
+
+    public void setFotografias(ArrayList<Fotografia> fotografias) {
+        this.fotografias = fotografias;
+    }
+
 
     public Integer getId() {
         return id;

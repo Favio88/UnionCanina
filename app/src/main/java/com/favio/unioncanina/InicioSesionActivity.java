@@ -43,7 +43,7 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         btn_iniciarSesion=findViewById(R.id.btn_iniciarSesion);
         tv_registrame=findViewById(R.id.tv_registrame);
 
-        btn_iniciarSesion.setOnClickListener(this);
+        //btn_iniciarSesion.setOnClickListener(this);
         tv_registrame.setOnClickListener(this);
     }
     @Override
@@ -53,9 +53,10 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
 
             case R.id.btn_iniciarSesion:
 
-                Intent itt_inicioActivity=new Intent(InicioSesionActivity.this, InicioActivity.class);
+                /*Intent itt_inicioActivity=new Intent(InicioSesionActivity.this, InicioActivity.class);
                 startActivity(itt_inicioActivity);
-                finish();
+                finish();*/
+
 
             case R.id.tv_registrame:
 
