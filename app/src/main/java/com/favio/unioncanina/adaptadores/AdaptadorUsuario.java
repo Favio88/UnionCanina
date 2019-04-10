@@ -42,12 +42,12 @@ public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.View
     @Override
     public void onBindViewHolder(@NonNull ViewHoler holder, int position) {
 
-        Picasso.with(context).load("http://unioncanina.mipantano.com/api/profilePicture/" +
+       Picasso.with(context).load("http://unioncanina.mipantano.com/api/profilePicture/" +
                 listaUsuarios.get(position).getFoto()).transform(new CircleTransform()).fit()
                 .centerCrop().into(holder.iv_fotoPersonaMensaje);
-      //  holder.tv_ultimoMensaje.setText(listaUsuarios.get(position).getMensaje());
 
-      //  holder.tv_horaMensaje.setText(listaUsuarios.get(position).getMensaje().getHora());
+        /*holder.tv_ultimoMensaje.setText(listaUsuarios.get(position).getMensaje().getMensaje());
+        holder.tv_horaMensaje.setText(listaUsuarios.get(position).getMensaje().getHora());*/
     }
 
     @Override
