@@ -68,7 +68,6 @@
             android:padding="5dp"
             android:textColorHint="#FFFFFF"
             android:textAllCaps="false"
-            android:onClick="entrar"
             />
 
 
