@@ -39,6 +39,10 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
         tv_cambiarFotoPerfil.setOnClickListener(this);
         btn_guardarCambiosPerfil.setOnClickListener(this);
     }
+    private void EliminarPreferencias(){
+        getApplicationContext().getSharedPreferences("Usuario", 0).edit().clear().apply();
+        //context.getSharedPreferences("YOUR_PREFS", 0).edit().clear().commit();
+    }
 
     @Override
     public void onClick(View view) {
@@ -49,8 +53,8 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.ic_cerrarSesion:
-                Intent itt_inicioSesionActivity=new Intent(PerfilActivity.this, InicioSesionActivity.class);
-                startActivity(itt_inicioSesionActivity);
+                EliminarPreferencias();
+                startActivity(new Intent(PerfilActivity.this,InicioSesionActivity.class));
                 finish();
                 break;
             case R.id.ic_fotoPerfil:
