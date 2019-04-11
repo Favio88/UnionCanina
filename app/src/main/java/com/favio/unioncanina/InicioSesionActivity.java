@@ -43,7 +43,7 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         btn_iniciarSesion=findViewById(R.id.btn_iniciarSesion);
         tv_registrame=findViewById(R.id.tv_registrame);
 
-        //btn_iniciarSesion.setOnClickListener(this);
+        btn_iniciarSesion.setOnClickListener(this);
         tv_registrame.setOnClickListener(this);
     }
     @Override
