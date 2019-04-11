@@ -2,38 +2,38 @@ package com.favio.unioncanina.modelos;
 
 public class Conversacion {
 
-    private int Id;
-    private String Fecha_Inicio;
-    private String Fecha_Actividad;
+    private int id;
+    private String fecha_inicio;
+    private String fecha_actividad;
 
 
-    public Conversacion(int id, String fecha_Inicio, String fecha_Actividad) {
-        Id = id;
-        Fecha_Inicio = fecha_Inicio;
-        Fecha_Actividad = fecha_Actividad;
+    public Conversacion(int id, String fecha_inicio, String fecha_actividad) {
+        this.id = id;
+        this.fecha_inicio = fecha_inicio;
+        this.fecha_actividad = fecha_actividad;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
-    public String getFecha_Inicio() {
-        return Fecha_Inicio;
+    public String getFecha_inicio() {
+        return fecha_inicio;
     }
 
-    public void setFecha_Inicio(String fecha_Inicio) {
-        Fecha_Inicio = fecha_Inicio;
+    public void setFecha_inicio(String fecha_inicio) {
+        this.fecha_inicio = fecha_inicio;
     }
 
-    public String getFecha_Actividad() {
-        return Fecha_Actividad;
+    public String getFecha_actividad() {
+        return fecha_actividad;
     }
 
-    public void setFecha_Actividad(String fecha_Actividad) {
-        Fecha_Actividad = fecha_Actividad;
+    public void setFecha_actividad(String fecha_actividad) {
+        this.fecha_actividad = fecha_actividad;
     }
 }
