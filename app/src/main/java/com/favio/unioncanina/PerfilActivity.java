@@ -1,6 +1,8 @@
 package com.favio.unioncanina;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.favio.unioncanina.extras.CircleTransform;
+import com.favio.unioncanina.modelos.Usuario;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 public class PerfilActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -42,6 +49,20 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
     private void EliminarPreferencias(){
         getApplicationContext().getSharedPreferences("Usuario", 0).edit().clear().apply();
         //context.getSharedPreferences("YOUR_PREFS", 0).edit().clear().commit();
+    }
+    private void llenarcampos(){
+        SharedPreferences preferences = getSharedPreferences("Usuario", Context.MODE_PRIVATE);
+        Gson gson= new Gson();
+        Usuario usuario=gson.fromJson(preferences.getString("Usuario", ""), Usuario.class );
+        String url;
+        url="http://unioncanina.mipantano.com/api/profilePicture/"+usuario.getFoto();
+
+        Picasso.with(getApplicationContext()).load(url).transform(new CircleTransform().).fit().centerCrop().into(ic_fotoPerfil);
+
+
+       // et_nombrePerfil.setText(, );
+
+
     }
 
     @Override
