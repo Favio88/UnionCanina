@@ -63,14 +63,13 @@ public class MensajesFragment extends Fragment {
             SharedPreferences preferences =  getActivity().getSharedPreferences("Usuario", Context.MODE_PRIVATE);
             Gson gson = new Gson();
             usuario = gson.fromJson(preferences.getString("Usuario", "nani"), Usuario.class);
-           // Log.e("mensajesitos", usuario.getConversaciones().get(0).getFecha_actividad());
+
+            //Log.e("mensajesitos", usuario.getConversaciones().get(0).getFecha_actividad());
 
             conversaciones = usuario.getConversaciones();
 
             adaptadorConversacion =new AdaptadorConversacion(conversaciones, getActivity().getApplicationContext(),
                     R.layout.item_mensaje);
-
-
         }
     }
 
@@ -80,8 +79,10 @@ public class MensajesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_mensajes, container, false);
         rvMensajes = view.findViewById(R.id.rv_mensajes);
+
         rvMensajes.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         rvMensajes.setAdapter(adaptadorConversacion);
+
         return view;
     }
 
