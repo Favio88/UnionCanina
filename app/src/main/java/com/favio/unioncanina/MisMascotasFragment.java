@@ -100,8 +100,8 @@ public class MisMascotasFragment extends Fragment {
                             adaptadorMascota.setOnclickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    Intent itt_detallesMisMascotaActivity=new Intent(getActivity().getApplicationContext(),DetallesMiMascotaActivity.class);
-                                    startActivity(itt_detallesMisMascotaActivity);
+                                    Intent itt_detallesMisMascotasActivity=new Intent(getActivity().getApplicationContext(),DetallesMiMascotaActivity.class);
+                                    startActivity(itt_detallesMisMascotasActivity);
                                     /*Toast.makeText(getActivity().getApplicationContext(), "Item: "
                                             + listaMisMascotas.get(rv_misMascotas.getChildAdapterPosition(view)),
                                             Toast.LENGTH_SHORT).show();*/

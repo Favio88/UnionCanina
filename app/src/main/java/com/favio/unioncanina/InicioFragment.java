@@ -1,6 +1,7 @@
 package com.favio.unioncanina;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -39,7 +40,7 @@ import java.util.List;
  * Use the {@link InicioFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InicioFragment extends Fragment {
+public class InicioFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -53,6 +54,7 @@ public class InicioFragment extends Fragment {
 
     AdaptadorMascota adaptadorMascota;
     RecyclerView rv_mascotasExtraviadas;
+    ImageView ic_fotoPerfil;
 
     public InicioFragment() {
         // Required empty public constructor
@@ -125,6 +127,10 @@ public class InicioFragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_inicio, container, false);
         rv_mascotasExtraviadas=view.findViewById(R.id.rv_mascotasExtraviadas);
+
+        ic_fotoPerfil=view.findViewById(R.id.ic_fotoPerfil);
+        ic_fotoPerfil.setOnClickListener(this);
+
         return view;
     }
 
@@ -150,6 +156,18 @@ public class InicioFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+
+            case R.id.ic_fotoPerfil:
+                Intent itt_perfilActivity=new Intent(getActivity().getApplicationContext(), PerfilActivity.class);
+                startActivity(itt_perfilActivity);
+                break;
+        }
     }
 
     /**
