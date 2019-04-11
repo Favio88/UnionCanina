@@ -43,6 +43,8 @@ public class InicioActivity extends AppCompatActivity implements MensajesFragmen
      */
     private ViewPager mViewPager;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

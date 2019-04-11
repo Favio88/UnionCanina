@@ -10,7 +10,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/ic_photo_gray_140dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_margin="10dp"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
