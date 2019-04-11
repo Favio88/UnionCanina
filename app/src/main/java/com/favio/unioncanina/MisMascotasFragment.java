@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -37,7 +38,7 @@ import java.util.List;
  * Use the {@link MisMascotasFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MisMascotasFragment extends Fragment {
+public class MisMascotasFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -51,6 +52,7 @@ public class MisMascotasFragment extends Fragment {
 
     AdaptadorMascota adaptadorMascota;
     RecyclerView rv_misMascotas;
+    ImageView ic_agregarMascota, ic_fotoPerfil;
 
     public MisMascotasFragment() {
         // Required empty public constructor
@@ -133,6 +135,11 @@ public class MisMascotasFragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_mis_mascotas, container, false);
         rv_misMascotas=view.findViewById(R.id.rv_misMascotas);
+
+        ic_fotoPerfil=view.findViewById(R.id.ic_fotoPerfil);
+        ic_fotoPerfil.setOnClickListener(this);
+        ic_agregarMascota=view.findViewById(R.id.ic_agregarMascota);
+        ic_agregarMascota.setOnClickListener(this);
         return view;
     }
 
@@ -158,6 +165,22 @@ public class MisMascotasFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+
+            case R.id.ic_agregarMascota:
+                Intent itt_registrarMascota=new Intent(getActivity().getApplicationContext(), RegistrarMascotaActivity.class);
+                startActivity(itt_registrarMascota);
+                break;
+            case R.id.ic_fotoPerfil:
+                Intent itt_perfilAcitivty=new Intent(getActivity().getApplicationContext(), PerfilActivity.class);
+                startActivity(itt_perfilAcitivty);
+                break;
+        }
     }
 
     /**
