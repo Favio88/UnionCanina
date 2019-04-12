@@ -57,7 +57,7 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
         String url;
         url="http://unioncanina.mipantano.com/api/profilePicture/"+usuario.getFoto();
 
-        Picasso.with(getApplicationContext()).load(url).transform(new CircleTransform().).fit().centerCrop().into(ic_fotoPerfil);
+        Picasso.with(getApplicationContext()).load(url).transform(new CircleTransform()).fit().centerCrop().into(ic_fotoPerfil);
 
 
        // et_nombrePerfil.setText(, );
