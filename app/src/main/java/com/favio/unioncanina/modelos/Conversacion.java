@@ -5,6 +5,8 @@ public class Conversacion {
     private int id;
     private String fecha_inicio;
     private String fecha_actividad;
+    private Usuario participante;
+    private Mensaje ultimo_mensaje;
 
 
     public Conversacion(int id, String fecha_inicio, String fecha_actividad) {
@@ -35,5 +37,21 @@ public class Conversacion {
 
     public void setFecha_actividad(String fecha_actividad) {
         this.fecha_actividad = fecha_actividad;
+    }
+
+    public Usuario getParticipante() {
+        return participante;
+    }
+
+    public void setParticipante(Usuario participante) {
+        this.participante = participante;
+    }
+
+    public Mensaje getUltimo_mensaje() {
+        return ultimo_mensaje;
+    }
+
+    public void setUltimo_mensaje(Mensaje ultimo_mensaje) {
+        this.ultimo_mensaje = ultimo_mensaje;
     }
 }
