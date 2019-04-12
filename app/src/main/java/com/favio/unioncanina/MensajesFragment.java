@@ -68,7 +68,6 @@ public class MensajesFragment extends Fragment {
 
             adaptadorConversacion =new AdaptadorConversacion(conversaciones, getActivity().getApplicationContext(),
                     R.layout.item_mensaje);
-
         }
     }
 
