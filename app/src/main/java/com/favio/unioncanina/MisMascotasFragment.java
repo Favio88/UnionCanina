@@ -2,6 +2,7 @@ package com.favio.unioncanina;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,10 +20,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.favio.unioncanina.adaptadores.AdaptadorMascota;
+import com.favio.unioncanina.extras.CircleTransform;
 import com.favio.unioncanina.modelos.Mascota;
+import com.favio.unioncanina.modelos.Usuario;
 import com.favio.unioncanina.singleton.VolleyS;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 
@@ -53,6 +57,7 @@ public class MisMascotasFragment extends Fragment implements View.OnClickListene
     AdaptadorMascota adaptadorMascota;
     RecyclerView rv_misMascotas;
     ImageView ic_agregarMascota, ic_fotoPerfil;
+    Usuario usuario;
 
     public MisMascotasFragment() {
         // Required empty public constructor
@@ -83,9 +88,13 @@ public class MisMascotasFragment extends Fragment implements View.OnClickListene
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
 
+            SharedPreferences preferences=getActivity().getSharedPreferences("Usuario", Context.MODE_PRIVATE);
+            Gson gson=new Gson();
+            usuario=gson.fromJson(preferences.getString("Usuario","No existe dato"),Usuario.class);
+
             JsonArrayRequest peticion01=new JsonArrayRequest(
                     Request.Method.GET,
-                    "http://unioncanina.mipantano.com/api/misMascotas/1",
+                    "http://unioncanina.mipantano.com/api/misMascotas/" + String.valueOf(usuario.getId()),
                     null,
                     new Response.Listener<JSONArray>() {
                         @Override
@@ -95,7 +104,7 @@ public class MisMascotasFragment extends Fragment implements View.OnClickListene
 
                             Type listType=new TypeToken<List<Mascota>>(){}.getType();
 
-                            Log.d("valor",response.toString());
+                            //Log.d("valor",response.toString());
                             final List<Mascota> listaMisMascotas=gson.fromJson(response.toString(),listType);
 
                             adaptadorMascota=new AdaptadorMascota(listaMisMascotas,getActivity().getApplicationContext(),R.layout.item_mi_mascota);
@@ -103,7 +112,16 @@ public class MisMascotasFragment extends Fragment implements View.OnClickListene
                                 @Override
                                 public void onClick(View view) {
                                     Intent itt_detallesMisMascotasActivity=new Intent(getActivity().getApplicationContext(),DetallesMiMascotaActivity.class);
+
+                                    Gson gson=new Gson();
+                                    String jsonMascota=gson.toJson(listaMisMascotas.get(rv_misMascotas.getChildAdapterPosition(view)));
+
+                                    Bundle bundle=new Bundle();
+                                    bundle.putString("Mascota", jsonMascota);
+                                    itt_detallesMisMascotasActivity.putExtras(bundle);
+
                                     startActivity(itt_detallesMisMascotasActivity);
+
                                     /*Toast.makeText(getActivity().getApplicationContext(), "Item: "
                                             + listaMisMascotas.get(rv_misMascotas.getChildAdapterPosition(view)),
                                             Toast.LENGTH_SHORT).show();*/
@@ -140,6 +158,12 @@ public class MisMascotasFragment extends Fragment implements View.OnClickListene
         ic_fotoPerfil.setOnClickListener(this);
         ic_agregarMascota=view.findViewById(R.id.ic_agregarMascota);
         ic_agregarMascota.setOnClickListener(this);
+
+        String url="http://unioncanina.mipantano.com/api/profilePicture/";
+
+        Picasso.with(getActivity().getApplicationContext()).load(url + usuario.getFoto()).transform(new CircleTransform())
+                .fit().centerCrop().into(ic_fotoPerfil);
+
         return view;
     }
 

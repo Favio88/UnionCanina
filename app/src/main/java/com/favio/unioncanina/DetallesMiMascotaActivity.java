@@ -1,6 +1,7 @@
 package com.favio.unioncanina;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,11 +9,16 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.favio.unioncanina.modelos.Mascota;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
+
 public class DetallesMiMascotaActivity extends AppCompatActivity implements View.OnClickListener{
 
     ImageView ic_retroceso, iv_fotoMiMascota;
     TextView tv_nombreMiMascota, tv_razaMiMascota, tv_edadMiMascota, tv_rasgosMiMascota;
     FrameLayout fl_editarMiMascota, fl_reportarMiMascota, fl_eliminarMiMascota;
+    Mascota mascota;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,20 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         fl_editarMiMascota.setOnClickListener(this);
         fl_reportarMiMascota.setOnClickListener(this);
         fl_eliminarMiMascota.setOnClickListener(this);
+
+        Bundle bundle=this.getIntent().getExtras();
+        String mascotaBundle=bundle.getString("Mascota");
+
+        Gson gson=new Gson();
+        mascota=gson.fromJson(mascotaBundle, Mascota.class);
+
+        tv_nombreMiMascota.setText(mascota.getNombre());
+        Picasso.with(this).load("http://unioncanina.mipantano.com/api/petspp/" +
+                mascota.getFoto()).fit().centerCrop().into(iv_fotoMiMascota);
+        tv_razaMiMascota.setText(mascota.getRaza().getNombre());
+        tv_edadMiMascota.setText(mascota.getF_nac());
+        tv_rasgosMiMascota.setText(mascota.getRasgos());
+
     }
 
     @Override
