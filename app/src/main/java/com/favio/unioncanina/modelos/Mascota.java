@@ -3,6 +3,8 @@ package com.favio.unioncanina.modelos;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -192,4 +194,5 @@ public class Mascota {
             return null;
         }
     }
+
 }

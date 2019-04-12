@@ -15,6 +15,7 @@ import com.favio.unioncanina.DetallesMascotaExtraviadaActivity;
 import com.favio.unioncanina.R;
 import com.favio.unioncanina.extras.CircleTransform;
 import com.favio.unioncanina.modelos.Mascota;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -67,9 +68,10 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
                 holder.tv_masInfoMascota.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent itt_DetallesMascotaExtraviadaActivity=new Intent(context, DetallesMascotaExtraviadaActivity.class);
+                        /*Intent itt_DetallesMascotaExtraviadaActivity=new Intent(context, DetallesMascotaExtraviadaActivity.class);
                         itt_DetallesMascotaExtraviadaActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(itt_DetallesMascotaExtraviadaActivity);
+
+                        context.startActivity(itt_DetallesMascotaExtraviadaActivity);*/
                         //Toast.makeText(context, "Item: " + position, Toast.LENGTH_SHORT).show();
                     }
                 });
