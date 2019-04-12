@@ -34,7 +34,7 @@
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/ic_buscar"
+            android:id="@+id/ic_buscarMascota"
             android:layout_toLeftOf="@+id/ic_filtrarMascota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

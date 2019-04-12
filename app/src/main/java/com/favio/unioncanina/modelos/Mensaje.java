@@ -3,8 +3,10 @@ package com.favio.unioncanina.modelos;
 public class Mensaje {
 
     private Integer id;
+    private int id_usuario;
     private String mensaje;
-    private String hora;
+    private String fecha;
+    private int leido;
 
     public Mensaje() {
 
@@ -18,6 +20,14 @@ public class Mensaje {
         this.id = id;
     }
 
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+
     public String getMensaje() {
         return mensaje;
     }
@@ -26,11 +36,19 @@ public class Mensaje {
         this.mensaje = mensaje;
     }
 
-    public String getHora(){
-        return hora;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setHora(String hora){
-        this.hora=hora;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public int getLeido() {
+        return leido;
+    }
+
+    public void setLeido(int leido) {
+        this.leido = leido;
     }
 }
