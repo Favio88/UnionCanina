@@ -44,99 +44,128 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             android:weightSum="1">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="información de la mascota"
+                android:layout_marginTop="15dp"
+                android:text="Datos de la mascota"
                 android:textColor="@color/colorTexto"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/et_nombreRegistrarMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textAlignment="center"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:background="#FFFFFF"
+                android:padding="5dp"
+                android:hint="Nombre"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="12sp" />
 
-            <EditText
-                android:id="@+id/et_razaRegistrarMascota"
+            <Spinner
+                android:id="@+id/sp_razaRegistrarMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Raza"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textAlignment="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:textAlignment="center" />
+
+            <Spinner
+                android:id="@+id/sp_sexoRegistrarMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:textAlignment="center"/>
 
             <EditText
                 android:id="@+id/et_colorRegistrarMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Color"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textAlignment="center"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:background="#FFFFFF"
+                android:padding="8dp"
+                android:hint="Color"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/et_sexoRegistrarMascota"
+                android:id="@+id/et_fnacRegistrarMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sexo"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
                 android:padding="8dp"
+                android:hint="Fecha de nacimiento"
                 android:textAlignment="center"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="12sp" />
+
+            <Spinner
+                android:id="@+id/sp_esterilizadoRegistrarMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:textAlignment="center"/>
+
+            <EditText
+                android:id="@+id/et_enfermedadesRegistrarMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="#FFFFFF"
+                android:padding="8dp"
+                android:hint="Enfermedades"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/et_rasgosRegistrarMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rasgos físicos"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textAlignment="center"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:background="#FFFFFF"
+                android:padding="8dp"
+                android:hint="Rasgos físicos"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="12sp" />
 
             <LinearLayout
-                android:id="@+id/ll_subirFotoMascota"
+                android:id="@+id/ll_subirFotoRegistrarMascota"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="100dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="100dp"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -149,21 +178,21 @@
                     android:layout_height="wrap_content"
                     android:text="Presiona aquí"
                     android:textColor="@color/colorTextoFondo"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="sube fotos de tu mascota"
                     android:textColor="@color/colorTextoFondo"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_guardarMascota"
+            android:id="@+id/btn_guardarRegistrarMascota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
