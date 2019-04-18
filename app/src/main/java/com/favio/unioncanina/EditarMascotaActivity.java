@@ -13,7 +13,6 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
 
     ImageView ic_retroceso;
     EditText et_nombreEditarMiMascota, et_razaEditarMiMascota, et_colorEditarMiMascota, et_sexoEditarMiMascota, et_rasgosEditarMiMascota;
-    RecyclerView rv_fotosMiMascota;
     Button btn_guardarMiMascota;
 
     @Override
@@ -27,8 +26,7 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
         et_colorEditarMiMascota=findViewById(R.id.et_colorEditarMiMascota);
         et_sexoEditarMiMascota=findViewById(R.id.et_sexoEditarMiMascota);
         et_rasgosEditarMiMascota=findViewById(R.id.et_razaEditarMiMascota);
-        rv_fotosMiMascota=findViewById(R.id.rv_fotosMiMascota);
-        btn_guardarMiMascota=findViewById(R.id.btn_guardarMiMascota);
+        btn_guardarMiMascota=findViewById(R.id.btn_guardarEditarMiMascota);
 
         ic_retroceso.setOnClickListener(this);
         btn_guardarMiMascota.setOnClickListener(this);
@@ -44,7 +42,7 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
                 startActivity(itt_detallesMisMascotasActivity);
                 finish();
                 break;
-            case R.id.btn_guardarMiMascota:
+            case R.id.btn_guardarEditarMiMascota:
                 Intent itt_inicioActivity=new Intent(EditarMascotaActivity.this, InicioActivity.class);
                 startActivity(itt_inicioActivity);
                 finish();
