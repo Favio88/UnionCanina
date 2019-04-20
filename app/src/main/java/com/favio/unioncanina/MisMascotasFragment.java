@@ -2,6 +2,7 @@ package com.favio.unioncanina;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -18,10 +20,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.favio.unioncanina.adaptadores.AdaptadorMascota;
+import com.favio.unioncanina.extras.CircleTransform;
 import com.favio.unioncanina.modelos.Mascota;
+import com.favio.unioncanina.modelos.Usuario;
 import com.favio.unioncanina.singleton.VolleyS;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 
@@ -37,7 +42,7 @@ import java.util.List;
  * Use the {@link MisMascotasFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MisMascotasFragment extends Fragment {
+public class MisMascotasFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -51,6 +56,8 @@ public class MisMascotasFragment extends Fragment {
 
     AdaptadorMascota adaptadorMascota;
     RecyclerView rv_misMascotas;
+    ImageView ic_agregarMascota, ic_fotoPerfil;
+    Usuario usuario;
 
     public MisMascotasFragment() {
         // Required empty public constructor
@@ -81,9 +88,13 @@ public class MisMascotasFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
 
+            SharedPreferences preferences=getActivity().getSharedPreferences("Usuario", Context.MODE_PRIVATE);
+            Gson gson=new Gson();
+            usuario=gson.fromJson(preferences.getString("Usuario","No existe dato"),Usuario.class);
+
             JsonArrayRequest peticion01=new JsonArrayRequest(
                     Request.Method.GET,
-                    "http://unioncanina.mipantano.com/api/misMascotas/1",
+                    "http://unioncanina.mipantano.com/api/misMascotas/" + String.valueOf(usuario.getId()),
                     null,
                     new Response.Listener<JSONArray>() {
                         @Override
@@ -93,15 +104,24 @@ public class MisMascotasFragment extends Fragment {
 
                             Type listType=new TypeToken<List<Mascota>>(){}.getType();
 
-                            Log.d("valor",response.toString());
+                            //Log.d("valor",response.toString());
                             final List<Mascota> listaMisMascotas=gson.fromJson(response.toString(),listType);
 
                             adaptadorMascota=new AdaptadorMascota(listaMisMascotas,getActivity().getApplicationContext(),R.layout.item_mi_mascota);
                             adaptadorMascota.setOnclickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    Intent itt_detallesMisMascotaActivity=new Intent(getActivity().getApplicationContext(),DetallesMiMascotaActivity.class);
-                                    startActivity(itt_detallesMisMascotaActivity);
+                                    Intent itt_detallesMisMascotasActivity=new Intent(getActivity().getApplicationContext(),DetallesMiMascotaActivity.class);
+
+                                    Gson gson=new Gson();
+                                    String jsonMascota=gson.toJson(listaMisMascotas.get(rv_misMascotas.getChildAdapterPosition(view)));
+
+                                    Bundle bundle=new Bundle();
+                                    bundle.putString("Mascota", jsonMascota);
+                                    itt_detallesMisMascotasActivity.putExtras(bundle);
+
+                                    startActivity(itt_detallesMisMascotasActivity);
+
                                     /*Toast.makeText(getActivity().getApplicationContext(), "Item: "
                                             + listaMisMascotas.get(rv_misMascotas.getChildAdapterPosition(view)),
                                             Toast.LENGTH_SHORT).show();*/
@@ -133,6 +153,17 @@ public class MisMascotasFragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_mis_mascotas, container, false);
         rv_misMascotas=view.findViewById(R.id.rv_misMascotas);
+
+        ic_fotoPerfil=view.findViewById(R.id.ic_fotoPerfil);
+        ic_fotoPerfil.setOnClickListener(this);
+        ic_agregarMascota=view.findViewById(R.id.ic_agregarMascota);
+        ic_agregarMascota.setOnClickListener(this);
+
+        String url="http://unioncanina.mipantano.com/api/profilePicture/";
+
+        Picasso.with(getActivity().getApplicationContext()).load(url + usuario.getFoto()).transform(new CircleTransform())
+                .fit().centerCrop().into(ic_fotoPerfil);
+
         return view;
     }
 
@@ -158,6 +189,22 @@ public class MisMascotasFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+
+            case R.id.ic_agregarMascota:
+                Intent itt_registrarMascota=new Intent(getActivity().getApplicationContext(), RegistrarMascotaActivity.class);
+                startActivity(itt_registrarMascota);
+                break;
+            case R.id.ic_fotoPerfil:
+                Intent itt_perfilAcitivty=new Intent(getActivity().getApplicationContext(), PerfilActivity.class);
+                startActivity(itt_perfilAcitivty);
+                break;
+        }
     }
 
     /**

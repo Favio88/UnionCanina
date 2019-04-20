@@ -1,6 +1,8 @@
 package com.favio.unioncanina;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,11 +21,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.favio.unioncanina.adaptadores.AdaptadorMascota;
+import com.favio.unioncanina.extras.CircleTransform;
 import com.favio.unioncanina.modelos.Mascota;
+import com.favio.unioncanina.modelos.Usuario;
 import com.favio.unioncanina.singleton.VolleyS;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 
@@ -39,7 +44,7 @@ import java.util.List;
  * Use the {@link InicioFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InicioFragment extends Fragment {
+public class InicioFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -53,6 +58,7 @@ public class InicioFragment extends Fragment {
 
     AdaptadorMascota adaptadorMascota;
     RecyclerView rv_mascotasExtraviadas;
+    ImageView ic_fotoPerfil, ic_buscarMascota, ic_filtrarMascota;
 
     public InicioFragment() {
         // Required empty public constructor
@@ -97,9 +103,24 @@ public class InicioFragment extends Fragment {
                             Type listType=new TypeToken<List<Mascota>>(){}.getType();
 
                             Log.d("valor",response.toString());
-                            List<Mascota> listaMascotasExtraviadas=gson.fromJson(response.toString(), listType);
+                            final List<Mascota> listaMascotasExtraviadas=gson.fromJson(response.toString(), listType);
 
                             adaptadorMascota=new AdaptadorMascota(listaMascotasExtraviadas, getActivity().getApplicationContext(), R.layout.item_mascota_extraviada);
+                            adaptadorMascota.setOnclickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent itt_detallesMascotaExtraviadaActivity=new Intent(getActivity().getApplicationContext(),DetallesMascotaExtraviadaActivity.class);
+
+                                    Gson gson=new Gson();
+                                    String jsonMascota=gson.toJson(listaMascotasExtraviadas.get(rv_mascotasExtraviadas.getChildAdapterPosition(view)));
+
+                                    Bundle bundle=new Bundle();
+                                    bundle.putString("Mascota", jsonMascota);
+                                    itt_detallesMascotaExtraviadaActivity.putExtras(bundle);
+
+                                    startActivity(itt_detallesMascotaExtraviadaActivity);
+                                }
+                            });
 
                             rv_mascotasExtraviadas.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                             rv_mascotasExtraviadas.setAdapter(adaptadorMascota);
@@ -125,6 +146,23 @@ public class InicioFragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_inicio, container, false);
         rv_mascotasExtraviadas=view.findViewById(R.id.rv_mascotasExtraviadas);
+
+        ic_fotoPerfil=view.findViewById(R.id.ic_fotoPerfil);
+        ic_fotoPerfil.setOnClickListener(this);
+        ic_buscarMascota=view.findViewById(R.id.ic_buscarMascota);
+        ic_buscarMascota.setOnClickListener(this);
+        ic_filtrarMascota=view.findViewById(R.id.ic_filtrarMascota);
+        ic_filtrarMascota.setOnClickListener(this);
+
+        SharedPreferences preferences=getActivity().getSharedPreferences("Usuario", Context.MODE_PRIVATE);
+        Gson gson=new Gson();
+        Usuario usuario=gson.fromJson(preferences.getString("Usuario","No existe dato"),Usuario.class);
+
+        String url="http://unioncanina.mipantano.com/api/profilePicture/";
+
+        Picasso.with(getActivity().getApplicationContext()).load(url + usuario.getFoto()).transform(new CircleTransform())
+                .fit().centerCrop().into(ic_fotoPerfil);
+
         return view;
     }
 
@@ -150,6 +188,26 @@ public class InicioFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+
+            case R.id.ic_fotoPerfil:
+                Intent itt_perfilActivity=new Intent(getActivity().getApplicationContext(), PerfilActivity.class);
+                startActivity(itt_perfilActivity);
+                break;
+            case R.id.ic_buscarMascota:
+                Intent itt_buscarMascotaIdActivity=new Intent(getActivity().getApplicationContext(), BuscarMascotaIdActivity.class);
+                startActivity(itt_buscarMascotaIdActivity);
+                break;
+            case R.id.ic_filtrarMascota:
+                Intent itt_filtrarMascotasActivity=new Intent(getActivity().getApplicationContext(), FiltrarMascotasActivity.class);
+                startActivity(itt_filtrarMascotasActivity);
+                break;
+        }
     }
 
     /**

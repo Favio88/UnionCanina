@@ -19,6 +19,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.favio.unioncanina.modelos.Usuario;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -140,6 +142,8 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
 
         editor.putString("Usuario", response.toString());
         editor.apply();
+        Log.e("valor",preferences.getString("Usuario",""));
+
     }
 
     public void registro(View view) {

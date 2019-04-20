@@ -48,15 +48,16 @@
             android:gravity="center">
 
             <Spinner
-                android:id="@+id/sp_razaMascotaFiltro"
+                android:id="@+id/sp_raza"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp"
+                />
 
             <Spinner
-                android:id="@+id/sp_sexoMascotaFiltro"
+                android:id="@+id/sp_sexo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -64,23 +65,14 @@
                 android:layout_marginRight="10dp" />
 
             <Spinner
-                android:id="@+id/sp_ciudadMascotaFiltro"
+                android:id="@+id/sp_ciudad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp" />
-
-            <Spinner
-                android:id="@+id/sp_coloniaMascotaFiltro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp" />
-
             <EditText
-                android:id="@+id/et_rasgosMascotaFiltro"
+                android:id="@+id/et_rasgo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -108,7 +100,8 @@
             android:text="Aplicar filtros"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:onClick="AplicarFiltros"/>
 
     </FrameLayout>
 

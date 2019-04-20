@@ -22,14 +22,7 @@ public class Extravio {
     }
 
     public String getColonia() {
-
-        if(colonia!=null){
-            return colonia;
-        }
-        else{
-            return null;
-        }
-
+        return colonia;
     }
 
     public void setColonia(String colonia) {
@@ -37,14 +30,7 @@ public class Extravio {
     }
 
     public String getF_extrav() {
-
-        if(f_extrav!=null){
-            return f_extrav;
-        }
-        else{
-            return null;
-        }
-
+        return f_extrav;
     }
 
     public void setF_extrav(String f_extrav) {

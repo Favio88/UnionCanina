@@ -3,12 +3,15 @@ package com.favio.unioncanina.modelos;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Mascota {
 
@@ -22,18 +25,14 @@ public class Mascota {
     private String enfermedad;
     private String foto;
     private String rasgos;
-    private Extravio extravio;
+    private List<Extravio> extravios;
     private Usuario usuario;
-    private ArrayList<Fotografia> fotografias;
+    private List<Fotografia> fotografias;
     private Ciudad ciudad;
     private Raza raza;
     private Codigo codigo;
 
-    public Mascota(Integer id, String nombre, String sexo, String color, String f_nac,
-                   String estatus, String esterilizado, String enfermedad, String foto,
-                   String rasgos, Extravio extravio, Usuario usuario, ArrayList<Fotografia> fotografias,
-                   Ciudad ciudad, Raza raza, Codigo codigo) {
-
+    public Mascota(Integer id, String nombre, String sexo, String color, String f_nac, String estatus, String esterilizado, String enfermedad, String foto, String rasgos, List<Extravio> extravios, Usuario usuario, List<Fotografia> fotografias, Ciudad ciudad, Raza raza, Codigo codigo) {
         this.id = id;
         this.nombre = nombre;
         this.sexo = sexo;
@@ -44,16 +43,15 @@ public class Mascota {
         this.enfermedad = enfermedad;
         this.foto = foto;
         this.rasgos = rasgos;
-        this.extravio = extravio;
+        this.extravios = extravios;
         this.usuario = usuario;
         this.fotografias = fotografias;
         this.ciudad = ciudad;
         this.raza = raza;
         this.codigo = codigo;
-
     }
 
-    public ArrayList<Fotografia> getFotografias() {
+    public List<Fotografia> getFotografias() {
         return fotografias;
     }
 
@@ -142,12 +140,12 @@ public class Mascota {
         this.rasgos = rasgos;
     }
 
-    public Extravio getExtravio() {
-        return extravio;
+    public List<Extravio> getExtravio() {
+        return extravios;
     }
 
-    public void setExtravio(Extravio extravio) {
-        this.extravio = extravio;
+    public void setExtravio(List<Extravio> extravio) {
+        this.extravios = extravio;
     }
 
     public Usuario getUsuario() {
@@ -196,4 +194,5 @@ public class Mascota {
             return null;
         }
     }
+
 }

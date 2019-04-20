@@ -8,11 +8,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.favio.unioncanina.modelos.Mascota;
+import com.favio.unioncanina.modelos.Usuario;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
+
 public class DetallesMascotaExtraviadaActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView ic_retroceso, iv_fotoMascota;
     Button btn_contactarDueno;
     TextView tv_razaMascota, tv_nombreMascota, tv_edadMascota, tv_rasgosMascota, tv_lugarExtravioMascota;
+    Mascota mascota;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,20 @@ public class DetallesMascotaExtraviadaActivity extends AppCompatActivity impleme
 
         ic_retroceso.setOnClickListener(this);
         btn_contactarDueno.setOnClickListener(this);
+
+        Bundle bundle=this.getIntent().getExtras();
+        String mascotaBundle=bundle.getString("Mascota");
+
+        Gson gson=new Gson();
+        mascota=gson.fromJson(mascotaBundle, Mascota.class);
+
+        tv_nombreMascota.setText(mascota.getNombre());
+        Picasso.with(this).load("http://unioncanina.mipantano.com/api/petspp/" + mascota.getFoto()).fit().centerCrop().into(iv_fotoMascota);
+        tv_razaMascota.setText(mascota.getRaza().getNombre());
+        tv_edadMascota.setText(mascota.getF_nac());
+        tv_rasgosMascota.setText(mascota.getRasgos());
+        tv_lugarExtravioMascota.setText(mascota.getExtravio().get(0).getColonia());
+
     }
 
     @Override

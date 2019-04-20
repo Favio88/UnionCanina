@@ -25,6 +25,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.favio.unioncanina.adaptadores.AdaptadorMascota;
+import com.favio.unioncanina.modelos.Usuario;
+import com.google.gson.Gson;
 
 public class InicioActivity extends AppCompatActivity implements MensajesFragment.OnFragmentInteractionListener, InicioFragment.OnFragmentInteractionListener, MisMascotasFragment.OnFragmentInteractionListener{
 
@@ -43,6 +45,8 @@ public class InicioActivity extends AppCompatActivity implements MensajesFragmen
      */
     private ViewPager mViewPager;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +54,6 @@ public class InicioActivity extends AppCompatActivity implements MensajesFragmen
 
         //OBTENGO LOS DATOS DEL USUARIO LOGEADO
         SharedPreferences preferences = getSharedPreferences("Usuario", Context.MODE_PRIVATE);
-
 
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);

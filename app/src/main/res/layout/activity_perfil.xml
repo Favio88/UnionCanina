@@ -58,7 +58,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:weightSum="1"
-            android:padding="40dp">
+            android:padding="20dp">
 
             <ImageView
                 android:id="@+id/ic_fotoPerfil"
@@ -81,7 +81,7 @@
                 android:id="@+id/et_nombrePerfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Usuario"
+                android:hint="Nombre"
                 android:background="#FFFFFF"
                 android:textColor="@color/colorTextoControles"
                 android:textSize="14sp"
@@ -92,10 +92,24 @@
                 android:layout_marginTop="20dp"/>
 
             <EditText
-                android:id="@+id/et_correoPerfil"
+            android:id="@+id/et_apat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Apellido paterno"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorTextoControles"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/et_amat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Correo"
+                android:hint="Apellido materno"
                 android:background="#FFFFFF"
                 android:textColor="@color/colorTextoControles"
                 android:textSize="14sp"
@@ -106,10 +120,10 @@
                 android:layout_marginTop="10dp"/>
 
             <EditText
-                android:id="@+id/et_estadoPerfil"
+                android:id="@+id/et_correo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Estado"
+                android:hint="Correo"
                 android:background="#FFFFFF"
                 android:textColor="@color/colorTextoControles"
                 android:textSize="14sp"
@@ -120,10 +134,10 @@
                 android:layout_marginTop="10dp"/>
 
             <EditText
-                android:id="@+id/et_ciudadPerfil"
+                android:id="@+id/et_pwdnueva"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ciudad"
+                android:hint="Contraseña nueva"
                 android:background="#FFFFFF"
                 android:textColor="@color/colorTextoControles"
                 android:textSize="14sp"
@@ -132,12 +146,11 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"/>
-
             <EditText
-                android:id="@+id/et_pwdNuevoPerfil"
+                android:id="@+id/et_pwdActual"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contraseña nueva"
+                android:hint="Contraseña actual"
                 android:background="#FFFFFF"
                 android:textColor="@color/colorTextoControles"
                 android:textSize="14sp"
@@ -146,20 +159,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"/>
-
-            <EditText
-                android:id="@+id/et_pwdActualPerfil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Contraseña actual"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textAlignment="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="50dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -168,6 +167,9 @@
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="12sp"
                 android:layout_marginTop="3dp" />
+
+
+
 
         </LinearLayout>
 

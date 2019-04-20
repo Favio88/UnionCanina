@@ -15,6 +15,7 @@ import com.favio.unioncanina.DetallesMascotaExtraviadaActivity;
 import com.favio.unioncanina.R;
 import com.favio.unioncanina.extras.CircleTransform;
 import com.favio.unioncanina.modelos.Mascota;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -62,23 +63,24 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
                 Picasso.with(context).load("http://unioncanina.mipantano.com/api/petspp/" +
                         listaMascotas.get(position).getFoto()).fit().centerCrop().into(holder.iv_fotoMascota);
                 holder.tv_nombreMascota.setText(listaMascotas.get(position).getNombre());
-                //holder.tv_lugarExtravioMascota.setText(listaMascotas.get(position).getExtravio().getColonia());
-                //holder.tv_fechaExtravioMascota.setText(listaMascotas.get(position).getExtravio().getF_extrav());
+                holder.tv_lugarExtravioMascota.setText(listaMascotas.get(position).getExtravio().get(0).getColonia());
+                holder.tv_fechaExtravioMascota.setText("Se extravió el " + listaMascotas.get(position).getExtravio().get(0).getF_extrav());
                 holder.tv_masInfoMascota.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent itt_DetallesMascotaExtraviadaActivity=new Intent(context, DetallesMascotaExtraviadaActivity.class);
+                        /*Intent itt_DetallesMascotaExtraviadaActivity=new Intent(context, DetallesMascotaExtraviadaActivity.class);
                         itt_DetallesMascotaExtraviadaActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(itt_DetallesMascotaExtraviadaActivity);
+
+                        context.startActivity(itt_DetallesMascotaExtraviadaActivity);*/
                         //Toast.makeText(context, "Item: " + position, Toast.LENGTH_SHORT).show();
                     }
                 });
                 break;
             case R.layout.item_mi_mascota:
-                Picasso.with(context).load("http://unioncanina.mipantano.com/api/misMascotas/1" +
-                        listaMascotas.get(position).getFoto()).into(holder.iv_fotoMiMascota);
+                    Picasso.with(context).load("http://unioncanina.mipantano.com/api/petspp/" +
+                        listaMascotas.get(position).getFoto()).fit().centerCrop().into(holder.iv_fotoMiMascota);
                 holder.tv_nombreMiMascota.setText(listaMascotas.get(position).getNombre());
-                //holder.tv_razaMiMascota.setText(listaMascotas.get(position).getRaza().getNombre());
+                holder.tv_razaMiMascota.setText(listaMascotas.get(position).getRaza().getNombre());
                 break;
         }
     }
