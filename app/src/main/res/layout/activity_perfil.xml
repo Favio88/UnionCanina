@@ -46,132 +46,195 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_weight=".8"
+        android:weightSum="1"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/iv_fotoPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/ic_account_circle_gray_128dp" />
+
+        <TextView
+            android:id="@+id/tv_cambiarFotoPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cambiar foto"
+            android:textColor="@color/colorUnionCanina"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="0dp"
+            android:padding="5dp"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorTexto"/>
+
+                <EditText
+                    android:id="@+id/et_nombrePerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombre"
+                    android:background="#FFFFFF"
+                    android:textColor="@color/colorTextoControles"
+                    android:textSize="12sp"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Apellido paterno"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorTexto"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:id="@+id/et_apat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Apellido paterno"
+                    android:background="#FFFFFF"
+                    android:textColor="@color/colorTextoControles"
+                    android:textSize="12sp"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Apellido materno"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorTexto"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:id="@+id/et_amat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Apellido materno"
+                    android:background="#FFFFFF"
+                    android:textColor="@color/colorTextoControles"
+                    android:textSize="12sp"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Correo"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorTexto"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:id="@+id/et_correo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Correo"
+                    android:background="#FFFFFF"
+                    android:textColor="@color/colorTextoControles"
+                    android:textSize="12sp"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Contraseña nueva"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorTexto"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:id="@+id/et_pwdnueva"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:background="#FFFFFF"
+                    android:textColor="@color/colorTextoControles"
+                    android:textSize="12sp"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"
+                    android:inputType="textPassword"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Debes ingresar tu contraseña actual para guardar cambios"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="10sp"
+                    android:layout_marginTop="20dp" />
+
+                <EditText
+                    android:id="@+id/et_pwdActual"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Contraseña actual"
+                    android:background="#FFFFFF"
+                    android:textColor="@color/colorTextoControles"
+                    android:textSize="12sp"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"
+                    android:inputType="textPassword"/>
+
+
+            </LinearLayout>
+            
+        </ScrollView>
+
+    </LinearLayout>
+
     <FrameLayout
         android:id="@+id/rl_cuerpo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".9">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:weightSum="1"
-            android:padding="20dp">
-
-            <ImageView
-                android:id="@+id/ic_fotoPerfil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:background="@drawable/ic_account_circle_gray_128dp" />
-
-            <TextView
-                android:id="@+id/tv_cambiarFotoPerfil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cambiar foto"
-                android:textColor="@color/colorUnionCanina"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginTop="0dp"/>
-
-            <EditText
-                android:id="@+id/et_nombrePerfil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nombre"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textAlignment="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="20dp"/>
-
-            <EditText
-            android:id="@+id/et_apat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Apellido paterno"
-            android:background="#FFFFFF"
-            android:textColor="@color/colorTextoControles"
-            android:textSize="14sp"
-            android:padding="8dp"
-            android:textAlignment="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"/>
-
-            <EditText
-                android:id="@+id/et_amat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Apellido materno"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textAlignment="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
-
-            <EditText
-                android:id="@+id/et_correo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Correo"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textAlignment="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
-
-            <EditText
-                android:id="@+id/et_pwdnueva"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Contraseña nueva"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textAlignment="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
-            <EditText
-                android:id="@+id/et_pwdActual"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Contraseña actual"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textAlignment="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Debes ingresar tu contraseña actual para guardar cambios"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="12sp"
-                android:layout_marginTop="3dp" />
-
-
-
-
-        </LinearLayout>
+        android:layout_weight=".1">
 
         <Button
             android:id="@+id/btn_guardarCambiosPerfil"
@@ -185,7 +248,7 @@
             android:text="Guardar cambios"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     </FrameLayout>
 

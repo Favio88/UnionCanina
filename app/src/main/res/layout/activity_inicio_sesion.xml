@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp">
+        android:layout_marginBottom="70dp">
 
         <TextView
             android:id="@+id/tv_registrame"

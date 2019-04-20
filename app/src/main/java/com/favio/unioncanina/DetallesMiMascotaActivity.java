@@ -61,8 +61,6 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         switch (view.getId()){
 
             case R.id.ic_retroceso:
-                Intent itt_misMascotasActivity=new Intent(DetallesMiMascotaActivity.this, InicioActivity.class);
-                startActivity(itt_misMascotasActivity);
                 finish();
                 break;
             case  R.id.fl_editarMiMascota:

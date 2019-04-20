@@ -30,6 +30,7 @@
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:layout_marginTop="10dp"/>
+
         <EditText
             android:id="@+id/et_nombre"
             android:layout_width="300dp"
@@ -37,11 +38,12 @@
             android:hint="Nombre"
             android:background="@drawable/rounded_white"
             android:layout_weight="1"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textColor="@color/colorTextoControles"
             android:padding="10dp"
             android:textAlignment="center"
-            android:layout_margin="3dp"/>
+            android:layout_margin="5dp"/>
+
         <EditText
             android:id="@+id/et_apat"
             android:layout_width="300dp"
@@ -49,11 +51,12 @@
             android:hint="Apellido paterno"
             android:background="@drawable/rounded_white"
             android:layout_weight="1"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textColor="@color/colorTextoControles"
             android:padding="10dp"
-            android:layout_margin="3dp"
+            android:layout_margin="5dp"
             android:textAlignment="center"/>
+
         <EditText
             android:id="@+id/et_amat"
             android:layout_width="300dp"
@@ -61,11 +64,12 @@
             android:hint="Apellido materno"
             android:background="@drawable/rounded_white"
             android:layout_weight="1"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textColor="@color/colorTextoControles"
             android:padding="10dp"
-            android:layout_margin="3dp"
+            android:layout_margin="5dp"
             android:textAlignment="center"/>
+
         <EditText
             android:id="@+id/et_correo"
             android:layout_width="300dp"
@@ -73,11 +77,12 @@
             android:hint="Correo"
             android:background="@drawable/rounded_white"
             android:layout_weight="1"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textColor="@color/colorTextoControles"
             android:padding="10dp"
-            android:layout_margin="3dp"
+            android:layout_margin="5dp"
             android:textAlignment="center"/>
+
         <EditText
             android:id="@+id/et_pwd"
             android:layout_width="300dp"
@@ -85,13 +90,14 @@
             android:hint="Contraseña"
             android:background="@drawable/rounded_white"
             android:layout_weight="1"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textColor="@color/colorTextoControles"
             android:padding="10dp"
-            android:layout_margin="3dp"
+            android:layout_margin="5dp"
             android:textAlignment="center"
             android:inputType="textPassword"
             />
+
         <EditText
             android:id="@+id/et_pwd_confirmar"
             android:layout_width="300dp"
@@ -99,10 +105,10 @@
             android:hint="Confirmar contraseña"
             android:background="@drawable/rounded_white"
             android:layout_weight="1"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textColor="@color/colorTextoControles"
             android:padding="10dp"
-            android:layout_margin="3dp"
+            android:layout_margin="5dp"
             android:textAlignment="center"
             android:inputType="textPassword"
             />
@@ -113,31 +119,31 @@
             android:layout_height="0dp"
             android:hint="Registrar"
             android:layout_weight="1"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:background="@drawable/rounded_blue"
             android:padding="5dp"
             android:textColorHint="#FFFFFF"
             android:textAllCaps="false"
-            />
+            android:layout_margin="5dp"/>
 
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_iniciarSesion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp">
-
-        <TextView
-            android:id="@+id/tv_iniciarSesion"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_iniciarSesion"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Inicar Sesión"
-            android:textColor="#FFFFFF"
-            android:textAlignment="center"
-            android:padding="10dp"
-            android:textSize="12sp" />
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tv_iniciarSesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inicar Sesión"
+                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:padding="10dp"
+                android:textSize="12sp" />
+        </LinearLayout>
+
     </LinearLayout>
+
 </RelativeLayout>
