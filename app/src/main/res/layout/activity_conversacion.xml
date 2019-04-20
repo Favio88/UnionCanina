@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConversacionActivity"
-    android:orientation="vertical"
-    android:weightSum="1">
+    tools:context=".ConversacionActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".1"
+        android:layout_height="wrap_content"
         android:background="@color/colorUnionCanina"
-        android:orientation="horizontal">
+        android:id="@+id/title">
 
         <ImageView
             android:id="@+id/ic_retroceso"
@@ -25,6 +22,7 @@
 
         <TextView
             android:layout_centerVertical="true"
+            android:id="@+id/participante"
             android:layout_toRightOf="@+id/ic_retroceso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,40 +42,38 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".8"
-        android:orientation="vertical">
 
-    </LinearLayout>
+       <android.support.v7.widget.RecyclerView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id="@+id/rvMensajes"
+           android:layout_marginTop="48dp"
+           android:layout_marginBottom="65dp"
+           />
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".1"
+        android:layout_height="wrap_content"
         android:padding="10dp"
         android:background="#FFFFFF"
-        android:orientation="horizontal"
-        android:weightSum="1">
+        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@id/rvMensajes">
 
         <EditText
             android:id="@+id/et_escribirMensaje"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Escribir mensaje"
-            android:textAlignment="center"
-            android:textSize="12sp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight=".98"/>
+            android:hint="Escribir mensaje" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/ic_enviar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_send_blue_36dp" />
+            android:background="@drawable/ic_send_blue_36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>
