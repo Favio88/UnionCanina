@@ -113,44 +113,44 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
         if(et_pwdactual.getText().toString().equals(usuario.getPwd()))
         {
             //Con JSONOBJECT
-            JSONObject obj = new JSONObject();
+        JSONObject obj = new JSONObject();
 
-            try {
-                obj.put("id",usuario.getId());
-                obj.put("nombre", et_nombre.getText().toString());
-                obj.put("apat", et_apat.getText().toString());
-                obj.put("amat", et_amat.getText().toString());
-                obj.put("correo", et_correo.getText().toString());
-                obj.put("pwd", et_pwdnueva.getText().toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            Log.e("objeto", obj.toString());
-
-
-            String url = "http://unioncanina.mipantano.com/api/update";
-
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                    Request.Method.POST,
-                    url,
-                    obj,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            Toast.makeText(getApplicationContext(), "Cambios aplicados", Toast.LENGTH_LONG).show();
-                            finish();
-                            startActivity(new Intent(getApplicationContext(),PerfilActivity.class));
-                            guardarCredenciales(response);
-
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getApplicationContext(), "Error response", Toast.LENGTH_LONG).show();
-                }
-            });
-            Volley.newRequestQueue(this).add(jsonObjectRequest);
+        try {
+            obj.put("id",usuario.getId());
+            obj.put("nombre", et_nombre.getText().toString());
+            obj.put("apat", et_apat.getText().toString());
+            obj.put("amat", et_amat.getText().toString());
+            obj.put("correo", et_correo.getText().toString());
+            obj.put("pwd", et_pwdnueva.getText().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+        Log.e("objeto", obj.toString());
+
+
+        String url = "http://unioncanina.mipantano.com/api/update";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                obj,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Toast.makeText(getApplicationContext(), "Cambios aplicados", Toast.LENGTH_LONG).show();
+                        finish();
+                        startActivity(new Intent(getApplicationContext(),PerfilActivity.class));
+                        guardarCredenciales(response);
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error response", Toast.LENGTH_LONG).show();
+            }
+        });
+        Volley.newRequestQueue(this).add(jsonObjectRequest);
+    }
 
     }
     private void guardarCredenciales(JSONObject response) {
