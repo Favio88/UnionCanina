@@ -2,7 +2,7 @@
 <resources>
     <string-array name="combo_Sexo">
         <item>Selecciona el sexo</item>
-        <item>Masculino</item>
-        <item>Femenino</item>
+        <item>Macho</item>
+        <item>Hembra</item>
     </string-array>
 </resources>

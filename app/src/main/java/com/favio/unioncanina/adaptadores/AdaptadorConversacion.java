@@ -85,6 +85,7 @@ public class AdaptadorConversacion extends RecyclerView.Adapter<AdaptadorConvers
                 @Override
                 public void onClick(View view) {
                     Intent messages = new Intent(context, ConversacionActivity.class);
+                    messages.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     int position = getAdapterPosition();
                     if(position !=  RecyclerView.NO_POSITION){
                         messages.putExtra("conversation", conversaciones.get(position));
