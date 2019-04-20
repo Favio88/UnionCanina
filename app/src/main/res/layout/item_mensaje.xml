@@ -25,6 +25,12 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:layout_marginTop="13dp"/>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/id_conv"
+           android:textColor="#fff"
+           android:textSize="1dp"/>
 
         <TextView
             android:id="@+id/tv_ultimoMensaje"

@@ -1,6 +1,8 @@
 package com.favio.unioncanina.modelos;
 
-public class Mensaje {
+import java.io.Serializable;
+
+public class Mensaje implements Serializable {
 
     private Integer id;
     private int id_usuario;

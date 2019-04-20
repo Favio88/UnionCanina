@@ -1,6 +1,8 @@
 package com.favio.unioncanina.modelos;
 
-public class Conversacion {
+import java.io.Serializable;
+
+public class Conversacion implements Serializable {
 
     private int id;
     private String fecha_inicio;
