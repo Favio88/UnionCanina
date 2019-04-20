@@ -55,7 +55,7 @@ public class InicioFragment extends Fragment implements View.OnClickListener{
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-
+    List<Mascota> listaMascotasfiltro;
     AdaptadorMascota adaptadorMascota;
     RecyclerView rv_mascotasExtraviadas;
     ImageView ic_fotoPerfil, ic_buscarMascota, ic_filtrarMascota;
@@ -89,6 +89,13 @@ public class InicioFragment extends Fragment implements View.OnClickListener{
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+            Bundle bundle=getActivity().getIntent().getExtras();
+            if(bundle!=null){
+                cargarFiltros(bundle);
+            }
+
+
 
             JsonArrayRequest peticion01=new JsonArrayRequest(
                     Request.Method.GET,
@@ -138,6 +145,33 @@ public class InicioFragment extends Fragment implements View.OnClickListener{
             VolleyS.getInstance(getActivity().getApplicationContext()).getRequestQueue().add(peticion01);
 
         }
+    }
+
+    private void cargarFiltros(Bundle bundle) {
+        String filtroExtravios=bundle.getString("extravios");
+        Gson gson=new Gson();
+        Type listType=new TypeToken<List<Mascota>>(){}.getType();
+
+        listaMascotasfiltro= gson.fromJson(filtroExtravios,listType);
+        adaptadorMascota=new AdaptadorMascota(listaMascotasfiltro, getActivity().getApplicationContext(), R.layout.item_mascota_extraviada);
+        adaptadorMascota.setOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent itt_detallesMascotaExtraviadaActivity=new Intent(getActivity().getApplicationContext(), DetallesMascotaExtraviadaActivity.class);
+
+                Gson gson=new Gson();
+                String jsonMascota=gson.toJson(listaMascotasfiltro.get(rv_mascotasExtraviadas.getChildAdapterPosition(view)));
+
+                Bundle bundle=new Bundle();
+                bundle.putString("Mascota", jsonMascota);
+                itt_detallesMascotaExtraviadaActivity.putExtras(bundle);
+
+                startActivity(itt_detallesMascotaExtraviadaActivity);
+            }
+        });
+
+        rv_mascotasExtraviadas.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        rv_mascotasExtraviadas.setAdapter(adaptadorMascota);
     }
 
     @Override
