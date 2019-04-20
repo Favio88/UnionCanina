@@ -16,18 +16,27 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.favio.unioncanina.modelos.Ciudad;
+import com.favio.unioncanina.modelos.Raza;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class FiltrarMascotasActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class FiltrarMascotasActivity extends AppCompatActivity  {
+    ArrayList<Raza>listaRazas= new ArrayList<Raza>();
+    ArrayList<Ciudad>listaCiudades=new ArrayList<Ciudad>();
     ImageView ic_retroceso;
     Spinner sp_raza, sp_sexo, sp_ciudad;
     EditText et_rasgo;
     Button btn_aplicarFiltros;
+    int raza,ciudad;
+    String rasgo,sexo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +51,89 @@ public class FiltrarMascotasActivity extends AppCompatActivity {
         btn_aplicarFiltros=findViewById(R.id.btn_aplicarFiltros);
 
         LoadSexo();
+        BajarRazas();
+        BajarCiudades();
+
     }
     private void LoadSexo(){
         ArrayAdapter<CharSequence>adapter=ArrayAdapter.createFromResource(
-                this,R.array.combo_Sexo ,android.R.layout.simple_list_item_1 );
+                this,R.array.combo_Sexo,android.R.layout.simple_list_item_1 );
         sp_sexo.setAdapter(adapter);
-    }
-
-
-    private void AplicarFiltros(View view){
 
     }
+    private void BajarCiudades(){
+        //Con JSONOBJECT
+        String url = "http://unioncanina.mipantano.com/api/ciudades";
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                for(int i=0;i<response.length();i++){
+                    Ciudad ciudad=new Ciudad();
+                    try {
+                        ciudad.setId(response.getJSONObject(i).getInt("id"));
+                        ciudad.setNombre(response.getJSONObject(i).getString("nombre"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    listaCiudades.add(ciudad);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        Volley.newRequestQueue(this).add(jsonArrayRequest);
+        MostrarCiudades();
+    }
+    private void BajarRazas(){
+        //Con JSONOBJECT
+        String url = "http://unioncanina.mipantano.com/api/razas";
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+            for(int i=0;i<response.length();i++){
+                Raza raza=new Raza();
+                try {
+                    raza.setId(response.getJSONObject(i).getInt("id"));
+                    raza.setNombre(response.getJSONObject(i).getString("nombre"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                listaRazas.add(raza);
+            }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        Volley.newRequestQueue(this).add(jsonArrayRequest);
+        MostrarRazas();
+
+    }
+    private void MostrarRazas(){
+        ArrayAdapter<Raza> adapter=new ArrayAdapter<Raza>(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,listaRazas );
+        sp_raza.setAdapter(adapter);
+    }
+    private void MostrarCiudades(){
+        ArrayAdapter<Ciudad>adapter=new ArrayAdapter<Ciudad>(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,listaCiudades);
+        sp_ciudad.setAdapter(adapter);
+    }
+
+    public void filtrar(View view) {
+    }
+/*
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_aplicarFiltros:{
+                AplicarFiltros();
+            }break;
+        }
+    } */
 }

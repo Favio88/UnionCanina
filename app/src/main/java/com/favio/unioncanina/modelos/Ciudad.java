@@ -23,6 +23,8 @@ public class Ciudad {
         return nombre;
     }
 
+    public String toString(){return nombre;}
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
