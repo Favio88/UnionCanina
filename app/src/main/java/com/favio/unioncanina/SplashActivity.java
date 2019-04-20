@@ -26,11 +26,4 @@ public class SplashActivity extends AppCompatActivity {
             }
         },5000);
     }
-    private void cargarfiltros(JsonObject response){
-
-        SharedPreferences preferences = getSharedPreferences("Info", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor=preferences.edit();
-        editor.putString("Info", response.toString());
-        editor.apply();
-    }
 }

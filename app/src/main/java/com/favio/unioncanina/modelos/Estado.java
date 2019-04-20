@@ -1,7 +1,6 @@
 package com.favio.unioncanina.modelos;
 
 public class Estado {
-
     private Integer id;
     private String nombre;
 
@@ -33,4 +32,5 @@ public class Estado {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
 }

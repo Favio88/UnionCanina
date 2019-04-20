@@ -163,6 +163,7 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
         if(et_pwdactual.getText().toString().equals(usuario.getPwd()))
         {
             //Con JSONOBJECT
+
             JSONObject obj = new JSONObject();
 
             try {
@@ -203,7 +204,6 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
             });
             Volley.newRequestQueue(this).add(jsonObjectRequest);
         }
-
     }
 
     private void guardarCredenciales(JSONObject response) {
