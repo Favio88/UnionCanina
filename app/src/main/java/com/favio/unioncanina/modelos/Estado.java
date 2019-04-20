@@ -8,6 +8,11 @@ public class Estado {
 
     }
 
+    public Estado(Integer id, String nombre){
+        this.id=id;
+        this.nombre=nombre;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -17,6 +22,10 @@ public class Estado {
     }
 
     public String getNombre() {
+        return nombre;
+    }
+
+    public String toString() {
         return nombre;
     }
 

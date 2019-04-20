@@ -41,8 +41,6 @@ public class ReporteExtravioActivity extends AppCompatActivity implements View.O
         switch (view.getId()){
 
             case R.id.ic_retroceso:
-                Intent itt_detallesMiMascotaActivity=new Intent(ReporteExtravioActivity.this, DetallesMiMascotaActivity.class);
-                startActivity(itt_detallesMiMascotaActivity);
                 finish();
                 break;
             case R.id.ll_reportarExtravio:

@@ -38,8 +38,6 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
         switch(view.getId()){
 
             case R.id.ic_retroceso:
-                Intent itt_detallesMisMascotasActivity=new Intent(EditarMascotaActivity.this,DetallesMiMascotaActivity.class);
-                startActivity(itt_detallesMisMascotasActivity);
                 finish();
                 break;
             case R.id.btn_guardarEditarMiMascota:

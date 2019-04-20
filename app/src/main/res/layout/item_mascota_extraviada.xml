@@ -67,7 +67,7 @@
                 android:layout_below="@+id/ll_datosDueno"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:background="@drawable/foto"
+                android:background="@drawable/ic_account_circle_gray_96dp"
                 android:layout_marginTop="10dp"/>
 
             <LinearLayout
@@ -78,15 +78,16 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-                android:paddingBottom="10dp"
-                android:weightSum="2">
+                android:weightSum="2"
+                android:paddingBottom="5dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.6"
+                    android:layout_weight="1"
                     android:orientation="vertical"
-                    android:paddingLeft="10dp">
+                    android:paddingLeft="10dp"
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/tv_nombreMascota"
@@ -94,53 +95,60 @@
                         android:layout_height="wrap_content"
                         android:text="Nombre de la mascota"
                         android:textColor="@color/colorTexto"
-                        android:textSize="14sp"
-                        android:layout_marginLeft="5dp"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/ic_location_on_gray_18dp" />
-
-                        <TextView
-                            android:id="@+id/tv_lugarExtravioMascota"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="4dp"
-                            android:text="Lugar de extravío"
-                            android:textColor="@color/colorTexto"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".4"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_fechaExtravioMascota"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Extraviado hace 1 día" />
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/tv_masInfoMascota"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
                         android:text="Más información"
                         android:textColor="@color/colorUnionCanina"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_fechaExtravioMascota"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Extraviado hace 1 día"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorTexto"
+                        android:layout_marginTop="4dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:id="@+id/tv_lugarExtravioMascota"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lugar de extravío"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:layout_marginRight="5dp"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_location_on_gray_18dp"/>
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

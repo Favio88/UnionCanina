@@ -9,6 +9,11 @@ public class Raza {
 
     }
 
+    public Raza(Integer id, String nombre){
+        this.id=id;
+        this.nombre=nombre;
+    }
+
     public Integer getId() {
         return id;
     }

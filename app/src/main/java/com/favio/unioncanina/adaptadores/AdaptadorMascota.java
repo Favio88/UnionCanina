@@ -63,8 +63,10 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
                 Picasso.with(context).load("http://unioncanina.mipantano.com/api/petspp/" +
                         listaMascotas.get(position).getFoto()).fit().centerCrop().into(holder.iv_fotoMascota);
                 holder.tv_nombreMascota.setText(listaMascotas.get(position).getNombre());
-                holder.tv_lugarExtravioMascota.setText(listaMascotas.get(position).getExtravio().get(0).getColonia());
-                holder.tv_fechaExtravioMascota.setText("Se extravió el " + listaMascotas.get(position).getExtravio().get(0).getF_extrav());
+                holder.tv_lugarExtravioMascota.setText("en " + listaMascotas.get(position).getExtravio()
+                        .get((listaMascotas.get(position).getExtravio()).size()-1).getColonia());
+                holder.tv_fechaExtravioMascota.setText("Se extravió el " + listaMascotas.get(position).getExtravio()
+                        .get((listaMascotas.get(position).getExtravio()).size()-1).getF_extrav());
                 holder.tv_masInfoMascota.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

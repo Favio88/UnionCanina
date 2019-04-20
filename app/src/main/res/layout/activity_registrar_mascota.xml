@@ -77,8 +77,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:padding=".1dp"
                 android:textAlignment="center" />
 
             <Spinner
@@ -87,8 +87,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:padding=".1dp"
                 android:textAlignment="center"/>
 
             <EditText
@@ -96,7 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:background="#FFFFFF"
                 android:padding="8dp"
@@ -120,28 +120,24 @@
                 android:textSize="12sp" />
 
             <Spinner
-                android:id="@+id/sp_esterilizadoRegistrarMascota"
+                android:id="@+id/sp_estadoRegistrarMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:padding=".1dp"
                 android:textAlignment="center"/>
 
-            <EditText
-                android:id="@+id/et_enfermedadesRegistrarMascota"
+            <Spinner
+                android:id="@+id/sp_ciudadRegistrarMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
-                android:background="#FFFFFF"
-                android:padding="8dp"
-                android:hint="Enfermedades"
-                android:textAlignment="center"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="12sp" />
+                android:layout_marginTop="10dp"
+                android:padding=".1dp"
+                android:textAlignment="center"/>
 
             <EditText
                 android:id="@+id/et_rasgosRegistrarMascota"
@@ -160,14 +156,15 @@
             <LinearLayout
                 android:id="@+id/ll_subirFotoRegistrarMascota"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginLeft="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="150dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="100dp"
+                android:layout_marginRight="150dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/iv_fotoMascota"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -176,14 +173,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Presiona aquí"
-                    android:textColor="@color/colorTextoFondo"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="sube fotos de tu mascota"
+                    android:text="Subir foto"
                     android:textColor="@color/colorTextoFondo"
                     android:textSize="12sp" />
 
@@ -198,12 +188,12 @@
             android:layout_gravity="bottom"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_blue"
             android:text="Guardar mascota"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     </FrameLayout>
 
