@@ -154,6 +154,7 @@ public class InicioFragment extends Fragment implements View.OnClickListener{
         Type listType=new TypeToken<List<Mascota>>(){}.getType();
 
         listaMascotasfiltro= gson.fromJson(filtroExtravios,listType);
+
         adaptadorMascota=new AdaptadorMascota(listaMascotasfiltro, getActivity().getApplicationContext(), R.layout.item_mascota_extraviada);
         adaptadorMascota.setOnclickListener(new View.OnClickListener() {
             @Override
