@@ -149,6 +149,7 @@ public class InicioFragment extends Fragment implements View.OnClickListener{
 
     private void cargarFiltros(Bundle bundle) {
         String filtroExtravios=bundle.getString("extravios");
+        Log.e("Resultado bundle",filtroExtravios);
         Gson gson=new Gson();
         Type listType=new TypeToken<List<Mascota>>(){}.getType();
 
@@ -170,8 +171,7 @@ public class InicioFragment extends Fragment implements View.OnClickListener{
             }
         });
 
-        rv_mascotasExtraviadas.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        rv_mascotasExtraviadas.setAdapter(adaptadorMascota);
+
     }
 
     @Override
@@ -180,6 +180,9 @@ public class InicioFragment extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_inicio, container, false);
         rv_mascotasExtraviadas=view.findViewById(R.id.rv_mascotasExtraviadas);
+
+        rv_mascotasExtraviadas.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        rv_mascotasExtraviadas.setAdapter(adaptadorMascota);
 
         ic_fotoPerfil=view.findViewById(R.id.ic_fotoPerfil);
         ic_fotoPerfil.setOnClickListener(this);

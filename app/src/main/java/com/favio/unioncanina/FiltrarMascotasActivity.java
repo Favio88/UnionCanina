@@ -20,16 +20,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.favio.unioncanina.extras.JsonArrayRequestCustom;
 import com.favio.unioncanina.modelos.Ciudad;
 import com.favio.unioncanina.modelos.Raza;
 import com.favio.unioncanina.singleton.VolleyS;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -166,39 +169,61 @@ public class FiltrarMascotasActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
         String url = "http://unioncanina.mipantano.com/api/filtrar";
         JSONObject obj = new JSONObject();
-
         try {
             obj.put("raza",raza);
             obj.put("sexo", sexo);
             obj.put("ciudad", ciudad);
-            obj.put("rasgo", rasgo);
+            obj.put("rasgo", et_rasgo.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
         Log.e("objeto", obj.toString());
-        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,
-                url,
-                obj, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.e("extravios",response.toString());
-                Bundle bundle=new Bundle();
-                bundle.putString("extravios",response.toString());
-                Intent i=new Intent(getApplicationContext(),InicioActivity.class);
-                i.putExtras(bundle);
-                startActivity(i);
 
-            }
-        }, new Response.ErrorListener() {
+        JsonArrayRequestCustom jsonArrayRequestCustom=new JsonArrayRequestCustom(
+                Request.Method.GET,
+                url,
+                obj,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.e("extravios",response.toString());
+                        Bundle bundle=new Bundle();
+                        bundle.putString("extravios",response.toString());
+                        Intent i=new Intent(getApplicationContext(),InicioActivity.class);
+                        i.putExtras(bundle);
+                        startActivity(i);
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(FiltrarMascotasActivity.this, "Error response", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FiltrarMascotasActivity.this, "Error response MotherFucker", Toast.LENGTH_SHORT).show();
             }
         }
         );
-        VolleyS.getInstance(getApplicationContext()).getRequestQueue().add(jsonObjectRequest);
+        /*
+        JsonArrayRequest peticion01=new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.e("extravios",response.toString());
+                        Bundle bundle=new Bundle();
+                        bundle.putString("extravios",response.toString());
+                        Intent i=new Intent(getApplicationContext(),InicioActivity.class);
+                        i.putExtras(bundle);
+                        startActivity(i);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-        Toast.makeText(getApplicationContext(), "Filtros"+raza+"   "+ciudad+"   "+sexo+"   "+et_rasgo.getText().toString(), Toast.LENGTH_LONG).show();
 
+                    }
+                }
+        );*/
+        VolleyS.getInstance(getApplicationContext()).getRequestQueue().add(jsonArrayRequestCustom);
     }
 }
