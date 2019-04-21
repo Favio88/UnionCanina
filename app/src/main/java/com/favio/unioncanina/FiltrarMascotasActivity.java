@@ -177,7 +177,7 @@ public class FiltrarMascotasActivity extends AppCompatActivity implements View.O
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.e("objeto", obj.toString());
+        Log.e("objeto de filtros", obj.toString());
 
         JsonArrayRequestCustom jsonArrayRequestCustom=new JsonArrayRequestCustom(
                 Request.Method.GET,
@@ -186,7 +186,7 @@ public class FiltrarMascotasActivity extends AppCompatActivity implements View.O
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Log.e("extravios",response.toString());
+                        Log.e("extravios del response",response.toString());
                         Bundle bundle=new Bundle();
                         bundle.putString("extravios",response.toString());
                         Intent i=new Intent(getApplicationContext(),InicioActivity.class);
