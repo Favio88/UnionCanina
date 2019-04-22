@@ -2,12 +2,15 @@ package com.favio.unioncanina.adaptadores;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
     List<Mascota> listaMascotas;
     Context context;
     Integer itemLayout;
+    Drawable iv_extraviadoMiMascota, iv_casaMiMascota, roundedYellow, roundedGreen;
 
     private View.OnClickListener listener;
 
@@ -67,6 +71,7 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
                         .get((listaMascotas.get(position).getExtravio()).size()-1).getColonia());
                 holder.tv_fechaExtravioMascota.setText("Se extravió el " + listaMascotas.get(position).getExtravio()
                         .get((listaMascotas.get(position).getExtravio()).size()-1).getF_extrav());
+                holder.tv_codigoMascota.setText("Cód: " + listaMascotas.get(position).getCodigo().getCodigo());
                 holder.tv_masInfoMascota.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -79,10 +84,24 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
                 });
                 break;
             case R.layout.item_mi_mascota:
+
                     Picasso.with(context).load("http://unioncanina.mipantano.com/api/petspp/" +
                         listaMascotas.get(position).getFoto()).fit().centerCrop().into(holder.iv_fotoMiMascota);
                 holder.tv_nombreMiMascota.setText(listaMascotas.get(position).getNombre());
-                holder.tv_razaMiMascota.setText(listaMascotas.get(position).getRaza().getNombre());
+                holder.tv_razaMiMascota.setText("Raza: " + listaMascotas.get(position).getRaza().getNombre());
+                //holder.tv_codigoMiMascota.setText("Código: " + listaMascotas.get(position).getCodigo().getCodigo());
+                if(listaMascotas.get(position).getEstatus().equals("extraviado")){
+                    holder.ll_estatusMiMascota.setBackground(roundedYellow);
+                    holder.iv_imagenEstatusMiMascota.setBackground(iv_extraviadoMiMascota);
+                    holder.tv_estatusMiMascota.setText(listaMascotas.get(position).getEstatus());
+                }else{
+                    holder.ll_estatusMiMascota.setBackground(roundedGreen);
+                    holder.iv_imagenEstatusMiMascota.setBackground(iv_casaMiMascota);
+                    holder.tv_estatusMiMascota.setText(listaMascotas.get(position).getEstatus());
+                    holder.tv_estatusMiMascota.setTextColor(Color.WHITE);
+                }
+
+
                 break;
         }
     }
@@ -105,10 +124,10 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView iv_fotoDueno, iv_fotoMascota,
-                iv_fotoMiMascota;
+        ImageView iv_fotoDueno, iv_fotoMascota, iv_fotoMiMascota, iv_imagenEstatusMiMascota;
         TextView tv_nombreDueno, tv_estadoDueno, tv_coloniaDueno, tv_nombreMascota, tv_lugarExtravioMascota, tv_fechaExtravioMascota,
-                tv_nombreMiMascota, tv_razaMiMascota, tv_masInfoMascota;
+                tv_nombreMiMascota, tv_razaMiMascota, tv_masInfoMascota, tv_codigoMiMascota, tv_estatusMiMascota, tv_codigoMascota;
+        LinearLayout ll_estatusMiMascota;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -122,11 +141,19 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
             tv_lugarExtravioMascota=itemView.findViewById(R.id.tv_lugarExtravioMascota);
             tv_fechaExtravioMascota=itemView.findViewById(R.id.tv_fechaExtravioMascota);
             tv_masInfoMascota=itemView.findViewById(R.id.tv_masInfoMascota);
+            tv_codigoMascota=itemView.findViewById(R.id.tv_codigoMascota);
 
             iv_fotoMiMascota=itemView.findViewById(R.id.iv_fotoMiMascota);
             tv_nombreMiMascota=itemView.findViewById(R.id.tv_nombreMiMascota);
             tv_razaMiMascota=itemView.findViewById(R.id.tv_razaMiMascota);
-
+            tv_codigoMiMascota=itemView.findViewById(R.id.tv_codigoMiMascota);
+            ll_estatusMiMascota=itemView.findViewById(R.id.ll_estatusMiMascota);
+            iv_imagenEstatusMiMascota=itemView.findViewById(R.id.iv_imagenEstatusMiMascota);
+            tv_estatusMiMascota=itemView.findViewById(R.id.tv_estatusMiMascota);
+            iv_extraviadoMiMascota=itemView.getResources().getDrawable(R.drawable.ic_warning_black_16dp);
+            iv_casaMiMascota=itemView.getResources().getDrawable(R.drawable.ic_home_white_16dp);
+            roundedYellow=itemView.getResources().getDrawable(R.drawable.rounded_yellow);
+            roundedGreen=itemView.getResources().getDrawable(R.drawable.rounded_green);
         }
     }
 }

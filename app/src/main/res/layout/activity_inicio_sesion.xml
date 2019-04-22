@@ -17,10 +17,9 @@
         android:paddingBottom="40dp">
 
         <ImageView
-            android:id="@+id/iv_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/logo_small"/>
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/logo"/>
 
         <TextView
             android:id="@+id/tv_unionCanina"
