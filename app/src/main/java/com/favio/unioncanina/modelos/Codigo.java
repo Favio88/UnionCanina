@@ -9,6 +9,11 @@ public class Codigo {
 
     }
 
+    public Codigo(Integer id, String codigo) {
+        this.id = id;
+        this.codigo = codigo;
+    }
+
     public Integer getId() {
         return id;
     }

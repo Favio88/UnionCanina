@@ -35,55 +35,295 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_pets_white_18dp"
+            android:layout_toRightOf="@id/tv_nombreMiMascota"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"/>
+
+
     </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/rl_cuerpo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".9">
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_weight=".8">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center">
+            android:weightSum="1">
 
             <ImageView
-                android:id="@+id/iv_fotoMiMascota"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/foto" />
+                android:id="@+id/iv_fotoMascota"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".55"
+                android:background="@drawable/ic_photo_gray_400dp" />
 
-            <TextView
-                android:id="@+id/tv_razaMiMascota"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Raza"
-                android:textColor="@color/colorTexto"
-                android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".45"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
 
-            <TextView
-                android:id="@+id/tv_edadMiMascota"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edad"
-                android:textColor="@color/colorTexto"
-                android:textSize="18sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Datos de la mascota"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="3dp"
+                    android:textColor="@color/colorTexto"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_rasgosMiMascota"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rasgos físicos"
-                android:textColor="@color/colorTexto"
-                android:textSize="18sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Código"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:textAlignment="textEnd"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_codigoMiMascota"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Código"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Raza"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:textAlignment="textEnd"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_razaMiMascota"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Raza"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Sexo"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:textAlignment="textEnd"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_sexoMiMascota"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Sexo"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Color"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:textAlignment="textEnd"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_colorMiMascota"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Color"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Edad"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:textAlignment="textEnd"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_edadMiMascota"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Edad"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Estado"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:textAlignment="textEnd"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_estadoMiMascota"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Estado"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Ciudad"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:textAlignment="textEnd"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_ciudadMiMascota"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Ciudad"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1"
+                        android:gravity="center"
+                        android:layout_marginTop="0dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rasgos"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_rasgosMiMascota"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rasgos"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1">
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -32,6 +32,10 @@ public class Mascota {
     private Raza raza;
     private Codigo codigo;
 
+    public Mascota(){
+
+    }
+
     public Mascota(Integer id, String nombre, String sexo, String color, String f_nac, String estatus, String esterilizado, String enfermedad, String foto, String rasgos, List<Extravio> extravios, Usuario usuario, List<Fotografia> fotografias, Ciudad ciudad, Raza raza, Codigo codigo) {
         this.id = id;
         this.nombre = nombre;
