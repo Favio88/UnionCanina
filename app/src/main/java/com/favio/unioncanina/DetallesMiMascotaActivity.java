@@ -48,13 +48,13 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         tv_nombreMiMascota.setText(mascota.getNombre());
         Picasso.with(this).load("http://unioncanina.mipantano.com/api/petspp/" +
                 mascota.getFoto()).fit().centerCrop().into(iv_fotoMiMascota);
-        tv_codigoMiMascota.setText(mascota.getCodigo().getCodigo());
+        //tv_codigoMiMascota.setText(mascota.getCodigo().getCodigo());
         tv_razaMiMascota.setText(mascota.getRaza().getNombre());
         tv_sexoMiMascota.setText(mascota.getSexo());
         tv_colorMiMascota.setText(edad);
         tv_edadMiMascota.setText(mascota.getF_nac());
-        tv_estadoMiMascota.setText(mascota.getCiudad().getEstado().getNombre());
-        tv_ciudadMiMascota.setText(mascota.getCiudad().getNombre());
+        //tv_estadoMiMascota.setText(mascota.getCiudad().getEstado().getNombre());
+        //tv_ciudadMiMascota.setText(mascota.getCiudad().getNombre());
         tv_rasgosMiMascota.setText(mascota.getRasgos());
 
     }
@@ -68,7 +68,7 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         tv_sexoMiMascota=findViewById(R.id.tv_sexoMiMascota);
         tv_colorMiMascota=findViewById(R.id.tv_colorMiMascota);
         tv_edadMiMascota=findViewById(R.id.tv_edadMiMascota);
-        tv_estadoMiMascota=findViewById(R.id.tv_estadoMiMascota);
+        tv_estadoMiMascota=findViewById(R.id.tv_edadMiMascota);
         tv_ciudadMiMascota=findViewById(R.id.tv_ciudadMiMascota);
         tv_rasgosMiMascota=findViewById(R.id.tv_rasgosMiMascota);
         fl_editarMiMascota=findViewById(R.id.fl_editarMiMascota);

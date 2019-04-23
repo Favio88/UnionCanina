@@ -6,6 +6,13 @@ import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.favio.unioncanina.modelos.Ciudad;
+import com.favio.unioncanina.modelos.Codigo;
+import com.favio.unioncanina.modelos.Extravio;
+import com.favio.unioncanina.modelos.Fotografia;
+import com.favio.unioncanina.modelos.Raza;
+import com.favio.unioncanina.modelos.Usuario;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;

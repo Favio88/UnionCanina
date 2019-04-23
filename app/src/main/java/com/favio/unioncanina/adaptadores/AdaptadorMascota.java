@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,14 @@ import android.widget.Toast;
 import com.favio.unioncanina.DetallesMascotaExtraviadaActivity;
 import com.favio.unioncanina.R;
 import com.favio.unioncanina.extras.CircleTransform;
+import com.favio.unioncanina.modelos.Extravio;
 import com.favio.unioncanina.modelos.Mascota;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.ViewHolder>
@@ -69,8 +74,10 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
                 holder.tv_nombreMascota.setText(listaMascotas.get(position).getNombre());
                 holder.tv_lugarExtravioMascota.setText("en " + listaMascotas.get(position).getExtravio()
                         .get((listaMascotas.get(position).getExtravio()).size()-1).getColonia());
-                holder.tv_fechaExtravioMascota.setText("Se extravió el " + listaMascotas.get(position).getExtravio()
-                        .get((listaMascotas.get(position).getExtravio()).size()-1).getF_extrav());
+
+                Calendar fechaNac=extraerFechaExtravioAtras(listaMascotas.get(position).getF_nac());
+                String tiempoAtras=calcularExtravioTiempoAtras(fechaNac);
+                holder.tv_fechaExtravioMascota.setText("Se extravió hace " + tiempoAtras);
                 holder.tv_codigoMascota.setText("Cód: " + listaMascotas.get(position).getCodigo().getCodigo());
                 holder.tv_masInfoMascota.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -100,8 +107,6 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
                     holder.tv_estatusMiMascota.setText(listaMascotas.get(position).getEstatus());
                     holder.tv_estatusMiMascota.setTextColor(Color.WHITE);
                 }
-
-
                 break;
         }
     }
@@ -156,4 +161,40 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
             roundedGreen=itemView.getResources().getDrawable(R.drawable.rounded_green);
         }
     }
+
+    private Calendar extraerFechaExtravioAtras(String fNac){
+
+        Integer year=Integer.valueOf(fNac.substring(0,4));
+        Integer month=Integer.valueOf(fNac.substring(5,7));
+        Integer day=Integer.valueOf(fNac.substring(8,10));
+
+        Calendar fecha=Calendar.getInstance();
+        fecha.set(year, month, day);
+
+        return fecha;
+    }
+
+    private String calcularExtravioTiempoAtras(Calendar fechaNac) {
+
+        Calendar today = Calendar.getInstance();
+
+        String diff_tot="";
+        int diff_year = today.get(Calendar.YEAR) -  fechaNac.get(Calendar.YEAR);
+        int diff_month = (today.get(Calendar.MONTH) + 1) - fechaNac.get(Calendar.MONTH);
+        int diff_day = today.get(Calendar.DAY_OF_MONTH) - fechaNac.get(Calendar.DAY_OF_MONTH);
+
+        Log.d("dif", "" + diff_year + " " + diff_month + " " + diff_day );
+
+        if (diff_year>0){
+            diff_tot=diff_year + " años " + diff_month + " meses";
+        }
+        if (diff_year==0 && diff_month>0){
+            diff_tot=diff_month + " meses";
+        }
+        if (diff_year==0 && diff_month==0){
+            diff_tot=diff_day + " días";
+        }
+        return diff_tot;
+    }
+
 }
