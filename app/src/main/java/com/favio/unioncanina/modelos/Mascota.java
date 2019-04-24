@@ -197,7 +197,7 @@ public class Mascota {
         return habilitada;
     }
 
-    public void setHabiltada(String habiltada) {
+    public void setHabilitada(String habiltada) {
         this.habilitada = habiltada;
     }
 

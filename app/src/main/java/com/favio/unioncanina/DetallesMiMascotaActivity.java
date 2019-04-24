@@ -34,6 +34,8 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
             tv_estadoMiMascota, tv_ciudadMiMascota, tv_rasgosMiMascota;
     FrameLayout fl_editarMiMascota, fl_reportarMiMascota, fl_eliminarMiMascota;
     Mascota mascota;
+    Bundle bundle;
+    String edad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,26 +49,21 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         fl_reportarMiMascota.setOnClickListener(this);
         fl_eliminarMiMascota.setOnClickListener(this);
 
-        Bundle bundle=this.getIntent().getExtras();
-        String mascotaBundle=bundle.getString("Mascota");
+        bundle=getIntent().getExtras();
 
-        Gson gson=new Gson();
-        mascota=gson.fromJson(mascotaBundle, Mascota.class);
+        if (bundle!=null){
+            String mascotaBundle=bundle.getString("Mascota");
 
-        Calendar fechaNac=extraerElementosFecha(mascota.getF_nac());
-        String edad=calcularEdad(fechaNac);
+            Gson gson=new Gson();
+            mascota=gson.fromJson(mascotaBundle, Mascota.class);
 
-        tv_nombreMiMascota.setText(mascota.getNombre());
-        Picasso.with(this).load("http://unioncanina.mipantano.com/api/petspp/" +
-                mascota.getFoto()).fit().centerCrop().into(iv_fotoMiMascota);
-        tv_codigoMiMascota.setText(mascota.getCodigo().getCodigo());
-        tv_razaMiMascota.setText(mascota.getRaza().getNombre());
-        tv_sexoMiMascota.setText(mascota.getSexo());
-        tv_colorMiMascota.setText(edad);
-        tv_edadMiMascota.setText(mascota.getF_nac());
-        tv_estadoMiMascota.setText(mascota.getCiudad().getEstado().getNombre());
-        tv_ciudadMiMascota.setText(mascota.getCiudad().getNombre());
-        tv_rasgosMiMascota.setText(mascota.getRasgos());
+            Calendar fechaNac=extraerElementosFecha(mascota.getF_nac());
+            edad=calcularEdad(fechaNac);
+            llenarDatosMiMascota();
+
+        }else{
+            Toast.makeText(this, "El bundle es null", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void getControlesXML(){
@@ -78,7 +75,7 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         tv_sexoMiMascota=findViewById(R.id.tv_sexoMiMascota);
         tv_colorMiMascota=findViewById(R.id.tv_colorMiMascota);
         tv_edadMiMascota=findViewById(R.id.tv_edadMiMascota);
-        tv_estadoMiMascota=findViewById(R.id.tv_edadMiMascota);
+        tv_estadoMiMascota=findViewById(R.id.tv_estadoMiMascota);
         tv_ciudadMiMascota=findViewById(R.id.tv_ciudadMiMascota);
         tv_rasgosMiMascota=findViewById(R.id.tv_rasgosMiMascota);
         fl_editarMiMascota=findViewById(R.id.fl_editarMiMascota);
@@ -96,12 +93,10 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
                 finish();
                 break;
             case  R.id.fl_editarMiMascota:
-                Intent itt_editarMascotaActivity=new Intent(DetallesMiMascotaActivity.this, EditarMascotaActivity.class);
-                startActivity(itt_editarMascotaActivity);
+                irActivityEditarMiMascota();
                 break;
             case R.id.fl_reportarMiMascota:
-                Intent itt_reporteExtravioActivity=new Intent(DetallesMiMascotaActivity.this, ReporteExtravioActivity.class);
-                startActivity(itt_reporteExtravioActivity);
+                irActivityReportarMiMascota();
                 break;
             case R.id.fl_eliminarMiMascota:
                 abrirDialogoEliminar();
@@ -132,8 +127,11 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
 
         Log.d("dif", "" + diff_year + " " + diff_month + " " + diff_day );
 
-        if (diff_year>0){
-            diff_tot=diff_year + " años " + diff_month + " meses";
+        if (diff_year>1){
+            diff_tot=diff_year + " años";
+        }
+        if (diff_year==1){
+            diff_tot=diff_year + " año";
         }
         if (diff_year==0 && diff_month>0){
             diff_tot=diff_month + " meses";
@@ -144,11 +142,26 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         return diff_tot;
     }
 
+    private void llenarDatosMiMascota(){
+
+        tv_nombreMiMascota.setText(mascota.getNombre());
+        Picasso.with(this).load("http://unioncanina.mipantano.com/api/petspp/" +
+                mascota.getFoto()).fit().centerCrop().into(iv_fotoMiMascota);
+        tv_codigoMiMascota.setText(mascota.getCodigo().getCodigo());
+        tv_razaMiMascota.setText(mascota.getRaza().getNombre());
+        tv_sexoMiMascota.setText(mascota.getSexo());
+        tv_colorMiMascota.setText(mascota.getColor());
+        tv_edadMiMascota.setText(edad);
+        tv_estadoMiMascota.setText(mascota.getCiudad().getEstado().getNombre());
+        tv_ciudadMiMascota.setText(mascota.getCiudad().getNombre());
+        tv_rasgosMiMascota.setText(mascota.getRasgos());
+    }
+
     public void abrirDialogoEliminar(){
 
         AlertDialog.Builder builder=new AlertDialog.Builder(DetallesMiMascotaActivity.this);
         builder.setTitle(mascota.getNombre())
-                .setMessage("¿Deseas eliminar esta mascota")
+                .setMessage("¿Deseas eliminar esta mascota?")
                 .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -189,9 +202,20 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         irActivityInicio();
     }
 
+    public void irActivityEditarMiMascota(){
+        Intent itt_editarMascotaActivity=new Intent(DetallesMiMascotaActivity.this, EditarMascotaActivity.class);
+        itt_editarMascotaActivity.putExtras(bundle);
+        startActivity(itt_editarMascotaActivity);
+    }
+
     public void irActivityInicio(){
         Intent itt_eliminarMascotaActivity=new Intent(DetallesMiMascotaActivity.this, InicioActivity.class);
         startActivity(itt_eliminarMascotaActivity);
         finish();
+    }
+
+    public void irActivityReportarMiMascota(){
+        Intent itt_reporteExtravioActivity=new Intent(DetallesMiMascotaActivity.this, ReporteExtravioActivity.class);
+        startActivity(itt_reporteExtravioActivity);
     }
 }

@@ -51,10 +51,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:text="Datos de la mascota"
                 android:textColor="@color/colorTexto"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -64,40 +64,32 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FFFFFF"
-                android:padding="8dp"
-                android:text="Nombre"
+                android:background="@drawable/rounded_white"
+                android:padding="5dp"
+                android:hint="Nombre"
                 android:textAlignment="center"
                 android:textColor="@color/colorTextoControles"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
-            <EditText
-                android:id="@+id/et_razaEditarMiMascota"
+            <Spinner
+                android:id="@+id/sp_razaEditarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FFFFFF"
-                android:padding="8dp"
-                android:text="Raza"
-                android:textAlignment="center"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp" />
+                android:layout_marginTop="10dp"
+                android:padding=".1dp"
+                android:textAlignment="center" />
 
-            <EditText
-                android:id="@+id/et_sexoEditarMiMascota"
+            <Spinner
+                android:id="@+id/sp_sexoEditarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FFFFFF"
-                android:padding="8dp"
-                android:text="Sexo"
-                android:textAlignment="center"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp" />
+                android:layout_marginTop="10dp"
+                android:padding=".1dp"
+                android:textAlignment="center"/>
 
             <EditText
                 android:id="@+id/et_colorEditarMiMascota"
@@ -106,54 +98,46 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/rounded_white"
                 android:padding="8dp"
-                android:text="Color"
+                android:hint="Color"
                 android:textAlignment="center"
                 android:textColor="@color/colorTextoControles"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
-            <EditText
-                android:id="@+id/et_f_nacEditarMiMascota"
+            <TextView
+                android:id="@+id/tv_fnacEditarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/rounded_white"
                 android:padding="8dp"
-                android:text="Fecha de nacimiento"
+                android:hint="Fecha de nacimiento"
                 android:textAlignment="center"
                 android:textColor="@color/colorTextoControles"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
-            <EditText
-                android:id="@+id/et_esterilizadoEditarMiMascota"
+            <Spinner
+                android:id="@+id/sp_estadoEditarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FFFFFF"
-                android:padding="8dp"
-                android:text="Esterilizado"
-                android:textAlignment="center"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp" />
+                android:layout_marginTop="10dp"
+                android:padding=".1dp"
+                android:textAlignment="center"/>
 
-            <EditText
-                android:id="@+id/et_enfermedadesEditarMiMascota"
+            <Spinner
+                android:id="@+id/sp_ciudadEditarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FFFFFF"
-                android:padding="8dp"
-                android:text="Enfermedades"
-                android:textAlignment="center"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp" />
+                android:layout_marginTop="10dp"
+                android:padding=".1dp"
+                android:textAlignment="center"/>
 
             <EditText
                 android:id="@+id/et_rasgosEditarMiMascota"
@@ -162,25 +146,25 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/rounded_white"
                 android:padding="8dp"
-                android:text="Rasgos físicos"
+                android:hint="Rasgos físicos"
                 android:textAlignment="center"
                 android:textColor="@color/colorTextoControles"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <LinearLayout
                 android:id="@+id/ll_subirFotoEditarMiMascota"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="150dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="150dp"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/iv_fotoEditarMiMascota"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -189,16 +173,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Presiona aquí"
+                    android:text="Cambiar foto"
                     android:textColor="@color/colorTextoFondo"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="sube fotos de tu mascota"
-                    android:textColor="@color/colorTextoFondo"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -211,12 +188,12 @@
             android:layout_gravity="bottom"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_blue"
             android:text="Guardar mascota"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     </FrameLayout>
 
