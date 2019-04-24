@@ -107,15 +107,8 @@ public class MisMascotasFragment extends Fragment implements View.OnClickListene
 
                             //Log.d("valor",response.toString());
                             final List<Mascota> listaMisMascotas=gson.fromJson(response.toString(),listType);
-                            List<Mascota> listaMisMascotasHabilitadas=new ArrayList<>();
 
-                            for(Mascota m:listaMisMascotas){
-                                if(m.getHabilitada().equals("Si")){
-                                    listaMisMascotasHabilitadas.add(m);
-                                }
-                            }
-
-                            adaptadorMascota=new AdaptadorMascota(listaMisMascotasHabilitadas,
+                            adaptadorMascota=new AdaptadorMascota(listaMisMascotas,
                                     getActivity().getApplicationContext(),R.layout.item_mi_mascota);
                             adaptadorMascota.setOnclickListener(new View.OnClickListener() {
                                 @Override

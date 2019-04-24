@@ -38,7 +38,7 @@ import java.io.IOException;
 
 public class PerfilActivity extends AppCompatActivity implements View.OnClickListener{
 
-    ImageView ic_cerrar, ic_cerrarSesion, iv_fotoPerfil;
+    ImageView ic_retroceso, ic_cerrarSesion, iv_fotoPerfil;
     TextView tv_cambiarFotoPerfil;
     EditText et_nombre, et_apat, et_amat, et_correo, et_pwdactual, et_pwdnueva;
     Button btn_guardarCambiosPerfil;
@@ -52,7 +52,7 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
 
         getControlesXML();
 
-        ic_cerrar.setOnClickListener(this);
+        ic_retroceso.setOnClickListener(this);
         ic_cerrarSesion.setOnClickListener(this);
         iv_fotoPerfil.setOnClickListener(this);
         tv_cambiarFotoPerfil.setOnClickListener(this);
@@ -63,7 +63,7 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
 
     public void getControlesXML(){
 
-        ic_cerrar=findViewById(R.id.ic_cerrar);
+        ic_retroceso=findViewById(R.id.ic_retroceso);
         ic_cerrarSesion=findViewById(R.id.ic_cerrarSesion);
         iv_fotoPerfil=findViewById(R.id.iv_fotoPerfil);
         tv_cambiarFotoPerfil=findViewById(R.id.tv_cambiarFotoPerfil);
@@ -100,7 +100,7 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
 
         switch (view.getId()){
 
-            case R.id.ic_cerrar:
+            case R.id.ic_retroceso:
                 finish();
                 break;
             case R.id.ic_cerrarSesion:
