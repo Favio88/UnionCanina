@@ -1,7 +1,9 @@
 package com.favio.unioncanina;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,11 +11,20 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.favio.unioncanina.modelos.Mascota;
+import com.favio.unioncanina.singleton.VolleyS;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONObject;
+
+import java.lang.reflect.Method;
 import java.util.Calendar;
 
 public class DetallesMiMascotaActivity extends AppCompatActivity implements View.OnClickListener{
@@ -48,15 +59,14 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         tv_nombreMiMascota.setText(mascota.getNombre());
         Picasso.with(this).load("http://unioncanina.mipantano.com/api/petspp/" +
                 mascota.getFoto()).fit().centerCrop().into(iv_fotoMiMascota);
-        //tv_codigoMiMascota.setText(mascota.getCodigo().getCodigo());
+        tv_codigoMiMascota.setText(mascota.getCodigo().getCodigo());
         tv_razaMiMascota.setText(mascota.getRaza().getNombre());
         tv_sexoMiMascota.setText(mascota.getSexo());
         tv_colorMiMascota.setText(edad);
         tv_edadMiMascota.setText(mascota.getF_nac());
-        //tv_estadoMiMascota.setText(mascota.getCiudad().getEstado().getNombre());
-        //tv_ciudadMiMascota.setText(mascota.getCiudad().getNombre());
+        tv_estadoMiMascota.setText(mascota.getCiudad().getEstado().getNombre());
+        tv_ciudadMiMascota.setText(mascota.getCiudad().getNombre());
         tv_rasgosMiMascota.setText(mascota.getRasgos());
-
     }
 
     public void getControlesXML(){
@@ -94,9 +104,7 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
                 startActivity(itt_reporteExtravioActivity);
                 break;
             case R.id.fl_eliminarMiMascota:
-                Intent itt_eliminarMascotaActivity=new Intent(DetallesMiMascotaActivity.this, InicioActivity.class);
-                startActivity(itt_eliminarMascotaActivity);
-                finish();
+                abrirDialogoEliminar();
                 break;
         }
     }
@@ -136,4 +144,54 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         return diff_tot;
     }
 
+    public void abrirDialogoEliminar(){
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(DetallesMiMascotaActivity.this);
+        builder.setTitle(mascota.getNombre())
+                .setMessage("¿Deseas eliminar esta mascota")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        eliminarMascota();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                }).show();
+    }
+
+    private void eliminarMascota(){
+
+        Integer idMascota=mascota.getId();
+
+        JsonObjectRequest peticion=new JsonObjectRequest(
+                Request.Method.GET,
+                "http://unioncanina.mipantano.com/api/deshabilitarMascota/" + idMascota,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Toast.makeText(DetallesMiMascotaActivity.this, "Mascota eliminada", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(DetallesMiMascotaActivity.this, "Error en la peticion", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+        VolleyS.getInstance(this).getRequestQueue().add(peticion);
+
+        irActivityInicio();
+    }
+
+    public void irActivityInicio(){
+        Intent itt_eliminarMascotaActivity=new Intent(DetallesMiMascotaActivity.this, InicioActivity.class);
+        startActivity(itt_eliminarMascotaActivity);
+        finish();
+    }
 }
