@@ -38,12 +38,13 @@ public class Mascota {
     private Ciudad ciudad;
     private Raza raza;
     private Codigo codigo;
+    private String habilitada;
 
     public Mascota(){
 
     }
 
-    public Mascota(Integer id, String nombre, String sexo, String color, String f_nac, String estatus, String esterilizado, String enfermedad, String foto, String rasgos, List<Extravio> extravios, Usuario usuario, List<Fotografia> fotografias, Ciudad ciudad, Raza raza, Codigo codigo) {
+    public Mascota(Integer id, String nombre, String sexo, String color, String f_nac, String estatus, String esterilizado, String enfermedad, String foto, String rasgos, List<Extravio> extravios, Usuario usuario, List<Fotografia> fotografias, Ciudad ciudad, Raza raza, Codigo codigo, String habilitada) {
         this.id = id;
         this.nombre = nombre;
         this.sexo = sexo;
@@ -60,6 +61,7 @@ public class Mascota {
         this.ciudad = ciudad;
         this.raza = raza;
         this.codigo = codigo;
+        this.habilitada=habilitada;
     }
 
     public List<Fotografia> getFotografias() {
@@ -189,6 +191,26 @@ public class Mascota {
 
     public void setCodigo(Codigo codigo) {
         this.codigo = codigo;
+    }
+
+    public String getHabilitada() {
+        return habilitada;
+    }
+
+    public void setHabiltada(String habiltada) {
+        this.habilitada = habiltada;
+    }
+
+    public List<Extravio> getExtravios() {
+        return extravios;
+    }
+
+    public void setExtravios(List<Extravio> extravios) {
+        this.extravios = extravios;
+    }
+
+    public void setFotografias(List<Fotografia> fotografias) {
+        this.fotografias = fotografias;
     }
 
     public static Bitmap getBitmapFromURL(String src) {

@@ -1,11 +1,13 @@
 package com.favio.unioncanina;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -103,8 +105,7 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.ic_cerrarSesion:
                 eliminarPreferencias();
-                startActivity(new Intent(PerfilActivity.this,InicioSesionActivity.class));
-                finish();
+                abrirDialogoCerrarSesion();
                 break;
             case R.id.iv_fotoPerfil:
                 cargarImagen();
@@ -235,5 +236,25 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
         editor.apply();
         Log.e("valor",preferences.getString("Usuario",""));
 
+    }
+
+    public void abrirDialogoCerrarSesion(){
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(PerfilActivity.this);
+        builder.setTitle("Cerrar sesión")
+                .setMessage("¿Deseas cerrar sesion?")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(PerfilActivity.this,InicioSesionActivity.class));
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                }).show();
     }
 }

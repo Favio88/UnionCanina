@@ -31,6 +31,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -106,8 +107,16 @@ public class MisMascotasFragment extends Fragment implements View.OnClickListene
 
                             //Log.d("valor",response.toString());
                             final List<Mascota> listaMisMascotas=gson.fromJson(response.toString(),listType);
+                            List<Mascota> listaMisMascotasHabilitadas=new ArrayList<>();
 
-                            adaptadorMascota=new AdaptadorMascota(listaMisMascotas,getActivity().getApplicationContext(),R.layout.item_mi_mascota);
+                            for(Mascota m:listaMisMascotas){
+                                if(m.getHabilitada().equals("Si")){
+                                    listaMisMascotasHabilitadas.add(m);
+                                }
+                            }
+
+                            adaptadorMascota=new AdaptadorMascota(listaMisMascotasHabilitadas,
+                                    getActivity().getApplicationContext(),R.layout.item_mi_mascota);
                             adaptadorMascota.setOnclickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {

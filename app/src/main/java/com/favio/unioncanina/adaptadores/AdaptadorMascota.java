@@ -92,11 +92,11 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
                 break;
             case R.layout.item_mi_mascota:
 
-                    Picasso.with(context).load("http://unioncanina.mipantano.com/api/petspp/" +
+                Picasso.with(context).load("http://unioncanina.mipantano.com/api/petspp/" +
                         listaMascotas.get(position).getFoto()).fit().centerCrop().into(holder.iv_fotoMiMascota);
                 holder.tv_nombreMiMascota.setText(listaMascotas.get(position).getNombre());
-                holder.tv_razaMiMascota.setText("Raza: " + listaMascotas.get(position).getRaza().getNombre());
-                //holder.tv_codigoMiMascota.setText("Código: " + listaMascotas.get(position).getCodigo().getCodigo());
+                holder.tv_razaMiMascota.setText(listaMascotas.get(position).getRaza().getNombre());
+                holder.tv_codigoMiMascota.setText("Cód: " + listaMascotas.get(position).getCodigo().getCodigo());
                 if(listaMascotas.get(position).getEstatus().equals("extraviado")){
                     holder.ll_estatusMiMascota.setBackground(roundedYellow);
                     holder.iv_imagenEstatusMiMascota.setBackground(iv_extraviadoMiMascota);
