@@ -216,6 +216,7 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
 
     public void irActivityReportarMiMascota(){
         Intent itt_reporteExtravioActivity=new Intent(DetallesMiMascotaActivity.this, ReporteExtravioActivity.class);
+        itt_reporteExtravioActivity.putExtras(bundle);
         startActivity(itt_reporteExtravioActivity);
     }
 }

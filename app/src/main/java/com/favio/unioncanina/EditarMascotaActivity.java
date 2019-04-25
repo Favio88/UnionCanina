@@ -1,14 +1,22 @@
 package com.favio.unioncanina;
 
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,17 +28,23 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.favio.unioncanina.modelos.Ciudad;
 import com.favio.unioncanina.modelos.Estado;
 import com.favio.unioncanina.modelos.Mascota;
 import com.favio.unioncanina.modelos.Raza;
+import com.favio.unioncanina.modelos.Usuario;
 import com.favio.unioncanina.singleton.VolleyS;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -45,16 +59,29 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
     Spinner  sp_razaEditarMiMascota, sp_sexoEditarMiMascota, sp_estadoEditarMiMascota, sp_ciudadEditarMiMascota;
     LinearLayout ll_subirFotoEditarMiMascota;
     Button btn_guardarEditarMiMascota;
+
+    //Variables para recuperar la fecha de nacimiento
+    Integer dia, mes, anio;
+
     //Variables para cargar los Spinners
     List<String> listaSpinnerSexo=new ArrayList<>();
     List<Raza> listaRazas=new ArrayList<>();
     List<Estado> listaEstados=new ArrayList<>();
-    ArrayList<Ciudad> listaCiudades=new ArrayList<>();
+    List<Ciudad> listaCiudades=new ArrayList<>();
+
     //Variables para formar el objeto Mascota
-    String sexoMascota;
-    Integer idRazaMascota, idEstadoMascota, idCiudadMascota;
+    String nombreMascota, sexoMascota, colorMascota, fnacMascota, rasgosMascota, estatusMascota;
+    Integer idRazaMascota, idEstadoMascota, idCiudadMascota, idUsuarioMascota;
+
     Bundle bundle;
     Mascota mascota;
+    JSONObject jsonMascota;
+
+    //Variable para recuperar el Usuario loggeado (SharedPreferences)
+    Usuario usuario;
+
+    Bitmap bitmapFotoMascota;
+    String fotoMascotaString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +89,7 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_editar_mascota);
 
         getControlesXML();
+        getUsuarioSharedPreferences();
 
         ic_retroceso.setOnClickListener(this);
         tv_fnacEditarMiMascota.setOnClickListener(this);
@@ -103,10 +131,16 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
             case R.id.ic_retroceso:
                 finish();
                 break;
+            case R.id.tv_fnacEditarMiMascota:
+                obtenerFecha();
+                break;
+            case R.id.ll_subirFotoEditarMiMascota:
+                cargarImagen();
+                break;
             case R.id.btn_guardarEditarMiMascota:
-                Intent itt_inicioActivity=new Intent(EditarMascotaActivity.this, InicioActivity.class);
-                startActivity(itt_inicioActivity);
-                finish();
+                formarJSONMascota();
+                //actualizarMascota();
+                //irActivityInicio();
                 break;
         }
     }
@@ -206,6 +240,31 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
 
             }
         });
+    }
+
+    private void obtenerFecha(){
+        final Calendar fecha=Calendar.getInstance();
+        dia=fecha.get(Calendar.DAY_OF_MONTH);
+        mes=fecha.get(Calendar.MONTH);
+        anio=fecha.get(Calendar.YEAR);
+
+        DatePickerDialog datePickerDialog=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+
+                if((month+1)<10 && day<10){
+                    tv_fnacEditarMiMascota.setText(year + "-0" + (month+1) + "-0" + day);
+                }else if((month+1)<10 && day>=10){
+                    tv_fnacEditarMiMascota.setText(year + "-0" + (month+1) + "-" + day);
+                }else if ((month+1)>=10 && day<10){
+                    tv_fnacEditarMiMascota.setText(year + "-" + (month+1) + "-0" + day);
+                }else {
+                    tv_fnacEditarMiMascota.setText(year + "-" + (month+1) + "-" + day);
+                }
+            }
+        }, dia, mes, anio);
+        datePickerDialog.show();
+
     }
 
     private void cargarSpinnerEstado(){
@@ -310,4 +369,111 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
         VolleyS.getInstance(getApplicationContext()).getRequestQueue().add(peticion);
     }
 
+    public void getUsuarioSharedPreferences(){
+
+        SharedPreferences preferences = getSharedPreferences("Usuario", Context.MODE_PRIVATE);
+        Gson gson= new Gson();
+        usuario=gson.fromJson(preferences.getString("Usuario", ""), Usuario.class );
+    }
+
+    private void cargarImagen(){
+
+        Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/");
+        startActivityForResult(intent.createChooser(intent, "Seleccione la aplicación"),10);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode==RESULT_OK){
+            Uri path=data.getData();
+            Picasso.with(getApplicationContext()).load(path).fit().centerCrop().into(iv_fotoEditarMiMascota);
+
+            try {
+                bitmapFotoMascota=MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), path);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            fotoMascotaString=convertirImgString(bitmapFotoMascota);
+            Log.d("imagen", fotoMascotaString);
+        }
+    }
+
+    private String convertirImgString(Bitmap bitmap) {
+
+        ByteArrayOutputStream array=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100, array);
+        byte[] imagenByte=array.toByteArray();
+        String imagenString= Base64.encodeToString(imagenByte, Base64.DEFAULT);
+
+        return imagenString;
+    }
+
+    private void formarJSONMascota(){
+
+        nombreMascota=et_nombreEditarMiMascota.getText().toString();
+        colorMascota=et_colorEditarMiMascota.getText().toString();
+        fnacMascota=tv_fnacEditarMiMascota.getText().toString();
+        estatusMascota="en casa";
+        rasgosMascota=et_rasgosEditarMiMascota.getText().toString();
+        idUsuarioMascota=usuario.getId();
+
+        jsonMascota=new JSONObject();
+
+        try {
+            jsonMascota.put("nombre", nombreMascota);
+            jsonMascota.put("id_raza", idRazaMascota);
+            jsonMascota.put("sexo", sexoMascota);
+            jsonMascota.put("color", colorMascota);
+            jsonMascota.put("esterilizado", "No");
+            jsonMascota.put("enfermedad", "Ninguna");
+            jsonMascota.put("f_nac", fnacMascota);
+            jsonMascota.put("estatus", estatusMascota);
+            jsonMascota.put("id_usuario", idUsuarioMascota);
+            //jsonMascota.put("foto", fotoMascotaString);
+            jsonMascota.put("foto", "juguetes-perros.jpg");
+            jsonMascota.put("id_ciudad", idCiudadMascota);
+            jsonMascota.put("rasgos", rasgosMascota);
+            jsonMascota.put("habilitada", "Si");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.d("mascotaEditar", jsonMascota.toString());
+    }
+
+    private void actualizarMascota(){
+
+        JsonObjectRequest peticion=new JsonObjectRequest(
+                Request.Method.POST,
+                "http://unioncanina.mipantano.com/api/actualizarMascota",
+                jsonMascota,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("mascotaRegistrada", response.toString());
+                        Toast.makeText(EditarMascotaActivity.this, "Actualizada", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(EditarMascotaActivity.this, "Error en la petición", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        VolleyS.getInstance(getApplicationContext()).getRequestQueue().add(peticion);
+    }
+
+    private void irActivityInicio(){
+        Intent itt_inicioActivity=new Intent(EditarMascotaActivity.this, InicioActivity.class);
+        startActivity(itt_inicioActivity);
+        finish();
+    }
 }

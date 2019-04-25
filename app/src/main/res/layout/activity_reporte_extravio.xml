@@ -48,65 +48,90 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <TextView
-                android:id="@+id/tv_nombreMascotaExtravio"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Nombre de la mascota"
-                android:textColor="@color/colorTexto"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    android:id="@+id/tv_nombreReportarMiMascota"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre de la mascota"
+                    android:textColor="@color/colorTexto"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_pets_black_18dp"
+                    android:layout_marginLeft="5dp"/>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Información de extravío"
                 android:textColor="@color/colorTexto"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_marginTop="30dp"/>
 
             <Spinner
-                android:id="@+id/sp_estadoExtravio"
+                android:id="@+id/sp_estadoReportarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
-
-            <Spinner
-                android:id="@+id/sp_ciudadExtravio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp" />
-
-            <Spinner
-                android:id="@+id/sp_coloniaExtravio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
-
-            <EditText
-                android:id="@+id/et_infoExtra"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Información extra"
-                android:textAlignment="center"
-                android:textSize="14sp"
-                android:background="#FFFFFF"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:padding="5dp"/>
+                android:padding=".1dp"
+                android:textAlignment="center"/>
+
+            <Spinner
+                android:id="@+id/sp_ciudadReportarMiMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:padding=".1dp"
+                android:textAlignment="center"/>
+
+            <EditText
+                android:id="@+id/et_coloniaReportarMiMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_white"
+                android:hint="Colonia"
+                android:padding="8dp"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="12sp"/>
+
+            <EditText
+                android:id="@+id/et_infoExtraReportarMiMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_white"
+                android:hint="Información extra: ej. Llevaba un collar amarillo.."
+                android:padding="8dp"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="12sp"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_reportarExtravio"
+            android:id="@+id/ll_reportarMiMascota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
