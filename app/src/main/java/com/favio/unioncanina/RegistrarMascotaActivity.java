@@ -81,12 +81,7 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
         setContentView(R.layout.activity_registrar_mascota);
 
         getControlesXML();
-
-        cargarSpinnerRaza();
-        cargarSpinnerSexo();
-        cargarSpinnerEstado();
-        cargarSpinnerCiudad();
-
+        cargarSpinners();
         getUsuarioSharedPreferences();
 
         ic_retroceso.setOnClickListener(this);
@@ -124,13 +119,11 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
                 break;
             case R.id.ll_subirFotoRegistrarMiMascota:
                 cargarImagen();
-                //Intent itt_seleccionarImagenActivity=new Intent(RegistrarMascotaActivity.this, SeleccionarImagenActivity.class);
-                //startActivity(itt_seleccionarImagenActivity);
                 break;
             case R.id.btn_guardarRegistrarMiMascota:
                 formarJSONMascota();
-                registrarMascota();
-                irActivityInicio();
+                //registrarMascota();
+                //irActivityInicio();
                 break;
         }
     }
@@ -322,7 +315,9 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
     }
 
     private void obtenerFecha(){
+
         final Calendar fecha=Calendar.getInstance();
+
         dia=fecha.get(Calendar.DAY_OF_MONTH);
         mes=fecha.get(Calendar.MONTH);
         anio=fecha.get(Calendar.YEAR);
@@ -454,7 +449,7 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
             e.printStackTrace();
         }
 
-        Log.d("mascota", jsonMascota.toString());
+        Log.d("mascotaRegistrar", jsonMascota.toString());
     }
 
     private void registrarMascota(){
@@ -485,6 +480,13 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
     private void irActivityInicio(){
         Intent itt_inicioActivity=new Intent(RegistrarMascotaActivity.this, InicioActivity.class);
         startActivity(itt_inicioActivity);
+    }
+
+    private void cargarSpinners(){
+        cargarSpinnerRaza();
+        cargarSpinnerSexo();
+        cargarSpinnerEstado();
+        cargarSpinnerCiudad();
     }
 
 }

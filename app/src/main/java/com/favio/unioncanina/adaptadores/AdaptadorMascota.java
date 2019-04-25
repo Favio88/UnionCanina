@@ -73,11 +73,17 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
                         listaMascotas.get(position).getFoto()).fit().centerCrop().into(holder.iv_fotoMascota);
                 holder.tv_nombreMascota.setText(listaMascotas.get(position).getNombre());
                 holder.tv_lugarExtravioMascota.setText("en " + listaMascotas.get(position).getExtravio()
-                        .get((listaMascotas.get(position).getExtravio()).size()-1).getColonia());
+                        .get(listaMascotas.get(position).getExtravio().size()-1).getColonia());
 
-                Calendar fechaNac=extraerFechaExtravioAtras(listaMascotas.get(position).getF_nac());
-                String tiempoAtras=calcularExtravioTiempoAtras(fechaNac);
-                holder.tv_fechaExtravioMascota.setText("Se extravió hace " + tiempoAtras);
+                Calendar fExtrav=extraerFechaExtravioAtras(listaMascotas.get(position).getExtravio()
+                        .get(listaMascotas.get(position).getExtravio().size()-1).getF_extrav());
+                String tiempoAtras=calcularExtravioTiempoAtras(fExtrav);
+                if (tiempoAtras.equals("hoy"))
+                {
+                    holder.tv_fechaExtravioMascota.setText("Se extravió " + tiempoAtras);
+                }else{
+                    holder.tv_fechaExtravioMascota.setText("Se extravió hace " + tiempoAtras);
+                }
                 holder.tv_codigoMascota.setText("Cód: " + listaMascotas.get(position).getCodigo().getCodigo());
                 holder.tv_masInfoMascota.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -162,11 +168,11 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
         }
     }
 
-    private Calendar extraerFechaExtravioAtras(String fNac){
+    private Calendar extraerFechaExtravioAtras(String fExtrav){
 
-        Integer year=Integer.valueOf(fNac.substring(0,4));
-        Integer month=Integer.valueOf(fNac.substring(5,7));
-        Integer day=Integer.valueOf(fNac.substring(8,10));
+        Integer year=Integer.valueOf(fExtrav.substring(0,4));
+        Integer month=Integer.valueOf(fExtrav.substring(5,7));
+        Integer day=Integer.valueOf(fExtrav.substring(8,10));
 
         Calendar fecha=Calendar.getInstance();
         fecha.set(year, month, day);
@@ -174,25 +180,29 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
         return fecha;
     }
 
-    private String calcularExtravioTiempoAtras(Calendar fechaNac) {
+    private String calcularExtravioTiempoAtras(Calendar fExtrav) {
 
         Calendar today = Calendar.getInstance();
 
         String diff_tot="";
-        int diff_year = today.get(Calendar.YEAR) -  fechaNac.get(Calendar.YEAR);
-        int diff_month = (today.get(Calendar.MONTH) + 1) - fechaNac.get(Calendar.MONTH);
-        int diff_day = today.get(Calendar.DAY_OF_MONTH) - fechaNac.get(Calendar.DAY_OF_MONTH);
+        int diff_year = today.get(Calendar.YEAR) -  fExtrav.get(Calendar.YEAR);
+        int diff_month = (today.get(Calendar.MONTH) + 1) - fExtrav.get(Calendar.MONTH);
+        int diff_day = today.get(Calendar.DAY_OF_MONTH) - fExtrav.get(Calendar.DAY_OF_MONTH);
 
-        Log.d("dif", "" + diff_year + " " + diff_month + " " + diff_day );
-
-        if (diff_year>0){
-            diff_tot=diff_year + " años " + diff_month + " meses";
+        if (diff_year>1){
+            diff_tot=diff_year + " años";
+        }
+        if (diff_year==1){
+            diff_tot=diff_year + " año";
         }
         if (diff_year==0 && diff_month>0){
             diff_tot=diff_month + " meses";
         }
         if (diff_year==0 && diff_month==0){
             diff_tot=diff_day + " días";
+        }
+        if (diff_year==0 && diff_month==0 && diff_day==0){
+            diff_tot="hoy";
         }
         return diff_tot;
     }
