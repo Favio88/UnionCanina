@@ -26,6 +26,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.favio.unioncanina.extras.CircleTransform;
 import com.favio.unioncanina.modelos.Usuario;
+import com.favio.unioncanina.singleton.VolleyS;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -114,7 +115,6 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
                 cargarImagen();
                 break;
             case R.id.btn_guardarCambiosPerfil:
-                //Toast.makeText(getApplicationContext(), "Click", Toast.LENGTH_SHORT).show();
                 guardarCambios();
                 break;
         }
@@ -143,7 +143,6 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
             }
 
             fotoPerfilString=convertirImgString(bitmapFotoPerfil);
-            Log.d("imagen", fotoPerfilString);
         }
     }
 
@@ -182,9 +181,9 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
             Log.e("objeto", obj.toString());
 
 
-            String url = "http://unioncanina.mipantano.com/api/update";
+            String url = "http://unioncanina.mipantano.com/api/actualizarUsuario";
 
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+            JsonObjectRequest peticion = new JsonObjectRequest(
                     Request.Method.POST,
                     url,
                     obj,
@@ -203,7 +202,7 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(getApplicationContext(), "Error response", Toast.LENGTH_LONG).show();
                 }
             });
-            Volley.newRequestQueue(this).add(jsonObjectRequest);
+            VolleyS.getInstance(this).getRequestQueue().add(peticion);
         }
     }
 
