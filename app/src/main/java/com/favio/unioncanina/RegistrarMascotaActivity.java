@@ -435,8 +435,7 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
             jsonMascota.put("enfermedad", "Ninguna");
             jsonMascota.put("id_usuario", idUsuarioMascota);
             jsonMascota.put("id_raza", idRazaMascota);
-            //jsonMascota.put("foto", fotoMascotaString);
-            jsonMascota.put("foto", "juguetes-perros.jpg");
+            jsonMascota.put("foto", fotoMascotaString);
             jsonMascota.put("rasgos", rasgosMascota);
             jsonMascota.put("habilitada", "Si");
 
