@@ -70,8 +70,8 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
     List<Ciudad> listaCiudades=new ArrayList<>();
 
     //Variables para formar el objeto Mascota
-    String nombreMascota, sexoMascota, colorMascota, fnacMascota, rasgosMascota, estatusMascota;
-    Integer idRazaMascota, idEstadoMascota, idCiudadMascota, idUsuarioMascota;
+    String nombreMascota, sexoMascota, colorMascota, fnacMascota, rasgosMascota;
+    Integer idMascota, idRazaMascota, idEstadoMascota, idCiudadMascota, idUsuarioMascota;
 
     Bundle bundle;
     Mascota mascota;
@@ -139,8 +139,7 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.btn_guardarEditarMiMascota:
                 formarJSONMascota();
-                //actualizarMascota();
-                //irActivityInicio();
+                editarMascota();
                 break;
         }
     }
@@ -415,49 +414,47 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
 
     private void formarJSONMascota(){
 
+        idMascota=mascota.getId();
         nombreMascota=et_nombreEditarMiMascota.getText().toString();
         colorMascota=et_colorEditarMiMascota.getText().toString();
         fnacMascota=tv_fnacEditarMiMascota.getText().toString();
-        estatusMascota="en casa";
         rasgosMascota=et_rasgosEditarMiMascota.getText().toString();
         idUsuarioMascota=usuario.getId();
 
         jsonMascota=new JSONObject();
 
         try {
+            jsonMascota.put("id_mascota", idMascota);
             jsonMascota.put("nombre", nombreMascota);
-            jsonMascota.put("id_raza", idRazaMascota);
             jsonMascota.put("sexo", sexoMascota);
             jsonMascota.put("color", colorMascota);
-            jsonMascota.put("esterilizado", "No");
-            jsonMascota.put("enfermedad", "Ninguna");
             jsonMascota.put("f_nac", fnacMascota);
-            jsonMascota.put("estatus", estatusMascota);
+            jsonMascota.put("id_ciudad", idCiudadMascota);
             jsonMascota.put("id_usuario", idUsuarioMascota);
+            jsonMascota.put("id_raza", idRazaMascota);
             //jsonMascota.put("foto", fotoMascotaString);
             jsonMascota.put("foto", "juguetes-perros.jpg");
-            jsonMascota.put("id_ciudad", idCiudadMascota);
             jsonMascota.put("rasgos", rasgosMascota);
-            jsonMascota.put("habilitada", "Si");
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         Log.d("mascotaEditar", jsonMascota.toString());
     }
 
-    private void actualizarMascota(){
+    private void editarMascota(){
 
         JsonObjectRequest peticion=new JsonObjectRequest(
                 Request.Method.POST,
-                "http://unioncanina.mipantano.com/api/actualizarMascota",
+                "http://unioncanina.mipantano.com/api/editarMascota",
                 jsonMascota,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("mascotaRegistrada", response.toString());
+                        irActivityInicio();
                         Toast.makeText(EditarMascotaActivity.this, "Actualizada", Toast.LENGTH_SHORT).show();
+
                     }
                 },
                 new Response.ErrorListener() {

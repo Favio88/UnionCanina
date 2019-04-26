@@ -44,32 +44,32 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             android:weightSum="1">
 
             <EditText
                 android:id="@+id/et_codigoMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ingresar código de la mascota"
-                android:background="#FFFFFF"
-                android:textColor="@color/colorTextoControles"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textAlignment="center"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="30dp"/>
+                android:background="#FFFFFF"
+                android:padding="8dp"
+                android:text="Ingresar código de la mascota"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextoControles"
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:layout_weight="1"
                 android:text="Si encontraste a una mascota y crees que está perdida, puedes ingresar su código y verificar si tiene reporte de extravío."
                 android:textColor="@color/colorTextoFondo"
-                android:textSize="14sp"
-                android:layout_marginTop="30dp"/>
+                android:textSize="12sp" />
 
         </LinearLayout>
 
