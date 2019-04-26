@@ -231,7 +231,12 @@ public class ReporteExtravioActivity extends AppCompatActivity implements View.O
                     public void onClick(DialogInterface dialogInterface, int i) {
                         reportarExtravio();
                     }
-                }).show();
+                }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        }).show();
     }
 
     private void formarJSONExtravio(){
@@ -269,6 +274,7 @@ public class ReporteExtravioActivity extends AppCompatActivity implements View.O
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("reporte",response.toString());
+                        irActivityInicio();
                     }
                 },
                 new Response.ErrorListener() {
@@ -279,8 +285,6 @@ public class ReporteExtravioActivity extends AppCompatActivity implements View.O
                 }
         );
         VolleyS.getInstance(this).getRequestQueue().add(peticion);
-
-        irActivityInicio();
     }
 
     private void irActivityInicio(){

@@ -2,6 +2,7 @@ package com.favio.unioncanina;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import com.favio.unioncanina.singleton.VolleyS;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Method;
@@ -29,13 +31,14 @@ import java.util.Calendar;
 
 public class DetallesMiMascotaActivity extends AppCompatActivity implements View.OnClickListener{
 
-    ImageView ic_retroceso, iv_fotoMiMascota;
+    ImageView ic_retroceso, iv_fotoMiMascota, iv_elegirEstatusMiMascota;
     TextView tv_codigoMiMascota, tv_nombreMiMascota, tv_razaMiMascota, tv_sexoMiMascota, tv_colorMiMascota, tv_edadMiMascota,
             tv_estadoMiMascota, tv_ciudadMiMascota, tv_rasgosMiMascota;
-    FrameLayout fl_editarMiMascota, fl_reportarMiMascota, fl_eliminarMiMascota;
+    FrameLayout fl_editarMiMascota, fl_elegirEstatusMiMascota, fl_eliminarMiMascota;
     Mascota mascota;
     Bundle bundle;
     String edad;
+    JSONObject jsonEnCasa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
 
         ic_retroceso.setOnClickListener(this);
         fl_editarMiMascota.setOnClickListener(this);
-        fl_reportarMiMascota.setOnClickListener(this);
+        fl_elegirEstatusMiMascota.setOnClickListener(this);
         fl_eliminarMiMascota.setOnClickListener(this);
 
         bundle=getIntent().getExtras();
@@ -66,7 +69,7 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         }
     }
 
-    public void getControlesXML(){
+    private void getControlesXML(){
 
         ic_retroceso=findViewById(R.id.ic_retroceso);
         tv_codigoMiMascota=findViewById(R.id.tv_codigoMiMascota);
@@ -79,8 +82,9 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         tv_ciudadMiMascota=findViewById(R.id.tv_ciudadMiMascota);
         tv_rasgosMiMascota=findViewById(R.id.tv_rasgosMiMascota);
         fl_editarMiMascota=findViewById(R.id.fl_editarMiMascota);
-        fl_reportarMiMascota=findViewById(R.id.fl_reportarMiMascota);
+        fl_elegirEstatusMiMascota=findViewById(R.id.fl_elegirEstatusMiMascota);
         fl_eliminarMiMascota=findViewById(R.id.fl_eliminarMiMascota);
+        iv_elegirEstatusMiMascota=findViewById(R.id.iv_elegirEstatusMiMascota);
         iv_fotoMiMascota=findViewById(R.id.iv_fotoMiMascota);
     }
 
@@ -95,8 +99,13 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
             case  R.id.fl_editarMiMascota:
                 irActivityEditarMiMascota();
                 break;
-            case R.id.fl_reportarMiMascota:
-                irActivityReportarMiMascota();
+            case R.id.fl_elegirEstatusMiMascota:
+                if(mascota.getEstatus().equals("extraviado")){
+                    formarJSONEnCasa();
+                    abrirDialogoReportarEnCasa();
+                }else{
+                    irActivityReportarMiMascota();
+                }
                 break;
             case R.id.fl_eliminarMiMascota:
                 abrirDialogoEliminar();
@@ -155,13 +164,20 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         tv_estadoMiMascota.setText(mascota.getCiudad().getEstado().getNombre());
         tv_ciudadMiMascota.setText(mascota.getCiudad().getNombre());
         tv_rasgosMiMascota.setText(mascota.getRasgos());
+
+        if(mascota.getEstatus().equals("extraviado")){
+            fl_elegirEstatusMiMascota.setBackground(getResources().getDrawable(R.drawable.rounded_green));
+            iv_elegirEstatusMiMascota.setBackground(getResources().getDrawable(R.drawable.ic_home_white_24dp));
+        }else{
+            fl_elegirEstatusMiMascota.setBackground(getResources().getDrawable(R.drawable.rounded_yellow));
+            iv_elegirEstatusMiMascota.setBackground(getResources().getDrawable(R.drawable.ic_report_white_24dp));
+        }
     }
 
-    public void abrirDialogoEliminar(){
+    private void abrirDialogoEliminar(){
 
         AlertDialog.Builder builder=new AlertDialog.Builder(DetallesMiMascotaActivity.this);
-        builder.setTitle(mascota.getNombre())
-                .setMessage("¿Deseas eliminar esta mascota?")
+        builder.setMessage("¿Deseas eliminar a " + mascota.getNombre() )
                 .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -202,19 +218,77 @@ public class DetallesMiMascotaActivity extends AppCompatActivity implements View
         irActivityInicio();
     }
 
-    public void irActivityEditarMiMascota(){
+    private void abrirDialogoReportarEnCasa(){
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(DetallesMiMascotaActivity.this);
+        builder.setMessage("¿Has encontrado a " + mascota.getNombre() + "?" )
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        reportarMascotaEnCasa();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                }).show();
+    }
+
+    private void formarJSONEnCasa(){
+
+        jsonEnCasa=new JSONObject();
+
+        try {
+            jsonEnCasa.put("id_mascota", mascota.getId());
+            jsonEnCasa.put("estatus", "en casa");
+            jsonEnCasa.put("estado", "encontrado");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void reportarMascotaEnCasa(){
+
+        Log.d("casa",jsonEnCasa.toString());
+
+        JsonObjectRequest peticion=new JsonObjectRequest(
+                Request.Method.POST,
+                "http://unioncanina.mipantano.com/api/reportarEnCasa",
+                jsonEnCasa,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(DetallesMiMascotaActivity.this, "Error en la petición", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+        VolleyS.getInstance(this).getRequestQueue().add(peticion);
+
+        irActivityInicio();
+    }
+
+
+    private void irActivityEditarMiMascota(){
         Intent itt_editarMascotaActivity=new Intent(DetallesMiMascotaActivity.this, EditarMascotaActivity.class);
         itt_editarMascotaActivity.putExtras(bundle);
         startActivity(itt_editarMascotaActivity);
     }
 
-    public void irActivityInicio(){
+    private void irActivityInicio(){
         Intent itt_eliminarMascotaActivity=new Intent(DetallesMiMascotaActivity.this, InicioActivity.class);
         startActivity(itt_eliminarMascotaActivity);
         finish();
     }
 
-    public void irActivityReportarMiMascota(){
+    private void irActivityReportarMiMascota(){
         Intent itt_reporteExtravioActivity=new Intent(DetallesMiMascotaActivity.this, ReporteExtravioActivity.class);
         itt_reporteExtravioActivity.putExtras(bundle);
         startActivity(itt_reporteExtravioActivity);

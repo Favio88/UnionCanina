@@ -69,7 +69,7 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
     //Variable para recuperar el Usuario loggeado (SharedPreferences)
     Usuario usuario;
     //Variables para formar el objeto Mascota
-    String nombreMascota, sexoMascota, colorMascota, fnacMascota, rasgosMascota, estatusMascota;
+    String nombreMascota, sexoMascota, colorMascota, fnacMascota, rasgosMascota;
     Integer idRazaMascota, idUsuarioMascota, idEstadoMascota, idCiudadMascota;
     JSONObject jsonMascota;
     Bitmap bitmapFotoMascota;
@@ -122,8 +122,7 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
                 break;
             case R.id.btn_guardarRegistrarMiMascota:
                 formarJSONMascota();
-                //registrarMascota();
-                //irActivityInicio();
+                registrarMascota();
                 break;
         }
     }
@@ -208,7 +207,6 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
 
             }
         });
-
     }
 
     private void cargarSpinnerEstado(){
@@ -260,7 +258,6 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
                 }
         );
         VolleyS.getInstance(getApplicationContext()).getRequestQueue().add(peticion);
-
     }
 
     private void cargarSpinnerCiudad(){
@@ -417,13 +414,11 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
         return imagenString;
     }
 
-
     private void formarJSONMascota(){
 
         nombreMascota=et_nombreRegistrarMiMascota.getText().toString();
         colorMascota=et_colorRegistrarMiMascota.getText().toString();
         fnacMascota=tv_fnacRegistrarMiMascota.getText().toString();
-        estatusMascota="en casa";
         rasgosMascota=et_rasgosRegistrarMiMascota.getText().toString();
         idUsuarioMascota=usuario.getId();
 
@@ -431,17 +426,17 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
 
         try {
             jsonMascota.put("nombre", nombreMascota);
-            jsonMascota.put("id_raza", idRazaMascota);
             jsonMascota.put("sexo", sexoMascota);
             jsonMascota.put("color", colorMascota);
+            jsonMascota.put("f_nac", fnacMascota);
+            jsonMascota.put("id_ciudad", idCiudadMascota);
+            jsonMascota.put("estatus", "en casa");
             jsonMascota.put("esterilizado", "No");
             jsonMascota.put("enfermedad", "Ninguna");
-            jsonMascota.put("f_nac", fnacMascota);
-            jsonMascota.put("estatus", estatusMascota);
             jsonMascota.put("id_usuario", idUsuarioMascota);
+            jsonMascota.put("id_raza", idRazaMascota);
             //jsonMascota.put("foto", fotoMascotaString);
             jsonMascota.put("foto", "juguetes-perros.jpg");
-            jsonMascota.put("id_ciudad", idCiudadMascota);
             jsonMascota.put("rasgos", rasgosMascota);
             jsonMascota.put("habilitada", "Si");
 
@@ -462,6 +457,7 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("mascotaRegistrada", response.toString());
+                        irActivityInicio();
                         Toast.makeText(RegistrarMascotaActivity.this, "Registrada", Toast.LENGTH_SHORT).show();
                     }
                 },
@@ -472,9 +468,7 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
                     }
                 }
         );
-
         VolleyS.getInstance(getApplicationContext()).getRequestQueue().add(peticion);
-
     }
 
     private void irActivityInicio(){
@@ -488,5 +482,4 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
         cargarSpinnerEstado();
         cargarSpinnerCiudad();
     }
-
 }

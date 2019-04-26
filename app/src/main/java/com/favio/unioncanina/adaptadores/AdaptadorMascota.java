@@ -84,7 +84,7 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
                 }else{
                     holder.tv_fechaExtravioMascota.setText("Se extravió hace " + tiempoAtras);
                 }
-                holder.tv_codigoMascota.setText("Cód: " + listaMascotas.get(position).getCodigo().getCodigo());
+                holder.tv_codigoMascota.setText("ID " + listaMascotas.get(position).getCodigo().getCodigo());
                 holder.tv_masInfoMascota.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -102,7 +102,7 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
                         listaMascotas.get(position).getFoto()).fit().centerCrop().into(holder.iv_fotoMiMascota);
                 holder.tv_nombreMiMascota.setText(listaMascotas.get(position).getNombre());
                 holder.tv_razaMiMascota.setText(listaMascotas.get(position).getRaza().getNombre());
-                holder.tv_codigoMiMascota.setText("Cód: " + listaMascotas.get(position).getCodigo().getCodigo());
+                holder.tv_codigoMiMascota.setText("ID " + listaMascotas.get(position).getCodigo().getCodigo());
                 if(listaMascotas.get(position).getEstatus().equals("extraviado")){
                     holder.ll_estatusMiMascota.setBackground(roundedYellow);
                     holder.iv_imagenEstatusMiMascota.setBackground(iv_extraviadoMiMascota);
