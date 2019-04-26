@@ -455,9 +455,8 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("mascotaRegistrada", response.toString());
                         irActivityInicio();
-                        Toast.makeText(RegistrarMascotaActivity.this, "Registrada", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistrarMascotaActivity.this, "Mascota registrada", Toast.LENGTH_SHORT).show();
                     }
                 },
                 new Response.ErrorListener() {

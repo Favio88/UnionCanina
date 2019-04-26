@@ -432,8 +432,7 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
             jsonMascota.put("id_ciudad", idCiudadMascota);
             jsonMascota.put("id_usuario", idUsuarioMascota);
             jsonMascota.put("id_raza", idRazaMascota);
-            //jsonMascota.put("foto", fotoMascotaString);
-            jsonMascota.put("foto", "juguetes-perros.jpg");
+            jsonMascota.put("foto", fotoMascotaString);
             jsonMascota.put("rasgos", rasgosMascota);
 
         } catch (JSONException e) {
@@ -451,9 +450,8 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("mascotaRegistrada", response.toString());
                         irActivityInicio();
-                        Toast.makeText(EditarMascotaActivity.this, "Actualizada", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditarMascotaActivity.this, "Mascota actualizada", Toast.LENGTH_SHORT).show();
 
                     }
                 },
@@ -464,7 +462,6 @@ public class EditarMascotaActivity extends AppCompatActivity implements View.OnC
                     }
                 }
         );
-
         VolleyS.getInstance(getApplicationContext()).getRequestQueue().add(peticion);
     }
 
