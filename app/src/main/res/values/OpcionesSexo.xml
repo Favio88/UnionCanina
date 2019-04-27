@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="combo_Sexo">
+        <item>Seleccione el sexo</item>
         <item>macho</item>
         <item>hembra</item>
     </string-array>

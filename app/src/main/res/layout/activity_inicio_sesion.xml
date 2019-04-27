@@ -42,7 +42,8 @@
             android:textColor="@color/colorTextoControles"
             android:padding="10dp"
             android:layout_margin="10dp"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:text="misa"/>
 
         <EditText
             android:id="@+id/et_pwd"
@@ -57,6 +58,7 @@
             android:layout_marginBottom="10dp"
             android:textAlignment="center"
             android:inputType="textPassword"
+            android:text="misa"
             />
 
         <Button
