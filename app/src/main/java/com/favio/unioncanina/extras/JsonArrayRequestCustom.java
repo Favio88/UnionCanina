@@ -16,7 +16,7 @@ public class JsonArrayRequestCustom extends JsonRequest<JSONArray> {
 
     public JsonArrayRequestCustom(int method, String url, JSONObject jsonRequest,
                                   Response.Listener<JSONArray> listener, Response.ErrorListener errorListener) {
-        super(method, url, (jsonRequest == null) ? null : jsonRequest.toString(), listener,
+        super(method, url, jsonRequest.toString(), listener,
                 errorListener);
     }
 

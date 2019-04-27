@@ -72,7 +72,12 @@ public class FiltrarMascotasActivity extends AppCompatActivity implements View.O
         sp_sexo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sexo=parent.getItemAtPosition(position).toString();
+               if(position == 0){
+                   sexo=null;
+               }else{
+                   sexo=parent.getItemAtPosition(position).toString();
+               }
+
             }
 
             @Override
@@ -167,63 +172,50 @@ public class FiltrarMascotasActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View v) {
-        String url = "http://unioncanina.mipantano.com/api/filtrar";
-        JSONObject obj = new JSONObject();
-        try {
-            obj.put("raza",raza);
-            obj.put("sexo", sexo);
-            obj.put("ciudad", ciudad);
-            obj.put("rasgo", et_rasgo.getText().toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.e("objeto", obj.toString());
 
-        JsonArrayRequestCustom jsonArrayRequestCustom=new JsonArrayRequestCustom(
-                Request.Method.GET,
-                url,
-                obj,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.e("extravios",response.toString());
-                        Bundle bundle=new Bundle();
-                        bundle.putString("extravios",response.toString());
-                        Intent i=new Intent(getApplicationContext(),InicioActivity.class);
-                        i.putExtras(bundle);
-                        startActivity(i);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(FiltrarMascotasActivity.this, "Error response MotherFucker", Toast.LENGTH_SHORT).show();
-            }
-        }
-        );
-        /*
-        JsonArrayRequest peticion01=new JsonArrayRequest(
-                Request.Method.GET,
-                url,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.e("extravios",response.toString());
-                        Bundle bundle=new Bundle();
-                        bundle.putString("extravios",response.toString());
-                        Intent i=new Intent(getApplicationContext(),InicioActivity.class);
-                        i.putExtras(bundle);
-                        startActivity(i);
-                    }
-                },
-                new Response.ErrorListener() {
+        switch (v.getId()){
+            case R.id.btn_aplicarFiltros:{
+                String url = "http://unioncanina.mipantano.com/api/filtrar";
+                JSONObject obj = new JSONObject();
+                try {
+                    obj.put("raza",raza);
+                    obj.put("sexo", sexo);
+                    obj.put("ciudad", ciudad);
+                    obj.put("rasgo",et_rasgo.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.e("objeto de filtros", obj.toString());
+
+
+                //Peticion personalizada
+
+                JsonArrayRequestCustom jsonArrayRequestCustom=new JsonArrayRequestCustom(
+                        Request.Method.POST,
+                        url,
+                        obj,
+                        new Response.Listener<JSONArray>() {
+                            @Override
+                            public void onResponse(JSONArray response) {
+                                Log.e("extravios del response",response.toString());
+                                Bundle bundle=new Bundle();
+                                bundle.putString("extravios",response.toString());
+                                Intent i=new Intent(getApplicationContext(),InicioActivity.class);
+                                i.putExtras(bundle);
+                                startActivity(i);
+                            }
+                        }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
-
+                        Toast.makeText(FiltrarMascotasActivity.this, "Error response MotherFucker", Toast.LENGTH_SHORT).show();
                     }
                 }
-        );*/
-        VolleyS.getInstance(getApplicationContext()).getRequestQueue().add(jsonArrayRequestCustom);
+                );
+                VolleyS.getInstance(getApplicationContext()).getRequestQueue().add(jsonArrayRequestCustom);
+
+                //peticion personalizada
+            }break;
+        }
+
     }
 }

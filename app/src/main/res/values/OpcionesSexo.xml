@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="combo_Sexo">
-        <item>Selecciona el sexo</item>
-        <item>Macho</item>
-        <item>Hembra</item>
+        <item>Seleccione el sexo</item>
+        <item>macho</item>
+        <item>hembra</item>
     </string-array>
 </resources>

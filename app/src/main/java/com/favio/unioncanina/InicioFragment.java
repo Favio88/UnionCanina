@@ -56,10 +56,10 @@ public class InicioFragment extends Fragment implements View.OnClickListener{
 
     private OnFragmentInteractionListener mListener;
     List<Mascota> listaMascotasfiltro;
-    AdaptadorMascota adaptadorMascota;
+    AdaptadorMascota adaptadorMascota,adaptadorMascotafiltro;
     RecyclerView rv_mascotasExtraviadas;
     ImageView ic_fotoPerfil, ic_buscarMascota, ic_filtrarMascota;
-
+    Bundle bundle;
     public InicioFragment() {
         // Required empty public constructor
     }
@@ -90,7 +90,7 @@ public class InicioFragment extends Fragment implements View.OnClickListener{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
 
-            Bundle bundle=getActivity().getIntent().getExtras();
+            bundle=getActivity().getIntent().getExtras();
             if(bundle!=null){
                 cargarFiltros(bundle);
             }else{
@@ -159,8 +159,8 @@ public class InicioFragment extends Fragment implements View.OnClickListener{
 
         listaMascotasfiltro= gson.fromJson(filtroExtravios,listType);
 
-        adaptadorMascota=new AdaptadorMascota(listaMascotasfiltro, getActivity().getApplicationContext(), R.layout.item_mascota_extraviada);
-        adaptadorMascota.setOnclickListener(new View.OnClickListener() {
+        adaptadorMascotafiltro=new AdaptadorMascota(listaMascotasfiltro, getActivity().getApplicationContext(), R.layout.item_mascota_extraviada);
+        adaptadorMascotafiltro.setOnclickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent itt_detallesMascotaExtraviadaActivity=new Intent(getActivity().getApplicationContext(), DetallesMascotaExtraviadaActivity.class);
@@ -176,8 +176,7 @@ public class InicioFragment extends Fragment implements View.OnClickListener{
             }
         });
 
-        rv_mascotasExtraviadas.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        rv_mascotasExtraviadas.setAdapter(adaptadorMascota);
+
     }
 
     @Override
@@ -202,6 +201,11 @@ public class InicioFragment extends Fragment implements View.OnClickListener{
 
         Picasso.with(getActivity().getApplicationContext()).load(url + usuario.getFoto()).transform(new CircleTransform())
                 .fit().centerCrop().into(ic_fotoPerfil);
+        if(bundle != null){
+            rv_mascotasExtraviadas.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+            rv_mascotasExtraviadas.setAdapter(adaptadorMascotafiltro);
+        }
+
 
         return view;
     }
