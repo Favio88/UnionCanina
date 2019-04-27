@@ -1,11 +1,13 @@
 package com.favio.unioncanina;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -24,6 +26,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.favio.unioncanina.extras.CircleTransform;
 import com.favio.unioncanina.modelos.Usuario;
+import com.favio.unioncanina.singleton.VolleyS;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -36,7 +39,7 @@ import java.io.IOException;
 
 public class PerfilActivity extends AppCompatActivity implements View.OnClickListener{
 
-    ImageView ic_cerrar, ic_cerrarSesion, iv_fotoPerfil;
+    ImageView ic_retroceso, ic_cerrarSesion, iv_fotoPerfil;
     TextView tv_cambiarFotoPerfil;
     EditText et_nombre, et_apat, et_amat, et_correo, et_pwdactual, et_pwdnueva;
     Button btn_guardarCambiosPerfil;
@@ -50,7 +53,7 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
 
         getControlesXML();
 
-        ic_cerrar.setOnClickListener(this);
+        ic_retroceso.setOnClickListener(this);
         ic_cerrarSesion.setOnClickListener(this);
         iv_fotoPerfil.setOnClickListener(this);
         tv_cambiarFotoPerfil.setOnClickListener(this);
@@ -61,7 +64,7 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
 
     public void getControlesXML(){
 
-        ic_cerrar=findViewById(R.id.ic_cerrar);
+        ic_retroceso=findViewById(R.id.ic_retroceso);
         ic_cerrarSesion=findViewById(R.id.ic_cerrarSesion);
         iv_fotoPerfil=findViewById(R.id.iv_fotoPerfil);
         tv_cambiarFotoPerfil=findViewById(R.id.tv_cambiarFotoPerfil);
@@ -98,13 +101,12 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
 
         switch (view.getId()){
 
-            case R.id.ic_cerrar:
+            case R.id.ic_retroceso:
                 finish();
                 break;
             case R.id.ic_cerrarSesion:
                 eliminarPreferencias();
-                startActivity(new Intent(PerfilActivity.this,InicioSesionActivity.class));
-                finish();
+                abrirDialogoCerrarSesion();
                 break;
             case R.id.iv_fotoPerfil:
                 cargarImagen();
@@ -113,7 +115,6 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
                 cargarImagen();
                 break;
             case R.id.btn_guardarCambiosPerfil:
-                //Toast.makeText(getApplicationContext(), "Click", Toast.LENGTH_SHORT).show();
                 guardarCambios();
                 break;
         }
@@ -142,7 +143,6 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
             }
 
             fotoPerfilString=convertirImgString(bitmapFotoPerfil);
-            Log.d("imagen", fotoPerfilString);
         }
     }
 
@@ -181,9 +181,9 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
             Log.e("objeto", obj.toString());
 
 
-            String url = "http://unioncanina.mipantano.com/api/update";
+            String url = "http://unioncanina.mipantano.com/api/actualizarUsuario";
 
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+            JsonObjectRequest peticion = new JsonObjectRequest(
                     Request.Method.POST,
                     url,
                     obj,
@@ -202,7 +202,7 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(getApplicationContext(), "Error response", Toast.LENGTH_LONG).show();
                 }
             });
-            Volley.newRequestQueue(this).add(jsonObjectRequest);
+            VolleyS.getInstance(this).getRequestQueue().add(peticion);
         }
     }
 
@@ -235,5 +235,25 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
         editor.apply();
         Log.e("valor",preferences.getString("Usuario",""));
 
+    }
+
+    public void abrirDialogoCerrarSesion(){
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(PerfilActivity.this);
+        builder.setTitle("Cerrar sesión")
+                .setMessage("¿Deseas cerrar sesion?")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(PerfilActivity.this,InicioSesionActivity.class));
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                }).show();
     }
 }

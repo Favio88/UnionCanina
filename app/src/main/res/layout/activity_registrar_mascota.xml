@@ -58,13 +58,13 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_nombreRegistrarMascota"
+                android:id="@+id/et_nombreRegistrarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/rounded_white"
                 android:padding="5dp"
                 android:hint="Nombre"
                 android:textAlignment="center"
@@ -72,7 +72,7 @@
                 android:textSize="12sp" />
 
             <Spinner
-                android:id="@+id/sp_razaRegistrarMascota"
+                android:id="@+id/sp_razaRegistrarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -82,7 +82,7 @@
                 android:textAlignment="center" />
 
             <Spinner
-                android:id="@+id/sp_sexoRegistrarMascota"
+                android:id="@+id/sp_sexoRegistrarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -92,27 +92,27 @@
                 android:textAlignment="center"/>
 
             <EditText
-                android:id="@+id/et_colorRegistrarMascota"
+                android:id="@+id/et_colorRegistrarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/rounded_white"
                 android:padding="8dp"
                 android:hint="Color"
                 android:textAlignment="center"
                 android:textColor="@color/colorTextoControles"
                 android:textSize="12sp" />
 
-            <EditText
-                android:id="@+id/et_fnacRegistrarMascota"
+            <TextView
+                android:id="@+id/tv_fnacRegistrarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/rounded_white"
                 android:padding="8dp"
                 android:hint="Fecha de nacimiento"
                 android:textAlignment="center"
@@ -120,7 +120,7 @@
                 android:textSize="12sp" />
 
             <Spinner
-                android:id="@+id/sp_estadoRegistrarMascota"
+                android:id="@+id/sp_estadoRegistrarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -130,7 +130,7 @@
                 android:textAlignment="center"/>
 
             <Spinner
-                android:id="@+id/sp_ciudadRegistrarMascota"
+                android:id="@+id/sp_ciudadRegistrarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -140,13 +140,13 @@
                 android:textAlignment="center"/>
 
             <EditText
-                android:id="@+id/et_rasgosRegistrarMascota"
+                android:id="@+id/et_rasgosRegistrarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/rounded_white"
                 android:padding="8dp"
                 android:hint="Rasgos físicos"
                 android:textAlignment="center"
@@ -154,7 +154,7 @@
                 android:textSize="12sp" />
 
             <LinearLayout
-                android:id="@+id/ll_subirFotoRegistrarMascota"
+                android:id="@+id/ll_subirFotoRegistrarMiMascota"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginLeft="150dp"
@@ -164,7 +164,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/iv_fotoMascota"
+                    android:id="@+id/iv_fotoRegistrarMiMascota"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -182,7 +182,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_guardarRegistrarMascota"
+            android:id="@+id/btn_guardarRegistrarMiMascota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

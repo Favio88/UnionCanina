@@ -38,6 +38,7 @@
                     android:text="Nombre del propietario"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_datos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -62,12 +63,33 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tv_nombreMascota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/iv_huella"
+                android:text="mascota"
+                android:textColor="@color/colorTexto"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"/>
+
+            <ImageView
+                android:id="@+id/iv_huella"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_pets_black_18dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="10dp"/>
+
             <ImageView
                 android:id="@+id/iv_fotoMascota"
                 android:layout_below="@+id/ll_datosDueno"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:background="@drawable/ic_account_circle_gray_96dp"
+                android:background="@drawable/ic_photo_gray_400dp"
                 android:layout_marginTop="10dp"/>
 
             <LinearLayout
@@ -80,36 +102,6 @@
                 android:orientation="horizontal"
                 android:weightSum="2"
                 android:paddingBottom="5dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingLeft="10dp"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/tv_nombreMascota"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nombre de la mascota"
-                        android:textColor="@color/colorTexto"
-                        android:textSize="16sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/tv_masInfoMascota"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Más información"
-                        android:textColor="@color/colorUnionCanina"
-                        android:textStyle="bold"
-                        android:textSize="12sp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"/>
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -147,10 +139,40 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/ic_location_on_gray_18dp"/>
 
-
                     </LinearLayout>
 
                 </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_codigoMascota"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Código de la mascota"
+                        android:textColor="@color/colorTexto"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_masInfoMascota"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Más información"
+                        android:textColor="@color/colorUnionCanina"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"/>
+                </LinearLayout>
+
 
             </LinearLayout>
 

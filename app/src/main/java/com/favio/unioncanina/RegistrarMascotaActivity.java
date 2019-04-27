@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -52,23 +53,23 @@ import java.util.List;
 public class RegistrarMascotaActivity extends AppCompatActivity implements View.OnClickListener{
 
     //Variables para los controles XML
-    ImageView ic_retroceso, iv_fotoMascota;
-    EditText et_nombreRegistrarMascota, et_colorRegistrarMascota, et_fnacRegistrarMascota, et_rasgosRegistrarMascota;
-    Spinner sp_razaRegistrarMascota, sp_sexoRegistrarMascota, sp_estadoRegistrarMascota, sp_ciudadRegistrarMascota;
-    LinearLayout ll_subirFotoRegistrarMascota;
-    Button btn_guardarRegistrarMascota;
+    ImageView ic_retroceso, iv_fotoRegistrarMiMascota;
+    TextView tv_fnacRegistrarMiMascota;
+    EditText et_nombreRegistrarMiMascota, et_colorRegistrarMiMascota, et_rasgosRegistrarMiMascota;
+    Spinner sp_razaRegistrarMiMascota, sp_sexoRegistrarMiMascota, sp_estadoRegistrarMiMascota, sp_ciudadRegistrarMiMascota;
+    LinearLayout ll_subirFotoRegistrarMiMascota;
+    Button btn_guardarRegistrarMiMascota;
     //Variables para recuperar la fecha de nacimiento
     Integer dia, mes, anio;
     //Variables para cargar los Spinners
-    List<String> listaSpinnerEsterilizado=new ArrayList<>(), listaSpinnerSexo=new ArrayList<>(), listaSpinnerRaza=new ArrayList<>(),
-            listaSpinnerEstado=new ArrayList<>(), listaSpinnerCiudad=new ArrayList<>();
+    List<String> listaSpinnerSexo=new ArrayList<>();
     List<Raza> listaRazas=new ArrayList<>();
     List<Estado> listaEstados=new ArrayList<>();
     ArrayList<Ciudad> listaCiudades=new ArrayList<>();
     //Variable para recuperar el Usuario loggeado (SharedPreferences)
     Usuario usuario;
     //Variables para formar el objeto Mascota
-    String nombreMascota, sexoMascota, colorMascota, fnacMascota, rasgosMascota, estatusMascota;
+    String nombreMascota, sexoMascota, colorMascota, fnacMascota, rasgosMascota;
     Integer idRazaMascota, idUsuarioMascota, idEstadoMascota, idCiudadMascota;
     JSONObject jsonMascota;
     Bitmap bitmapFotoMascota;
@@ -80,34 +81,29 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
         setContentView(R.layout.activity_registrar_mascota);
 
         getControlesXML();
-
-        cargarSpinnerRaza();
-        cargarSpinnerSexo();
-        cargarSpinnerEstado();
-        cargarSpinnerCiudad();
-
+        cargarSpinners();
         getUsuarioSharedPreferences();
 
         ic_retroceso.setOnClickListener(this);
-        et_fnacRegistrarMascota.setOnClickListener(this);
-        ll_subirFotoRegistrarMascota.setOnClickListener(this);
-        btn_guardarRegistrarMascota.setOnClickListener(this);
+        tv_fnacRegistrarMiMascota.setOnClickListener(this);
+        ll_subirFotoRegistrarMiMascota.setOnClickListener(this);
+        btn_guardarRegistrarMiMascota.setOnClickListener(this);
     }
 
-    public void getControlesXML(){
+    private void getControlesXML(){
 
         ic_retroceso=findViewById(R.id.ic_retroceso);
-        et_nombreRegistrarMascota=findViewById(R.id.et_nombreRegistrarMascota);
-        sp_razaRegistrarMascota=findViewById(R.id.sp_razaRegistrarMascota);
-        sp_sexoRegistrarMascota=findViewById(R.id.sp_sexoRegistrarMascota);
-        et_colorRegistrarMascota=findViewById(R.id.et_colorRegistrarMascota);
-        et_fnacRegistrarMascota=findViewById(R.id.et_fnacRegistrarMascota);
-        sp_estadoRegistrarMascota=findViewById(R.id.sp_estadoRegistrarMascota);
-        sp_ciudadRegistrarMascota=findViewById(R.id.sp_ciudadRegistrarMascota);
-        et_rasgosRegistrarMascota=findViewById(R.id.et_rasgosRegistrarMascota);
-        iv_fotoMascota=findViewById(R.id.iv_fotoMascota);
-        ll_subirFotoRegistrarMascota=findViewById(R.id.ll_subirFotoRegistrarMascota);
-        btn_guardarRegistrarMascota=findViewById(R.id.btn_guardarRegistrarMascota);
+        et_nombreRegistrarMiMascota=findViewById(R.id.et_nombreRegistrarMiMascota);
+        sp_razaRegistrarMiMascota=findViewById(R.id.sp_razaRegistrarMiMascota);
+        sp_sexoRegistrarMiMascota=findViewById(R.id.sp_sexoRegistrarMiMascota);
+        et_colorRegistrarMiMascota=findViewById(R.id.et_colorRegistrarMiMascota);
+        tv_fnacRegistrarMiMascota=findViewById(R.id.tv_fnacRegistrarMiMascota);
+        sp_estadoRegistrarMiMascota=findViewById(R.id.sp_estadoRegistrarMiMascota);
+        sp_ciudadRegistrarMiMascota=findViewById(R.id.sp_ciudadRegistrarMiMascota);
+        et_rasgosRegistrarMiMascota=findViewById(R.id.et_rasgosRegistrarMiMascota);
+        iv_fotoRegistrarMiMascota=findViewById(R.id.iv_fotoRegistrarMiMascota);
+        ll_subirFotoRegistrarMiMascota=findViewById(R.id.ll_subirFotoRegistrarMiMascota);
+        btn_guardarRegistrarMiMascota=findViewById(R.id.btn_guardarRegistrarMiMascota);
     }
 
     @Override
@@ -118,24 +114,20 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
             case R.id.ic_retroceso:
                 finish();
                 break;
-            case R.id.et_fnacRegistrarMascota:
+            case R.id.tv_fnacRegistrarMiMascota:
                 obtenerFecha();
                 break;
-            case R.id.ll_subirFotoRegistrarMascota:
+            case R.id.ll_subirFotoRegistrarMiMascota:
                 cargarImagen();
-                //Intent itt_seleccionarImagenActivity=new Intent(RegistrarMascotaActivity.this, SeleccionarImagenActivity.class);
-                //startActivity(itt_seleccionarImagenActivity);
                 break;
-            case R.id.btn_guardarRegistrarMascota:
+            case R.id.btn_guardarRegistrarMiMascota:
                 formarJSONMascota();
-                //registrarMascota();
-                //Intent itt_inicioActivity=new Intent(RegistrarMascotaActivity.this, InicioActivity.class);
-                //startActivity(itt_inicioActivity);
+                registrarMascota();
                 break;
         }
     }
 
-    public void cargarSpinnerRaza(){
+    private void cargarSpinnerRaza(){
 
         JsonArrayRequest peticion=new JsonArrayRequest(
                 Request.Method.GET,
@@ -153,8 +145,8 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
                         ArrayAdapter<Raza> adapterSpinnerRaza;
                         adapterSpinnerRaza=new ArrayAdapter<Raza>(getApplicationContext(), R.layout.item_filtro, listaRazas);
 
-                        sp_razaRegistrarMascota.setAdapter(adapterSpinnerRaza);
-                        sp_razaRegistrarMascota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        sp_razaRegistrarMiMascota.setAdapter(adapterSpinnerRaza);
+                        sp_razaRegistrarMiMascota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
 
@@ -186,7 +178,7 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
         VolleyS.getInstance(getApplicationContext()).getRequestQueue().add(peticion);
     }
 
-    public void cargarSpinnerSexo(){
+    private void cargarSpinnerSexo(){
 
         listaSpinnerSexo.add(0, "Sexo");
         listaSpinnerSexo.add("Macho");
@@ -195,8 +187,8 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
         ArrayAdapter<String> adapterSpinnerSexo;
         adapterSpinnerSexo=new ArrayAdapter<String>(getApplicationContext(), R.layout.item_filtro, listaSpinnerSexo);
 
-        sp_sexoRegistrarMascota.setAdapter(adapterSpinnerSexo);
-        sp_sexoRegistrarMascota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        sp_sexoRegistrarMiMascota.setAdapter(adapterSpinnerSexo);
+        sp_sexoRegistrarMiMascota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
 
@@ -215,10 +207,9 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
 
             }
         });
-
     }
 
-    public void cargarSpinnerEstado(){
+    private void cargarSpinnerEstado(){
 
         JsonArrayRequest peticion=new JsonArrayRequest(
                 Request.Method.GET,
@@ -236,8 +227,8 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
                         ArrayAdapter<Estado> adapterSpinnerEstado;
                         adapterSpinnerEstado=new ArrayAdapter<Estado>(getApplicationContext(), R.layout.item_filtro, listaEstados);
 
-                        sp_estadoRegistrarMascota.setAdapter(adapterSpinnerEstado);
-                        sp_estadoRegistrarMascota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        sp_estadoRegistrarMiMascota.setAdapter(adapterSpinnerEstado);
+                        sp_estadoRegistrarMiMascota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
 
@@ -267,10 +258,9 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
                 }
         );
         VolleyS.getInstance(getApplicationContext()).getRequestQueue().add(peticion);
-
     }
 
-    public void cargarSpinnerCiudad(){
+    private void cargarSpinnerCiudad(){
 
         JsonArrayRequest peticion=new JsonArrayRequest(
                 Request.Method.GET,
@@ -288,8 +278,8 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
                         ArrayAdapter<Ciudad> adapterSpinnerCiudad;
                         adapterSpinnerCiudad=new ArrayAdapter<Ciudad>(getApplicationContext(), R.layout.item_filtro, listaCiudades);
 
-                        sp_ciudadRegistrarMascota.setAdapter(adapterSpinnerCiudad);
-                        sp_ciudadRegistrarMascota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        sp_ciudadRegistrarMiMascota.setAdapter(adapterSpinnerCiudad);
+                        sp_ciudadRegistrarMiMascota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
 
@@ -321,8 +311,10 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
         VolleyS.getInstance(getApplicationContext()).getRequestQueue().add(peticion);
     }
 
-    public void obtenerFecha(){
+    private void obtenerFecha(){
+
         final Calendar fecha=Calendar.getInstance();
+
         dia=fecha.get(Calendar.DAY_OF_MONTH);
         mes=fecha.get(Calendar.MONTH);
         anio=fecha.get(Calendar.YEAR);
@@ -332,13 +324,13 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
                 if((month+1)<10 && day<10){
-                    et_fnacRegistrarMascota.setText(year + "-0" + (month+1) + "-0" + day);
+                    tv_fnacRegistrarMiMascota.setText(year + "-0" + (month+1) + "-0" + day);
                 }else if((month+1)<10 && day>=10){
-                    et_fnacRegistrarMascota.setText(year + "-0" + (month+1) + "-" + day);
+                    tv_fnacRegistrarMiMascota.setText(year + "-0" + (month+1) + "-" + day);
                 }else if ((month+1)>=10 && day<10){
-                    et_fnacRegistrarMascota.setText(year + "-" + (month+1) + "-0" + day);
+                    tv_fnacRegistrarMiMascota.setText(year + "-" + (month+1) + "-0" + day);
                 }else {
-                    et_fnacRegistrarMascota.setText(year + "-" + (month+1) + "-" + day);
+                    tv_fnacRegistrarMiMascota.setText(year + "-" + (month+1) + "-" + day);
                 }
             }
         }, dia, mes, anio);
@@ -346,7 +338,7 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
 
     }
 
-    public void cargarSpinnerEsterilizado(){
+    private void cargarSpinnerEsterilizado(){
 
     /*  listaSpinnerEsterilizado.add(0, "¿Está esterilizado?");
         listaSpinnerEsterilizado.add("Sí");
@@ -398,7 +390,7 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
 
         if(resultCode==RESULT_OK){
             Uri path=data.getData();
-            Picasso.with(getApplicationContext()).load(path).fit().centerCrop().into(iv_fotoMascota);
+            Picasso.with(getApplicationContext()).load(path).fit().centerCrop().into(iv_fotoRegistrarMiMascota);
 
             try {
                 bitmapFotoMascota=MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), path);
@@ -422,40 +414,39 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
         return imagenString;
     }
 
+    private void formarJSONMascota(){
 
-    public void formarJSONMascota(){
-
-        nombreMascota=et_nombreRegistrarMascota.getText().toString();
-        colorMascota=et_colorRegistrarMascota.getText().toString();
-        fnacMascota=et_fnacRegistrarMascota.getText().toString();
-        estatusMascota="en casa";
-        rasgosMascota=et_rasgosRegistrarMascota.getText().toString();
+        nombreMascota=et_nombreRegistrarMiMascota.getText().toString();
+        colorMascota=et_colorRegistrarMiMascota.getText().toString();
+        fnacMascota=tv_fnacRegistrarMiMascota.getText().toString();
+        rasgosMascota=et_rasgosRegistrarMiMascota.getText().toString();
         idUsuarioMascota=usuario.getId();
 
         jsonMascota=new JSONObject();
 
         try {
             jsonMascota.put("nombre", nombreMascota);
-            jsonMascota.put("id_raza", idRazaMascota);
             jsonMascota.put("sexo", sexoMascota);
             jsonMascota.put("color", colorMascota);
-            jsonMascota.put("esterilizado", "");
-            jsonMascota.put("enfermedad", "");
             jsonMascota.put("f_nac", fnacMascota);
-            jsonMascota.put("estatus", estatusMascota);
-            jsonMascota.put("id_usuario", idUsuarioMascota);
-            jsonMascota.put("foto", fotoMascotaString);
             jsonMascota.put("id_ciudad", idCiudadMascota);
+            jsonMascota.put("estatus", "en casa");
+            jsonMascota.put("esterilizado", "No");
+            jsonMascota.put("enfermedad", "Ninguna");
+            jsonMascota.put("id_usuario", idUsuarioMascota);
+            jsonMascota.put("id_raza", idRazaMascota);
+            jsonMascota.put("foto", fotoMascotaString);
             jsonMascota.put("rasgos", rasgosMascota);
+            jsonMascota.put("habilitada", "Si");
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        Log.d("mascota", jsonMascota.toString());
+        Log.d("mascotaRegistrar", jsonMascota.toString());
     }
 
-    public void registrarMascota(){
+    private void registrarMascota(){
 
         JsonObjectRequest peticion=new JsonObjectRequest(
                 Request.Method.POST,
@@ -464,19 +455,29 @@ public class RegistrarMascotaActivity extends AppCompatActivity implements View.
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
+                        irActivityInicio();
+                        Toast.makeText(RegistrarMascotaActivity.this, "Mascota registrada", Toast.LENGTH_SHORT).show();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Toast.makeText(RegistrarMascotaActivity.this, "Error en la petición", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
-
         VolleyS.getInstance(getApplicationContext()).getRequestQueue().add(peticion);
-
     }
 
+    private void irActivityInicio(){
+        Intent itt_inicioActivity=new Intent(RegistrarMascotaActivity.this, InicioActivity.class);
+        startActivity(itt_inicioActivity);
+    }
+
+    private void cargarSpinners(){
+        cargarSpinnerRaza();
+        cargarSpinnerSexo();
+        cargarSpinnerEstado();
+        cargarSpinnerCiudad();
+    }
 }

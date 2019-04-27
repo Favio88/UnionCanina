@@ -35,72 +35,256 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_pets_white_18dp"
+            android:layout_toRightOf="@id/tv_nombreMascota"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"/>
+
     </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/rl_cuerpo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".9">
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_weight=".8">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center">
+            android:weightSum="1">
 
             <ImageView
                 android:id="@+id/iv_fotoMascota"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/foto"
-                android:layout_marginBottom="5dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".55"
+                android:background="@drawable/ic_photo_gray_400dp" />
 
-            <TextView
-                android:id="@+id/tv_razaMascota"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Raza"
-                android:textColor="@color/colorTexto"
-                android:textSize="16sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".45"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
 
-            <TextView
-                android:id="@+id/tv_edadMascota"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edad"
-                android:textColor="@color/colorTexto"
-                android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Datos de la mascota"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="3dp"
+                    android:textColor="@color/colorTexto"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_rasgosMascota"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rasgos físicos"
-                android:textColor="@color/colorTexto"
-                android:textSize="16sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lugar de extravío"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/colorTexto"
-                android:textStyle="bold"
-                android:textSize="16sp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
 
-            <TextView
-                android:id="@+id/tv_lugarExtravioMascota"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Monterreal, Torreón, Coahuila"
-                android:textColor="@color/colorTexto"
-                android:textSize="14sp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="ID"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:textAlignment="textEnd"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_codigoMascota"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Código"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Raza"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:textAlignment="textEnd"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_razaMascota"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Raza"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Sexo"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:textAlignment="textEnd"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_sexoMascota"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Sexo"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Color"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:textAlignment="textEnd"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_colorMascota"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Color"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Edad"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:textAlignment="textEnd"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_edadMascota"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:text="Edad"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1"
+                        android:gravity="center"
+                        android:layout_marginTop="0dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rasgos"
+                            android:textColor="@color/colorTexto"
+                            android:textSize="12sp"
+                            android:paddingRight="3dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_rasgosMascota"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rasgos"
+                            android:textColor="@color/colorTextoControles"
+                            android:textSize="12sp"
+                            android:paddingLeft="3dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Datos del extravío"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="3dp"
+                    android:textColor="@color/colorTexto"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/tv_lugarExtravioMascota"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Datos de extravío"
+                    android:textColor="@color/colorTextoControles"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1">
 
         <Button
             android:id="@+id/btn_contactarDueno"
@@ -113,7 +297,7 @@
             android:textColor="#FFFFFF"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:textSize="16sp"/>
 
     </FrameLayout>
